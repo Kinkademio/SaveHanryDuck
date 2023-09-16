@@ -1,6 +1,4 @@
-using System.IO;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManagerScript : MonoBehaviour
@@ -12,17 +10,21 @@ public class GameManagerScript : MonoBehaviour
 
     [SerializeField] AudioSource menuSoundPlayer;
     [SerializeField] AudioSource gameSoundPlayer;
-    
+
+    [SerializeField] float baseVolume = 0.5f;
 
     private GameObject currentActiveUI;
     private bool inGame = false;
 
     private void Start()
     {
-       
+        if (!PlayerPrefs.HasKey("volume"))
+        {
+            PlayerPrefs.SetFloat("volume", baseVolume);                                                                                                                 
+        }
         AudioListener.volume = PlayerPrefs.GetFloat("volume");
         this.currentActiveUI = MenuUI;
-        menuSoundPlayer.Play();
+        menuSoundPlayer.Play();                                                                                                                                                                                                                                          
     }
 
     private void Update()
