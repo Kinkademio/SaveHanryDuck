@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     float dumping = 1.8f;
-    GameObject Player;
+    public GameObject Player;
 
     void Start()
     {

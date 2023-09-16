@@ -37,7 +37,8 @@ public class GenerationManager : MonoBehaviour
     {
         int x = 0; int y = -2;
         SpawnRoom(new Pair<int, int>(x, y), Direction.Top, 0);
-        Player = GameObject.Find("Duck");
+        //Player = GameObject.Find("Duck");
+        Player.SetActive(true);
         MainCamera = GameObject.Find("Main Camera");
     }
 

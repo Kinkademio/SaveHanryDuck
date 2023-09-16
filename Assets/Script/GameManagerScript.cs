@@ -14,7 +14,7 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] float baseVolume = 0.5f;
 
     private GameObject currentActiveUI;
-    private bool inGame = false;
+    public bool inGame = false;
 
     private void Start()
     {
@@ -67,6 +67,9 @@ public class GameManagerScript : MonoBehaviour
         menuSoundPlayer.Pause();
         gameSoundPlayer.Play();
         this.inGame = true;
+
+        GameObject.Find("Main Camera").GetComponent<GenerationManager>().enabled = true;
+        GameObject.Find("Main Camera").GetComponent<CameraControl>().enabled = true;
     }
 
     //Сохранение игрововго прогресса
