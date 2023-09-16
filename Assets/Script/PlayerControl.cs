@@ -5,8 +5,12 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     public Vector2 Napravlenie;
-    float Sila;
     public Rigidbody2D rb;
+    public Animator animator;
+    public SpriteRenderer sprite;
+
+    bool keyboardActive;
+    float playerSpeed;
     int HP;
 
 
@@ -14,55 +18,56 @@ public class PlayerControl : MonoBehaviour
     {
         Napravlenie.x = 0;
         Napravlenie.y = 0;
-        Sila = 40;
+        playerSpeed = 40;
+        keyboardActive = true;
 
+        animator = this.GetComponent<Animator>();
+        sprite = this.GetComponent<SpriteRenderer>();
         rb = this.GetComponent< Rigidbody2D >();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Napravlenie.y = Napravlenie.y + 1;
-        }
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            Napravlenie.y = Napravlenie.y - 1;
-        }
+        //if(Input.GetKey(KeyCode.W)) { 
+        //    rb.velocity = new Vector2(rb.velocity.x, playerSpeed); 
+        //}
+        //if (Input.GetKey(KeyCode.A)) { 
+        //    rb.velocity = new Vector2(-playerSpeed, rb.velocity.y); 
+        //}
+        //if (Input.GetKey(KeyCode.S)) { 
+        //    rb.velocity = new Vector2(rb.velocity.x, -playerSpeed); 
+        //}
+        //if (Input.GetKey(KeyCode.D)) { 
+        //    rb.velocity = new Vector2(playerSpeed, rb.velocity.y); 
+        //}
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Napravlenie.x = Napravlenie.x - 1;
-        }
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            Napravlenie.x = Napravlenie.x + 1;
-        }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (keyboardActive)
         {
-            Napravlenie.y = Napravlenie.y - 1;
-        }
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            Napravlenie.y = Napravlenie.y + 1;
-        }
+            if (Input.GetKeyDown(KeyCode.W)) { Napravlenie.y = Napravlenie.y + 1; }
+            if (Input.GetKeyUp(KeyCode.W)) { Napravlenie.y = Napravlenie.y - 1; }
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            Napravlenie.x = Napravlenie.x + 1;
-        }
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            Napravlenie.x = Napravlenie.x - 1;
+            if (Input.GetKeyDown(KeyCode.A)) { Napravlenie.x = Napravlenie.x - 1; sprite.flipX = false; }
+            if (Input.GetKeyUp(KeyCode.A)) { Napravlenie.x = Napravlenie.x + 1; }
+
+            if (Input.GetKeyDown(KeyCode.S)) { Napravlenie.y = Napravlenie.y - 1; }
+            if (Input.GetKeyUp(KeyCode.S)) { Napravlenie.y = Napravlenie.y + 1; }
+
+            if (Input.GetKeyDown(KeyCode.D)) { Napravlenie.x = Napravlenie.x + 1; sprite.flipX = true; }
+            if (Input.GetKeyUp(KeyCode.D)) { Napravlenie.x = Napravlenie.x - 1; }
+
+            if ((Input.GetKey(KeyCode.W) ^ Input.GetKey(KeyCode.S)) || 
+                (Input.GetKey(KeyCode.A) ^ Input.GetKey(KeyCode.D)))
+            { 
+                animator.Play("Utka_go"); 
+            } 
+            else { animator.Play("Utka_idle"); }
         }
     }
 
-     void FixedUpdate()
+    void FixedUpdate()
     {
         // Скорость перемещения
-        rb.AddForce(Napravlenie.normalized * Sila);
-
+        rb.AddForce(Napravlenie.normalized * playerSpeed);
     }
 }

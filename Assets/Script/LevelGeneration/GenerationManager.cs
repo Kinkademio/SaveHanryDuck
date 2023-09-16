@@ -122,13 +122,13 @@ public class GenerationManager : MonoBehaviour
 
                     switch (room.room.First[i, j]) {
                         case 1:
-                            room.room.Second[i, j] = Instantiate(floor, new Vector3(x, -y, 0), Quaternion.identity);
+                            room.room.Second[i, j] = Instantiate(floor, new Vector3(x, -y, z), Quaternion.identity);
                             break;
                         case 2:
-                            room.room.Second[i, j] = Instantiate(wall, new Vector3(x, -y, 0), Quaternion.identity);
+                            room.room.Second[i, j] = Instantiate(wall, new Vector3(x, -y, z), Quaternion.identity);
                             break;
                         case 3:
-                            room.room.Second[i, j] = Instantiate(door, new Vector3(x, -y, 0), Quaternion.identity);
+                            room.room.Second[i, j] = Instantiate(door, new Vector3(x, -y, z), Quaternion.identity);
                             room.room.Second[i, j].GetComponent<DoorTrigger>().direction = DoorDirection(direction, i, j, room.sizeRoom);
 
                             if ((x == startDoor.First) && (-y == startDoor.Second))
@@ -148,13 +148,13 @@ public class GenerationManager : MonoBehaviour
 
                     switch (room.room.First[i, j]) {
                         case 1:
-                            room.room.Second[i, j] = Instantiate(floor, new Vector3(x, y, 0), Quaternion.identity);
+                            room.room.Second[i, j] = Instantiate(floor, new Vector3(x, y, z), Quaternion.identity);
                             break;
                         case 2:
-                            room.room.Second[i, j] = Instantiate(wall, new Vector3(x, y, 0), Quaternion.identity);
+                            room.room.Second[i, j] = Instantiate(wall, new Vector3(x, y, z), Quaternion.identity);
                             break;
                         case 3:
-                            room.room.Second[i, j] = Instantiate(door, new Vector3(x, y, 0), Quaternion.identity);
+                            room.room.Second[i, j] = Instantiate(door, new Vector3(x, y, z), Quaternion.identity);
                             room.room.Second[i, j].GetComponent<DoorTrigger>().direction = DoorDirection(direction, i, j, room.sizeRoom);
 
                             if ((x == startDoor.First) && (y == startDoor.Second))
@@ -179,13 +179,13 @@ public class GenerationManager : MonoBehaviour
                     switch (room.room.First[i, j])
                     {
                         case 1:
-                            room.room.Second[i, j] = Instantiate(floor, new Vector3(x, y, 0), Quaternion.identity);
+                            room.room.Second[i, j] = Instantiate(floor, new Vector3(x, y, z), Quaternion.identity);
                             break;
                         case 2:
-                            room.room.Second[i, j] = Instantiate(wall, new Vector3(x, y, 0), Quaternion.identity);
+                            room.room.Second[i, j] = Instantiate(wall, new Vector3(x, y, z), Quaternion.identity);
                             break;
                         case 3:
-                            room.room.Second[i, j] = Instantiate(door, new Vector3(x, y, 0), Quaternion.identity);
+                            room.room.Second[i, j] = Instantiate(door, new Vector3(x, y, z), Quaternion.identity);
                             room.room.Second[i, j].GetComponent<DoorTrigger>().direction = DoorDirection(direction, i, j, room.sizeRoom);
 
                             if ((x == startDoor.First) && (y == startDoor.Second))
@@ -210,13 +210,13 @@ public class GenerationManager : MonoBehaviour
                     switch (room.room.First[i, j])
                     {
                         case 1:
-                            room.room.Second[i, j] = Instantiate(floor, new Vector3(-x, y, 0), Quaternion.identity);
+                            room.room.Second[i, j] = Instantiate(floor, new Vector3(-x, y, z), Quaternion.identity);
                             break;
                         case 2:
-                            room.room.Second[i, j] = Instantiate(wall, new Vector3(-x, y, 0), Quaternion.identity);
+                            room.room.Second[i, j] = Instantiate(wall, new Vector3(-x, y, z), Quaternion.identity);
                             break;
                         case 3:
-                            room.room.Second[i, j] = Instantiate(door, new Vector3(-x, y, 0), Quaternion.identity);
+                            room.room.Second[i, j] = Instantiate(door, new Vector3(-x, y, z), Quaternion.identity);
                             room.room.Second[i, j].GetComponent<DoorTrigger>().direction = DoorDirection(direction, i, j, room.sizeRoom);
 
                             if ((-x == startDoor.First) && (y == startDoor.Second))
