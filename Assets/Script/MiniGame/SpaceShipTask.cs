@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Drawing;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
 {
