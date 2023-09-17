@@ -16,6 +16,10 @@ public class GameManagerScript : MonoBehaviour
     private GameObject currentActiveUI;
     public bool inGame = false;
 
+    public GameObject Player;
+    GameObject MainCamera;
+    public float Timer = 0f;
+
     private void Start()
     {
         if (!PlayerPrefs.HasKey("volume"))
@@ -24,7 +28,9 @@ public class GameManagerScript : MonoBehaviour
         }
         AudioListener.volume = PlayerPrefs.GetFloat("volume");
         this.currentActiveUI = MenuUI;
-        menuSoundPlayer.Play();                                                                                                                                                                                                                                          
+        menuSoundPlayer.Play();
+
+        MainCamera = GameObject.Find("Main Camera");
     }
 
     private void Update()
@@ -34,6 +40,11 @@ public class GameManagerScript : MonoBehaviour
             this.openMenu();
             gameSoundPlayer.Pause();
             menuSoundPlayer.Play();
+        }
+
+        if (inGame)
+        {
+            endGame();
         }
     }
 
@@ -67,9 +78,6 @@ public class GameManagerScript : MonoBehaviour
         menuSoundPlayer.Pause();
         gameSoundPlayer.Play();
         this.inGame = true;
-
-        GameObject.Find("Main Camera").GetComponent<GenerationManager>().enabled = true;
-        GameObject.Find("Main Camera").GetComponent<CameraControl>().enabled = true;
     }
 
     //Сохранение игрововго прогресса
@@ -85,8 +93,37 @@ public class GameManagerScript : MonoBehaviour
 
         string data = PlayerPrefs.GetString("save");
         //Тут нужно эту структуру проинициализировать и выполнить действия для загрузки юзера на уровень
+        MainCamera.GetComponent<GenerationManager>().enabled = true;
+        MainCamera.GetComponent<GenerationManager>().GenerationManagerFirstRoom();
+        Player.transform.position = new Vector3(0, 0, -1);
+        Player.SetActive(true);
+        MainCamera.transform.position = new Vector3(0, 0, MainCamera.transform.position.z);
+        MainCamera.GetComponent<CameraControl>().enabled = true;
+        Player.GetComponent<PlayerControl>().SetKeyboardActive(true);
 
         backToGame();
+    }
+
+    public void endGame()
+    {
+        if (Timer > 10f)
+        {
+            inGame = false;
+            Player.GetComponent<PlayerControl>().SetKeyboardActive(false);
+            MainCamera.GetComponent<GenerationManager>().DestroyAllWithout();
+            MainCamera.GetComponent<GenerationManager>().enabled = false;
+            MainCamera.GetComponent<CameraControl>().enabled = false;
+            Player.SetActive(false);
+            Timer = 0f;
+
+            this.swapVisibleUi(currentActiveUI, MenuUI);
+            gameSoundPlayer.Pause();
+            menuSoundPlayer.Play();
+        }
+        else
+        {
+            Timer += Time.deltaTime;
+        }
     }
 
     //Пауза

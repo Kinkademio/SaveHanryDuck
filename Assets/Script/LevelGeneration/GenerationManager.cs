@@ -33,13 +33,16 @@ public class GenerationManager : MonoBehaviour
     //    { 0, 2, 2, 2, 3, 2, 2, 2, 0 }
     //};
 
-    void Start()
+    public void Start()
+    {
+        MainCamera = GameObject.Find("Main Camera");
+    }
+
+    public void GenerationManagerFirstRoom()
     {
         int x = 0; int y = -2;
         SpawnRoom(new Pair<int, int>(x, y), Direction.Top, 0);
         //Player = GameObject.Find("Duck");
-        Player.SetActive(true);
-        MainCamera = GameObject.Find("Main Camera");
     }
 
     //    void Update()
@@ -105,6 +108,13 @@ public class GenerationManager : MonoBehaviour
             (MainCamera.transform.position.x - Dx, 
              MainCamera.transform.position.y - Dy, 
              MainCamera.transform.position.z);
+    }
+    public void DestroyAllWithout()
+    {
+        for (int i = rooms.Count - 1; i >= 0; i--)
+        {
+            DestroyRoom(i);
+        }
     }
 
     public int SpawnRoom(Pair<int, int> startDoor, Direction direction, int z)

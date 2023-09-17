@@ -76,6 +76,7 @@ public class DoorTrigger : MonoBehaviour
 
                 if (Destroy == true)
                 {
+                    GameObject.Find("Manager").GetComponent<GameManagerScript>().Timer = 0f;
                     generationManager.DestroyAllWithout(RoomNumInMemory);
                     //this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
                     //this.gameObject.AddComponent<BoxCollider2D>();
@@ -83,6 +84,7 @@ public class DoorTrigger : MonoBehaviour
                 }
                 else
                 {
+
                     generationManager.DisActiveRoom(generationManager.rooms[RoomNumInMemory]);
                 }
             } 

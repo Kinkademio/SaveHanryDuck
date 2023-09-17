@@ -9,7 +9,7 @@ public class PlayerControl : MonoBehaviour
     public Animator animator;
     public SpriteRenderer sprite;
 
-    bool keyboardActive;
+    public bool keyboardActive;
     float playerSpeed;
     int HP;
 
@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour
         Napravlenie.x = 0;
         Napravlenie.y = 0;
         playerSpeed = 40;
-        keyboardActive = true;
+        //keyboardActive = false;
 
         animator = this.GetComponent<Animator>();
         sprite = this.GetComponent<SpriteRenderer>();
@@ -69,5 +69,13 @@ public class PlayerControl : MonoBehaviour
     {
         // Скорость перемещения
         rb.AddForce(Napravlenie.normalized * playerSpeed);
+    }
+
+    public void SetKeyboardActive(bool Active)
+    {
+        keyboardActive = Active;
+
+        Napravlenie.x = 0;
+        Napravlenie.y = 0;
     }
 }
