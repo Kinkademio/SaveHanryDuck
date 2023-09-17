@@ -7,21 +7,28 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] GameObject MenuUI;
     [SerializeField] GameObject GameUI;
     [SerializeField] GameObject SettingsUI;
-
+    [SerializeField] GameObject HelpUI;
+    [SerializeField] GameObject WinUI;
+    [SerializeField] GameObject LoseUI;
+  
     [SerializeField] AudioSource menuSoundPlayer;
     [SerializeField] AudioSource gameSoundPlayer;
 
     [SerializeField] float baseVolume = 0.5f;
+    [SerializeField] Text timerField;
 
     private GameObject currentActiveUI;
     public bool inGame = false;
 
     public GameObject Player;
     GameObject MainCamera;
-    public float Timer = 0f;
+    [SerializeField] float lifeTimer = 10f;
+    private float Timer;
+    
 
     private void Start()
     {
+        Timer = lifeTimer;
         if (!PlayerPrefs.HasKey("volume"))
         {
             PlayerPrefs.SetFloat("volume", baseVolume);                                                                                                                 
@@ -93,9 +100,9 @@ public class GameManagerScript : MonoBehaviour
 
         string data = PlayerPrefs.GetString("save");
         //Тут нужно эту структуру проинициализировать и выполнить действия для загрузки юзера на уровень
+        Player.transform.position = new Vector3(0, 0, -1);
         MainCamera.GetComponent<GenerationManager>().enabled = true;
         MainCamera.GetComponent<GenerationManager>().GenerationManagerFirstRoom();
-        Player.transform.position = new Vector3(0, 0, -1);
         Player.SetActive(true);
         MainCamera.transform.position = new Vector3(0, 0, MainCamera.transform.position.z);
         MainCamera.GetComponent<CameraControl>().enabled = true;
@@ -106,24 +113,36 @@ public class GameManagerScript : MonoBehaviour
 
     public void endGame()
     {
-        if (Timer > 10f)
+        if (Timer < 0f)
         {
-            inGame = false;
-            Player.GetComponent<PlayerControl>().SetKeyboardActive(false);
-            MainCamera.GetComponent<GenerationManager>().DestroyAllWithout();
-            MainCamera.GetComponent<GenerationManager>().enabled = false;
-            MainCamera.GetComponent<CameraControl>().enabled = false;
-            Player.SetActive(false);
-            Timer = 0f;
-
-            this.swapVisibleUi(currentActiveUI, MenuUI);
-            gameSoundPlayer.Pause();
-            menuSoundPlayer.Play();
+            this.swapVisibleUi(currentActiveUI, LoseUI);
+            
         }
         else
         {
-            Timer += Time.deltaTime;
+            Timer -= Time.deltaTime;
+            updateTimer(Timer);
         }
+    }
+
+    public void winGame()
+    {
+        this.swapVisibleUi(currentActiveUI, WinUI);
+    }
+
+    public void resetGame()
+    {
+        inGame = false;
+        Player.GetComponent<PlayerControl>().SetKeyboardActive(false);
+        MainCamera.GetComponent<GenerationManager>().DestroyAllWithout();
+        MainCamera.GetComponent<GenerationManager>().enabled = false;
+        MainCamera.GetComponent<CameraControl>().enabled = false;
+        Player.SetActive(false);
+        resetTimer();
+
+        this.swapVisibleUi(currentActiveUI, MenuUI);
+        gameSoundPlayer.Pause();
+        menuSoundPlayer.Play();
     }
 
     //Пауза
@@ -153,4 +172,22 @@ public class GameManagerScript : MonoBehaviour
         PlayerPrefs.SetFloat("volume", AudioListener.volume);
     }
 
+    private void updateTimer(float newTime)
+    {
+        string time =  System.Convert.ToString(newTime);
+        string[] parts = time.Split(',');
+        timerField.text = parts[0];
+
+    }
+
+    public void resetTimer()
+    {
+        this.Timer = lifeTimer;
+    }
+
+
+    public void openHelp()
+    {
+        this.swapVisibleUi(currentActiveUI, HelpUI);
+    }
 }
