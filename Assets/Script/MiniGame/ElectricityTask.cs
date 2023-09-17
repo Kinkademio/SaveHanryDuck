@@ -6,7 +6,7 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
 {
     public GameObject Spark;
     private int Point = 0;
-    private readonly int PointNumber = 50;
+    private readonly int PointNumber = 20;
 
     public void OnPointerDown(PointerEventData eventData) {
         Spark.SetActive(true);
@@ -22,8 +22,9 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
     {
         if (Point == PointNumber) 
         {
-            ElectricityTaskComplete = true;
+            Point = 0;
             Completer();
+           
         }
     }
 

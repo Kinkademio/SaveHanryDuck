@@ -37,7 +37,6 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
     {
         if (TakedStar == RequiredStar) {
             Stop();
-            SpaceshipTaskComplete = true;
             Completer();
         }
     }

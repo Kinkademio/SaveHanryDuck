@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
 {
     public GameObject Slash;
-    public readonly int minHoldTime = 10;
-    public readonly int maxHoldTime = 20;
+    public readonly int minHoldTime = 5;
+    public readonly int maxHoldTime = 15;
     public int holdTime = 0;
 
     bool corutineWork = false;
@@ -26,8 +26,7 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
         corutineWork = false;
         if (holdTime >= minHoldTime && holdTime <= maxHoldTime)
         {
-            Slash.SetActive(true);
-            OxygenTaskComplete = true;
+            holdTime = 0;  
             Completer();
         }
     }

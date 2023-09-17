@@ -2,39 +2,17 @@ using UnityEngine;
 
 public class Task : MonoBehaviour
 {
-    public GameObject Canvas;
-    public GameObject OxygenTask;
-    public GameObject ElectricityTask;
-    public GameObject SpaceshipTask;
-    public GameObject Text;
+    public GameObject parent;
     
-    public bool OxygenTaskComplete = false;
-    public bool ElectricityTaskComplete = false;
-    public bool SpaceshipTaskComplete = false;
-
-    void Start() { 
-        //Canvas.SetActive(false);
-    }
     public void Completer()
     {
-        Text.SetActive(true);
+        GameObject.Find("Manager").GetComponent<TaskChecker>().iamDONE(gameObject);
+        closeTask();
     }
 
-    public void TaskOption()
+    public void closeTask()
     {
-        int taskNumber = Random.Range(1, 3);
-
-        switch (taskNumber)
-        {
-            case 1:
-                OxygenTask.SetActive(true);
-                break;
-            case 2:
-                ElectricityTask.SetActive(true);
-                break;
-            case 3:
-                SpaceshipTask.SetActive(true);
-                break;
-        }
+        parent.SetActive(false);
     }
+
 }
