@@ -518,7 +518,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380571922}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a11916ee57678f14685ec0cc4452ddb6, type: 3}
   m_Name: 
@@ -564,6 +564,8 @@ MonoBehaviour:
   gameSoundPlayer: {fileID: 1648401557}
   baseVolume: 0.5
   inGame: 0
+  Player: {fileID: 2062431831}
+  Timer: 0
 --- !u!4 &487616054
 Transform:
   m_ObjectHideFlags: 0
