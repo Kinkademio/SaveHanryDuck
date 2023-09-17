@@ -10,6 +10,9 @@ public class DoorTrigger : MonoBehaviour
     public bool firstDoor = false;
     int RoomNumInMemory = -1;
 
+    public Animator animator;
+    bool Close = false;
+
     //public bool bforward = false;
     //public bool bright = false;
     //public bool bleft = false;
@@ -19,6 +22,13 @@ public class DoorTrigger : MonoBehaviour
     void Start()
     {
         generationManager = GameObject.Find("Main Camera").GetComponent<GenerationManager>();
+        animator = this.GetComponent<Animator>();
+
+        if (firstDoor)
+        {
+            DoorOpenCloseLogic(GameObject.Find("Duck").GetComponent<Collider2D>());
+        }    
+        //DoorOpenCloseLogic(GameObject.Find("Duck").GetComponent<Collider2D>());
 
         //RoomNumInMemory = generationManager.SpawnRoom(new Pair<int, int>(0, 5), Direction.Top, 0);
         //generationManager.rooms.Add(new Room(new Pair<int, int>(0, 5), 0, Direction.Top, true));
@@ -52,39 +62,7 @@ public class DoorTrigger : MonoBehaviour
             } 
             else
             {
-                bool Close = false;
-                switch (direction)
-                {
-                    case Direction.Top:
-                        if (collision.transform.position.y < this.transform.position.y)
-                        {
-                            Close = true;
-                        }
-                        break;
-                    case Direction.Left:
-                        if (collision.transform.position.x > this.transform.position.x)
-                        {
-                            Close = true;
-                        }
-                        break;
-                    case Direction.Right:
-                        if (collision.transform.position.x < this.transform.position.x)
-                        {
-                            Close = true;
-                        }
-                        break;
-                    case Direction.Bottom:
-                        if (collision.transform.position.y > this.transform.position.y)
-                        {
-                            Close = true;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-
-                if (Close) { this.gameObject.GetComponent<BoxCollider2D>().enabled = true; }
-                else { this.gameObject.GetComponent<BoxCollider2D>().enabled = false; }
+                DoorOpenCloseLogic(collision);
             }
         }
     }
@@ -94,37 +72,7 @@ public class DoorTrigger : MonoBehaviour
         {
             if (!firstDoor)
             {
-                bool Destroy = false;
-
-                switch (direction)
-                {
-                    case Direction.Top:
-                        if (collision.transform.position.y > this.transform.position.y)
-                        {
-                            Destroy = true;
-                        }
-                        break;
-                    case Direction.Left:
-                        if (collision.transform.position.x < this.transform.position.x)
-                        {
-                            Destroy = true;
-                        }
-                        break;
-                    case Direction.Right:
-                        if (collision.transform.position.x > this.transform.position.x)
-                        {
-                            Destroy = true;
-                        }
-                        break;
-                    case Direction.Bottom:
-                        if (collision.transform.position.y < this.transform.position.y)
-                        {
-                            Destroy = true;
-                        }
-                        break;
-                    default:
-                        break;
-                }
+                bool Destroy = PlayerInRoom(collision);
 
                 if (Destroy == true)
                 {
@@ -137,6 +85,94 @@ public class DoorTrigger : MonoBehaviour
                 {
                     generationManager.DisActiveRoom(generationManager.rooms[RoomNumInMemory]);
                 }
+            } 
+            else
+            {
+                DoorOpenCloseLogic(collision);
+            }
+        }
+    }
+
+    bool PlayerInRoom(Collider2D collision)
+    {
+        bool InRoom = false;
+        switch (direction)
+        {
+            case Direction.Top:
+                if (collision.transform.position.y > this.transform.position.y)
+                {
+                    InRoom = true;
+                }
+                break;
+            case Direction.Left:
+                if (collision.transform.position.x < this.transform.position.x)
+                {
+                    InRoom = true;
+                }
+                break;
+            case Direction.Right:
+                if (collision.transform.position.x > this.transform.position.x)
+                {
+                    InRoom = true;
+                }
+                break;
+            case Direction.Bottom:
+                if (collision.transform.position.y < this.transform.position.y)
+                {
+                    InRoom = true;
+                }
+                break;
+            default:
+                break;
+        }
+        return InRoom;
+    }
+
+    void DoorOpenCloseLogic(Collider2D collision)
+    {
+        bool NewClose = false;
+        switch (direction)
+        {
+            case Direction.Top:
+                if (collision.transform.position.y < this.transform.position.y)
+                {
+                    NewClose = true;
+                }
+                break;
+            case Direction.Left:
+                if (collision.transform.position.x > this.transform.position.x)
+                {
+                    NewClose = true;
+                }
+                break;
+            case Direction.Right:
+                if (collision.transform.position.x < this.transform.position.x)
+                {
+                    NewClose = true;
+                }
+                break;
+            case Direction.Bottom:
+                if (collision.transform.position.y > this.transform.position.y)
+                {
+                    NewClose = true;
+                }
+                break;
+            default:
+                break;
+        }
+
+        if (Close != NewClose)
+        {
+            Close = NewClose;
+            if (Close)
+            {
+                this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+                animator.Play("Door_close");
+            }
+            else
+            {
+                this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                animator.Play("Door_open");
             }
         }
     }
