@@ -14,6 +14,7 @@ public class GenerationManager : MonoBehaviour
     public GameObject door;
     public GameObject floor;
     public GameObject wall;
+    public GameObject trigger;
 
 
     //Room room1;
@@ -147,6 +148,9 @@ public class GenerationManager : MonoBehaviour
                                 room.room.Second[i, j].GetComponent<DoorTrigger>().firstDoor = true;
                             }
                             break;
+                        case 4:
+                            room.room.Second[i, j] = Instantiate(trigger, new Vector3(x, -y, z), Quaternion.identity);
+                            break;
                     }
                 }
             }
@@ -172,6 +176,9 @@ public class GenerationManager : MonoBehaviour
                                 //room.room.Second[i, j].GetComponent<CircleCollider2D>().enabled = false;
                                 room.room.Second[i, j].GetComponent<DoorTrigger>().firstDoor = true;
                             }
+                            break;
+                        case 4:
+                            room.room.Second[i, j] = Instantiate(trigger, new Vector3(x, y, z), Quaternion.identity);
                             break;
                     }
                 }
@@ -204,6 +211,9 @@ public class GenerationManager : MonoBehaviour
                                 room.room.Second[i, j].GetComponent<DoorTrigger>().firstDoor = true;
                             }
                             break;
+                        case 4:
+                            room.room.Second[i, j] = Instantiate(trigger, new Vector3(x, y, z), Quaternion.identity);
+                            break;
                     }
                 }
             }
@@ -234,6 +244,9 @@ public class GenerationManager : MonoBehaviour
                                 //room.room.Second[i, j].GetComponent<CircleCollider2D>().enabled = false;
                                 room.room.Second[i, j].GetComponent<DoorTrigger>().firstDoor = true;
                             }
+                            break;
+                        case 4:
+                            room.room.Second[i, j] = Instantiate(trigger, new Vector3(-x, y, z), Quaternion.identity);
                             break;
                     }
                 }

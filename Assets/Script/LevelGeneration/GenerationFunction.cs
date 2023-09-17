@@ -14,6 +14,7 @@ namespace GenerationFunction
         public Direction direction;
         int countDoor;
         public int z;
+        public bool TriggerRoom;
 
         public bool active;
         public Pair<int[,], GameObject[,]> room;
@@ -34,12 +35,17 @@ namespace GenerationFunction
             room.First = new int[sizeRoom.First, sizeRoom.Second];
             room.Second = new GameObject[sizeRoom.First, sizeRoom.Second];
 
+            int Trigger = UnityEngine.Random.Range(0, 4);
+            if (Trigger == 0) { TriggerRoom = true; }
+            else { TriggerRoom = false; }
+
             GenerateRoomStartDoor();
         }
 
         void GenerateRoomStartDoor() //TODO: Генерация оставшихся дверей
         {
             int noPlacedDoor = countDoor;
+            Pair<int, int> TriggerCoord = new Pair<int, int>(-1, -1);
             int BottomDoor = -1, LeftDoor = -1, RightDoor = -1;
 
             while (noPlacedDoor > 1)
@@ -60,6 +66,11 @@ namespace GenerationFunction
                         break;
                 }
 
+            }
+            if (TriggerRoom)
+            {
+                TriggerCoord.First = UnityEngine.Random.Range(2, sizeRoom.Second - 2);
+                TriggerCoord.Second = UnityEngine.Random.Range(2, sizeRoom.Second - 2);
             }
 
 
@@ -88,6 +99,10 @@ namespace GenerationFunction
                     {
                         room.First[i, j] = 2;
                     } 
+                    else if ((j == TriggerCoord.First) && (i == TriggerCoord.Second))
+                    {
+                        room.First[i, j] = 4;
+                    }
                     else
                     {
                         room.First[i, j] = 1;

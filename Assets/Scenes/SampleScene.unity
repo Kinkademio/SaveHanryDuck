@@ -528,6 +528,7 @@ MonoBehaviour:
   door: {fileID: 7021791561797846376, guid: bc475b3d68d117a4f878c974818a7252, type: 3}
   floor: {fileID: 993971443357082017, guid: 7f521ca388ccfe744937f4997f2a9e9b, type: 3}
   wall: {fileID: 5671181273997162582, guid: c5acac7161af54949b3fe1d83ab77918, type: 3}
+  trigger: {fileID: 8127564784227865935, guid: fbff8184de4e5bc40beabc26128a6c5d, type: 3}
 --- !u!1 &487616052
 GameObject:
   m_ObjectHideFlags: 0
