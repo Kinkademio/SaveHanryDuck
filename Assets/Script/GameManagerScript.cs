@@ -116,8 +116,8 @@ public class GameManagerScript : MonoBehaviour
     {
         if (Timer < 0f)
         {
+            deactivateGame();
             this.swapVisibleUi(currentActiveUI, LoseUI);
-
         }
         else
         {
@@ -128,10 +128,11 @@ public class GameManagerScript : MonoBehaviour
 
     public void winGame()
     {
+        deactivateGame();
         this.swapVisibleUi(currentActiveUI, WinUI);
     }
 
-    public void resetGame()
+    public void deactivateGame()
     {
         inGame = false;
         Player.GetComponent<PlayerControl>().SetKeyboardActive(false);
@@ -140,6 +141,9 @@ public class GameManagerScript : MonoBehaviour
         MainCamera.GetComponent<CameraControl>().enabled = false;
         Player.SetActive(false);
         resetTimer();
+    }
+    public void resetGame()
+    {
 
         this.swapVisibleUi(currentActiveUI, MenuUI);
         gameSoundPlayer.Pause();
