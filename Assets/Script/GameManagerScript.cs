@@ -93,10 +93,10 @@ public class GameManagerScript : MonoBehaviour
 
         string data = PlayerPrefs.GetString("save");
         //“ут нужно эту структуру проинициализировать и выполнить действи€ дл€ загрузки юзера на уровень
-        MainCamera.GetComponent<GenerationManager>().enabled = true;
-        MainCamera.GetComponent<GenerationManager>().GenerationManagerFirstRoom();
         Player.transform.position = new Vector3(0, 0, -1);
         Player.SetActive(true);
+        MainCamera.GetComponent<GenerationManager>().enabled = true;
+        MainCamera.GetComponent<GenerationManager>().GenerationManagerFirstRoom();
         MainCamera.transform.position = new Vector3(0, 0, MainCamera.transform.position.z);
         MainCamera.GetComponent<CameraControl>().enabled = true;
         Player.GetComponent<PlayerControl>().SetKeyboardActive(true);
