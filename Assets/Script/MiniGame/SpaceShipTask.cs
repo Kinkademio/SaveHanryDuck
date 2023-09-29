@@ -1,14 +1,14 @@
 using System.Collections;
-using System.Drawing;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
 {
     public GameObject SpaceShip;
-    public GameObject Star1;
-    public GameObject Star2;
-    public GameObject Star3;
+    //public GameObject Star1;
+    //public GameObject Star2;
+    //public GameObject Star3;
 
     public int TakedStar = 0;
     public readonly int RequiredStar = 3;
@@ -57,28 +57,29 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
             Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             SpaceShip.transform.position = point;
             Debug.Log("Корабль" + " " + point);
-            Vector2 St1 = Star1.transform.position;
-            Vector2 St2 = Star2.transform.position;
-            Vector2 St3 = Star3.transform.position;
-            Debug.Log("Звезда 1" + " " + St1);
-            Debug.Log("Звезда 2" + " " + St2);
-            Debug.Log("Звезда 3" + " " + St3);
 
-            if (point == St1)
-            {
-                Debug.Log("Звёздочка 1");
-                PickUpStar(Star1);
-            }
-            if (point == St2)
-            {
-                Debug.Log("Звёздочка 2");
-                PickUpStar(Star2);
-            }
-            if (point == St3)
-            {
-                Debug.Log("Звёздочка взята");
-                PickUpStar(Star3); 
-            }
+            //Vector2 St1 = Star1.transform.position;
+            //Vector2 St2 = Star2.transform.position;
+            //Vector2 St3 = Star3.transform.position;
+            //Debug.Log("Звезда 1" + " " + St1);
+            //Debug.Log("Звезда 2" + " " + St2);
+            //Debug.Log("Звезда 3" + " " + St3);
+
+            //if (point == St1)
+            //{
+            //    Debug.Log("Звёздочка 1");
+            //    PickUpStar(Star1);
+            //}
+            //if (point == St2)
+            //{
+            //    Debug.Log("Звёздочка 2");
+            //    PickUpStar(Star2);
+            //}
+            //if (point == St3)
+            //{
+            //    Debug.Log("Звёздочка взята");
+            //    PickUpStar(Star3); 
+            //}
             
             CheckTask();
             yield return new WaitForSeconds(0.1f);

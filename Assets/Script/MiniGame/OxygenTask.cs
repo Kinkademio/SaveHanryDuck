@@ -1,15 +1,18 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
 {
-    public GameObject Slash;
+    public Text OxygenCounter;
+    public Text OxygenTimer;
     public readonly int minHoldTime = 5;
-    public readonly int maxHoldTime = 15;
+    public readonly int maxHoldTime = 10;
     public int holdTime = 0;
 
     bool corutineWork = false;
+
     IEnumerator coroutine;
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -29,6 +32,12 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
             holdTime = 0;  
             Completer();
         }
+        else if (holdTime < minHoldTime)
+        {
+            OxygenCounter.text = "Слишком слабо";
+        }
+        else { OxygenCounter.text = "По аккуратнее!!!"; }
+
     }
 
     public void StartTask()
@@ -47,6 +56,7 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
         while (true)
         {
             holdTime++;
+            OxygenTimer.text = "Сила удара:" + holdTime;
             yield return new WaitForSeconds(1f);
             Debug.Log(holdTime);
         }

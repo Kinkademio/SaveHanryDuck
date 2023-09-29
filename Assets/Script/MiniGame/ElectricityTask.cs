@@ -1,10 +1,11 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
 {
     public GameObject Spark;
+    public Text ElectricityCounter;
     private int Point = 0;
     private readonly int PointNumber = 20;
 
@@ -15,6 +16,7 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
     {
         Spark.SetActive(false);
         Point++;
+        ElectricityCounter.text = "Колличество ударов:" + Point;
         StartTask();
     }
 
@@ -24,8 +26,6 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
         {
             Point = 0;
             Completer();
-           
         }
     }
-
 }
