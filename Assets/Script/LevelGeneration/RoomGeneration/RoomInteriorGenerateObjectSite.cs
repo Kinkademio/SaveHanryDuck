@@ -11,8 +11,8 @@ namespace RoomInteriorGeneratorTag
     public class Door
     {
         public int x, y, width, height;
-        PointDouble center;
-        Direction direction;
+        public PointDouble center;
+        public Direction direction;
 
         public Door(int x, int y, int Lenght, Direction direction)
         {
@@ -31,8 +31,8 @@ namespace RoomInteriorGeneratorTag
                     break;
             }
 
-            this.center.x = (double)x + (double)width / 2;
-            this.center.y = (double)y + (double)height / 2;
+            this.center.x = (double)x + (double)(width-1) / 2;
+            this.center.y = (double)y + (double)(height-1) / 2;
 
             this.direction = direction;
         }

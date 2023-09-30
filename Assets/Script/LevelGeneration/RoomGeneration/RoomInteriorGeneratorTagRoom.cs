@@ -21,7 +21,7 @@ namespace RoomInteriorGeneratorTag
         public Point LowerLeftCorner { get; private set; }
         public Point LowerRightCorner { get; private set; }
         public PointDouble Center { get; private set; }
-        public PointDouble FirstDoor { get; private set; }
+        public PointDouble FirstDoor;
 
         private int maxObjectSiteSize;
         private int minObjectSiteSize;

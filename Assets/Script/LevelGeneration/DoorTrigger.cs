@@ -1,6 +1,4 @@
-using GenerationFunction;
-using System.Collections;
-using System.Collections.Generic;
+using RoomInteriorGeneratorTag;
 using UnityEngine;
 
 public class DoorTrigger : MonoBehaviour
@@ -50,8 +48,8 @@ public class DoorTrigger : MonoBehaviour
             {
                 if (RoomNumInMemory == -1)
                 {
-                    int x = (int)this.transform.position.x; int y = (int)this.transform.position.y;
-                    RoomNumInMemory = generationManager.SpawnRoom(new Pair<int, int>(x, y), direction, 1);
+                    double x = this.transform.position.x; double y = this.transform.position.y;
+                    RoomNumInMemory = generationManager.SpawnRoom(new PointDouble(x, y), direction, 1);
                     this.GetComponent<BoxCollider2D>().enabled = false;
                     //Destroy(this.gameObject.GetComponent<BoxCollider2D>());
                 }

@@ -43,7 +43,7 @@ namespace RoomInteriorGeneratorTag
                     x = random.Next(2, roomObjects.GetLength(0) - DoorLenght - 1); y = roomObjects.GetLength(1) - 1;
                     break;
             }
-
+            FirstDoor.x = x; FirstDoor.y = y;   
             doors.Add(new Door(x, y, DoorLenght, InvertDirection(direction)));
 
             if ((direction != Direction.Left) && (random.NextDouble() > 0.5))
@@ -94,7 +94,7 @@ namespace RoomInteriorGeneratorTag
             }
         }
 
-        Direction InvertDirection(Direction direction)
+        public static Direction InvertDirection(Direction direction)
         {
             switch (direction)
             {
