@@ -122,8 +122,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 0.95}
+  m_Offset: {x: 0, y: -0.2}
+  m_Size: {x: 0.5, y: 0.65}
   m_Direction: 0
 --- !u!114 &3495473565915526290
 MonoBehaviour:
@@ -141,6 +141,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   animator: {fileID: 0}
   sprite: {fileID: 0}
+  keyboardActive: 0
 --- !u!95 &3495473565915526289
 Animator:
   serializedVersion: 5

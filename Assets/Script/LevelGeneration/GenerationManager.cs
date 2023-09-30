@@ -132,7 +132,18 @@ public class GenerationManager : MonoBehaviour
             }
         }
 
-        for(int i = 0; i < room.doors.Count; i++)
+        for (int i = 0; i < room.objectSites.Count; i++)
+        {
+            if (room.objectSites[i].typeSite == Surface.TriggerObject)
+            {
+                double triggerCenterX = room.objectSites[i].x + (double)(room.objectSites[i].width - 1) / 2;
+                double triggerCenterY = room.objectSites[i].y + (double)(room.objectSites[i].height - 1) / 2;
+                 rooms[rooms.Count - 1].First[room.objectSites[i].x, room.objectSites[i].y] =
+                    Instantiate(triggerObject, new Vector3(xStart + (float)triggerCenterX, yStart - (float)triggerCenterY, z), Quaternion.identity);
+            }
+        }
+
+        for (int i = 0; i < room.doors.Count; i++)
         {
             switch (room.doors[i].direction)
             {
