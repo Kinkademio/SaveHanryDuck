@@ -4,31 +4,18 @@ using UnityEngine.UI;
 
 public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
 {
-    public GameObject SpaceShip;
+    public GameObject SpaceShip, Star1, Star2, Star3;
     public Text SpaceCounter;
-    public GameObject Star1;
-    public GameObject Star2;
-    public GameObject Star3;
 
     public int TakedStar = 0;
     public readonly int RequiredStar = 3;
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        Debug.Log("Мышь нажата");
-        
-    }
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        Debug.Log("Мышь не нажата");
-        StartTask();
-    }
+    public void OnPointerDown(PointerEventData eventData) { }
+    public void OnPointerUp(PointerEventData eventData) { StartTask(); }
 
     public void CheckTask()
     {
-        if (TakedStar == RequiredStar) {
-            Completer();
-        }
+        if (TakedStar == RequiredStar) { Completer(); }
     }
     public void StartTask()
     {

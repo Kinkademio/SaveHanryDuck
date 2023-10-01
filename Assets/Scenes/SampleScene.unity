@@ -3383,7 +3383,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041A\u043E\u043B\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0443\u0434\u0430\u0440\u043E\u0432: "
+  m_Text: "\u041A\u043E\u043B\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0443\u0434\u0430\u0440\u043E\u0432:
+    0"
 --- !u!222 &1133421341
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3667,7 +3668,6 @@ MonoBehaviour:
   parent: {fileID: 1155949016}
   OxygenCounter: {fileID: 1931285241}
   OxygenTimer: {fileID: 1192063214}
-  holdTime: 0
 --- !u!1 &1176168106 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1644698091486161673, guid: bac7961610075b14ab2d17d7cf212d3c, type: 3}
@@ -7324,10 +7324,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 2006292023}
   SpaceShip: {fileID: 1282889063}
-  SpaceCounter: {fileID: 1063248985}
   Star1: {fileID: 102738778}
   Star2: {fileID: 640533762}
   Star3: {fileID: 523594319}
+  SpaceCounter: {fileID: 1063248985}
   TakedStar: 0
 --- !u!1 &2046356709
 GameObject:
