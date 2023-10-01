@@ -19,6 +19,17 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] float baseVolume = 0.5f;
 
     private GameObject currentActiveUI;
+
+    public enum GameState
+    {
+        onMenu, 
+        onPause,
+        GameProcess,
+    }
+
+    //Текущее состояние игры
+    private GameState gameState;
+
     public bool inGame = false;
 
     public GameObject Player;
@@ -27,8 +38,36 @@ public class GameManagerScript : MonoBehaviour
     private float Timer;
 
 
+    //Смена состояния игры
+    public void changeGameState(GameState newState)
+    {
+        switch (newState)
+        {
+            case GameState.GameProcess:
+                break;
+            case GameState.onPause:
+                break;
+            case GameState.onMenu:
+                break;
+        }
+        gameState = newState;
+    }
+    //Интерфейс для получения текущего состояния игры из-вне
+    public GameState getCurretGameState()
+    {
+        return gameState;
+    }
+
+
+
+
+
+
     private void Start()
     {
+        //Устанавливаем по умолчанию состояние игры в Меню
+        changeGameState(GameState.onMenu);
+
         Timer = lifeTimer;
         if (!PlayerPrefs.HasKey("volume"))
         {
@@ -43,14 +82,14 @@ public class GameManagerScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && inGame)
+        if (Input.GetKeyDown(KeyCode.Escape) && gameState == GameState.GameProcess)
         {
             this.openMenu();
             gameSoundPlayer.Pause();
             menuSoundPlayer.Play();
         }
 
-        if (inGame)
+        if (gameState == GameState.GameProcess)
         {
             endGame();
         }
@@ -73,19 +112,20 @@ public class GameManagerScript : MonoBehaviour
 
     public void openMenu()
     {
-        pauseGame();
         this.swapVisibleUi(currentActiveUI, MenuUI);
-        this.inGame = false;
+        if (gameState == GameState.GameProcess)
+        {
+            pauseGame();
+        }
     }
 
     //Переход к игре
     public void backToGame()
     {
-        resumeGame();
         this.swapVisibleUi(currentActiveUI, GameUI);
         menuSoundPlayer.Pause();
         gameSoundPlayer.Play();
-        this.inGame = true;
+        changeGameState(GameState.GameProcess);
     }
 
     //Сохранение игрововго прогресса
@@ -98,17 +138,21 @@ public class GameManagerScript : MonoBehaviour
 
     public void loadGame()
     {
-
-        string data = PlayerPrefs.GetString("save");
-        //Тут нужно эту структуру проинициализировать и выполнить действия для загрузки юзера на уровень
-        Player.transform.position = new Vector3(0, 0, -1);
-        Player.SetActive(true);
-        MainCamera.GetComponent<GenerationManager>().enabled = true;
-        MainCamera.GetComponent<GenerationManager>().GenerationManagerFirstRoom();
-        MainCamera.transform.position = new Vector3(0, 0, MainCamera.transform.position.z);
-        MainCamera.GetComponent<CameraControl>().enabled = true;
-        Player.GetComponent<PlayerControl>().SetKeyboardActive(true);
-
+        if(gameState == GameState.onMenu) {
+            string data = PlayerPrefs.GetString("save");
+            //Тут нужно эту структуру проинициализировать и выполнить действия для загрузки юзера на уровень
+            Player.transform.position = new Vector3(0, 0, -1);
+            Player.SetActive(true);
+            MainCamera.GetComponent<GenerationManager>().enabled = true;
+            MainCamera.GetComponent<GenerationManager>().GenerationManagerFirstRoom();
+            MainCamera.transform.position = new Vector3(0, 0, MainCamera.transform.position.z);
+            MainCamera.GetComponent<CameraControl>().enabled = true;
+            Player.GetComponent<PlayerControl>().SetKeyboardActive(true);
+        }
+        if (gameState == GameState.onPause)
+        {
+            resumeGame();
+        }   
         backToGame();
     }
 
@@ -118,6 +162,7 @@ public class GameManagerScript : MonoBehaviour
         {
             deactivateGame();
             this.swapVisibleUi(currentActiveUI, LoseUI);
+            changeGameState(GameState.onMenu);
         }
         else
         {
@@ -130,11 +175,11 @@ public class GameManagerScript : MonoBehaviour
     {
         deactivateGame();
         this.swapVisibleUi(currentActiveUI, WinUI);
+        changeGameState(GameState.onMenu);
     }
 
     public void deactivateGame()
     {
-        inGame = false;
         Player.GetComponent<PlayerControl>().SetKeyboardActive(false);
         MainCamera.GetComponent<GenerationManager>().DestroyAllWithout();
         MainCamera.GetComponent<GenerationManager>().enabled = false;
@@ -142,6 +187,7 @@ public class GameManagerScript : MonoBehaviour
         Player.SetActive(false);
         resetTimer();
     }
+
     public void resetGame()
     {
 
@@ -154,6 +200,7 @@ public class GameManagerScript : MonoBehaviour
     //Пауза
     public void pauseGame()
     {
+       gameState = GameState.onPause;
        Time.timeScale = 0f;
     }
 
