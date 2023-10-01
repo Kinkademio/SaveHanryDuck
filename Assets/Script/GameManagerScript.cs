@@ -15,7 +15,7 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] AudioSource menuSoundPlayer;
     [SerializeField] AudioSource gameSoundPlayer;
     [SerializeField] Text timerField;
-
+    [SerializeField] float lifeTimer = 10f;
     [SerializeField] float baseVolume = 0.5f;
 
     private GameObject currentActiveUI;
@@ -30,11 +30,10 @@ public class GameManagerScript : MonoBehaviour
     //“екущее состо€ние игры
     private GameState gameState;
 
-    public bool inGame = false;
 
     public GameObject Player;
     GameObject MainCamera;
-    [SerializeField] float lifeTimer = 10f;
+    
     private float Timer;
 
 
@@ -82,16 +81,16 @@ public class GameManagerScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && gameState == GameState.GameProcess)
-        {
-            this.openMenu();
-            gameSoundPlayer.Pause();
-            menuSoundPlayer.Play();
-        }
-
         if (gameState == GameState.GameProcess)
         {
             endGame();
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                this.openMenu();
+                gameSoundPlayer.Pause();
+                menuSoundPlayer.Play();
+            }
         }
     }
 
@@ -139,7 +138,6 @@ public class GameManagerScript : MonoBehaviour
     public void loadGame()
     {
         if(gameState == GameState.onMenu) {
-            string data = PlayerPrefs.GetString("save");
             //“ут нужно эту структуру проинициализировать и выполнить действи€ дл€ загрузки юзера на уровень
             Player.transform.position = new Vector3(0, 0, -1);
             Player.SetActive(true);
