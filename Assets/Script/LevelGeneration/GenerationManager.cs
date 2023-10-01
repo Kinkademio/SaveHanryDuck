@@ -58,11 +58,21 @@ public class GenerationManager : MonoBehaviour
                 {
                     rooms[0].First[i, j].transform.position = new Vector3
                         (rooms[0].First[i, j].transform.position.x - Dx,
-                         rooms[0].First[i, j].transform.position.y - Dy, 0);
+                         rooms[0].First[i, j].transform.position.y - Dy,
+                         rooms[0].First[i, j].transform.position.z + 1);
                 }
             }
         }
-        Player.transform.position = new Vector3(Player.transform.position.x - Dx, Player.transform.position.y - Dy, -1);
+
+        for (int i = 0; i < interactiveObjects.Count; i++)
+        {
+            interactiveObjects[i].transform.position = new Vector3 
+                (interactiveObjects[i].transform.position.x - Dx,
+                 interactiveObjects[i].transform.position.y - Dy,
+                 interactiveObjects[i].transform.position.z + 1);
+        }
+
+        Player.transform.position = new Vector3(Player.transform.position.x - Dx, Player.transform.position.y - Dy, -2);
         MainCamera.transform.position = new Vector3
             (MainCamera.transform.position.x - Dx,
              MainCamera.transform.position.y - Dy,
@@ -128,6 +138,19 @@ public class GenerationManager : MonoBehaviour
                 if (room.roomObjects[x, y] == Surface.StorageObject)
                 {
                     rooms[rooms.Count - 1].First[x, y] = Instantiate(storageObject, new Vector3(xStart + x, yStart - y, z), Quaternion.identity);
+                }
+
+                if (room.interactiveObjects[x, y] == Interactive.StaticObject)
+                {
+                    interactiveObjects.Add(Instantiate(interactiveStaticObject, new Vector3(xStart + x, yStart - y, z - 1), Quaternion.identity));
+                }
+                if (room.interactiveObjects[x, y] == Interactive.NonStaticObject)
+                {
+                    interactiveObjects.Add(Instantiate(nonStaticObject, new Vector3(xStart + x, yStart - y, z - 1), Quaternion.identity));
+                }
+                if (room.interactiveObjects[x, y] == Interactive.PickUp)
+                {
+                    interactiveObjects.Add(Instantiate(pickUp, new Vector3(xStart + x, yStart - y, z - 1), Quaternion.identity));
                 }
             }
         }
@@ -257,6 +280,20 @@ public class GenerationManager : MonoBehaviour
 
     public void DestroyRoom(int index)
     {
+        for (int i = 0; i < interactiveObjects.Count; i++)
+        {
+            if ((rooms[index].First[0, 0].transform.position.x < interactiveObjects[i].transform.position.x) &&
+                (rooms[index].First[0, 0].transform.position.y > interactiveObjects[i].transform.position.y) &&
+                (rooms[index].First[rooms[index].First.GetLength(0) - 1, rooms[index].First.GetLength(1) - 1].transform.position.x > interactiveObjects[i].transform.position.x) &&
+                (rooms[index].First[rooms[index].First.GetLength(0) - 1, rooms[index].First.GetLength(1) - 1].transform.position.y < interactiveObjects[i].transform.position.y))
+            {
+                Destroy(interactiveObjects[i]);
+                interactiveObjects.Remove(interactiveObjects[i]);
+                i--;
+            }
+                
+        }
+
         for (int x = 0; x < rooms[index].First.GetLength(0); x++)
         {
             for (int y = 0; y < rooms[index].First.GetLength(1); y++)
@@ -267,6 +304,7 @@ public class GenerationManager : MonoBehaviour
                 }
             }
         }
+        
         rooms.Remove(rooms[index]);
     }
     public void DisActiveRoom(Pair<GameObject[,], bool> room)
@@ -281,6 +319,18 @@ public class GenerationManager : MonoBehaviour
                 }
             }
         }
+
+        for (int i = 0; i < interactiveObjects.Count; i++)
+        {
+            if ((room.First[0, 0].transform.position.x < interactiveObjects[i].transform.position.x) &&
+                (room.First[0, 0].transform.position.y > interactiveObjects[i].transform.position.y) &&
+                (room.First[room.First.GetLength(0) - 1, room.First.GetLength(1) - 1].transform.position.x > interactiveObjects[i].transform.position.x) &&
+                (room.First[room.First.GetLength(0) - 1, room.First.GetLength(1) - 1].transform.position.y < interactiveObjects[i].transform.position.y))
+            {
+                interactiveObjects[i].SetActive(false);
+            }
+        }
+
         room.Second = false;
     }
     public void ActiveRoom(Pair<GameObject[,], bool> room)
@@ -295,6 +345,18 @@ public class GenerationManager : MonoBehaviour
                 }
             }
         }
+
+        for (int i = 0; i < interactiveObjects.Count; i++)
+        {
+            if ((room.First[0, 0].transform.position.x < interactiveObjects[i].transform.position.x) &&
+                (room.First[0, 0].transform.position.y > interactiveObjects[i].transform.position.y) &&
+                (room.First[room.First.GetLength(0) - 1, room.First.GetLength(1) - 1].transform.position.x > interactiveObjects[i].transform.position.x) &&
+                (room.First[room.First.GetLength(0) - 1, room.First.GetLength(1) - 1].transform.position.y < interactiveObjects[i].transform.position.y))
+            {
+                interactiveObjects[i].SetActive(true);
+            }
+        }
+
         room.Second = true;
     }
 

@@ -1209,12 +1209,12 @@ MonoBehaviour:
   floor: {fileID: 993971443357082017, guid: 7f521ca388ccfe744937f4997f2a9e9b, type: 3}
   wall: {fileID: 5671181273997162582, guid: c5acac7161af54949b3fe1d83ab77918, type: 3}
   door: {fileID: 7021791561797846376, guid: bc475b3d68d117a4f878c974818a7252, type: 3}
-  staticObject: {fileID: 8127564784227865935, guid: fbff8184de4e5bc40beabc26128a6c5d, type: 3}
+  staticObject: {fileID: 1219570744896556970, guid: 5bc80dd1c3df761489701a455673e0b2, type: 3}
   triggerObject: {fileID: 8127564784227865935, guid: fbff8184de4e5bc40beabc26128a6c5d, type: 3}
-  storageObject: {fileID: 8127564784227865935, guid: fbff8184de4e5bc40beabc26128a6c5d, type: 3}
-  interactiveStaticObject: {fileID: 8127564784227865935, guid: fbff8184de4e5bc40beabc26128a6c5d, type: 3}
-  nonStaticObject: {fileID: 8127564784227865935, guid: fbff8184de4e5bc40beabc26128a6c5d, type: 3}
-  pickUp: {fileID: 8127564784227865935, guid: fbff8184de4e5bc40beabc26128a6c5d, type: 3}
+  storageObject: {fileID: 7059833071517361038, guid: 3ea3b7f5d50f73b4493c47f2e2677527, type: 3}
+  interactiveStaticObject: {fileID: 3158036531233345565, guid: ea161f366d834c54ea1b11123f13ab06, type: 3}
+  nonStaticObject: {fileID: 5541989677162106676, guid: a75adca1fec239d4f97fd842d70d2614, type: 3}
+  pickUp: {fileID: 1260299116749833802, guid: b59a7ba391825c744b72ab6ebcb5794a, type: 3}
   passiveEnemy: {fileID: 8127564784227865935, guid: fbff8184de4e5bc40beabc26128a6c5d, type: 3}
   activeEnemy: {fileID: 8127564784227865935, guid: fbff8184de4e5bc40beabc26128a6c5d, type: 3}
 --- !u!1 &487616052
@@ -7440,7 +7440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3495473565915526318, guid: 33b271a03aefa6d40be2bdb69c100bae, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 3495473565915526318, guid: 33b271a03aefa6d40be2bdb69c100bae, type: 3}
       propertyPath: m_LocalRotation.w
