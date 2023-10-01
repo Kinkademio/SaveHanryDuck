@@ -32,6 +32,7 @@ public class GameManagerScript : MonoBehaviour
 
 
     public GameObject Player;
+    public GameObject PlayerDrone;
     GameObject MainCamera;
     
     private float Timer;
@@ -141,6 +142,8 @@ public class GameManagerScript : MonoBehaviour
             //“ут нужно эту структуру проинициализировать и выполнить действи€ дл€ загрузки юзера на уровень
             Player.transform.position = new Vector3(0, 0, -1);
             Player.SetActive(true);
+            PlayerDrone.transform.position = new Vector3(0, 0, -3);
+            PlayerDrone.SetActive(true);
             MainCamera.GetComponent<GenerationManager>().enabled = true;
             MainCamera.GetComponent<GenerationManager>().GenerationManagerFirstRoom();
             MainCamera.transform.position = new Vector3(0, 0, MainCamera.transform.position.z);
@@ -179,9 +182,11 @@ public class GameManagerScript : MonoBehaviour
     public void deactivateGame()
     {
         Player.GetComponent<PlayerControl>().SetKeyboardActive(false);
+
         MainCamera.GetComponent<GenerationManager>().DestroyAllWithout();
         MainCamera.GetComponent<GenerationManager>().enabled = false;
         MainCamera.GetComponent<CameraControl>().enabled = false;
+        PlayerDrone.SetActive(false);
         Player.SetActive(false);
         resetTimer();
     }

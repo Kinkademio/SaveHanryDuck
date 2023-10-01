@@ -7,6 +7,7 @@ using UnityEngine;
 public class GenerationManager : MonoBehaviour
 {
     public GameObject Player;
+    public GameObject PlayerDrone;
     public GameObject MainCamera;
 
     public List<GameObject> interactiveObjects = new List<GameObject>();
@@ -73,6 +74,8 @@ public class GenerationManager : MonoBehaviour
         }
 
         Player.transform.position = new Vector3(Player.transform.position.x - Dx, Player.transform.position.y - Dy, -2);
+        PlayerDrone.transform.position = new Vector3(PlayerDrone.transform.position.x - Dx, PlayerDrone.transform.position.y - Dy, -3);
+
         MainCamera.transform.position = new Vector3
             (MainCamera.transform.position.x - Dx,
              MainCamera.transform.position.y - Dy,
