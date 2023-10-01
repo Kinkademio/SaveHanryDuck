@@ -44,20 +44,20 @@ public class PlayerControl : MonoBehaviour
 
         if (keyboardActive)
         {
-            if (Input.GetKeyDown(KeyCode.W)) { Napravlenie.y = Napravlenie.y + 1; }
-            if (Input.GetKeyUp(KeyCode.W)) { Napravlenie.y = Napravlenie.y - 1; }
+            if (Input.GetKeyDown(InputController.getInput("up"))) { Napravlenie.y = Napravlenie.y + 1; }
+            if (Input.GetKeyUp(InputController.getInput("up"))) { Napravlenie.y = Napravlenie.y - 1; }
 
-            if (Input.GetKeyDown(KeyCode.A)) { Napravlenie.x = Napravlenie.x - 1; sprite.flipX = false; }
-            if (Input.GetKeyUp(KeyCode.A)) { Napravlenie.x = Napravlenie.x + 1; }
+            if (Input.GetKeyDown(InputController.getInput("left"))) { Napravlenie.x = Napravlenie.x - 1; sprite.flipX = false; }
+            if (Input.GetKeyUp(InputController.getInput("left"))) { Napravlenie.x = Napravlenie.x + 1; }
 
-            if (Input.GetKeyDown(KeyCode.S)) { Napravlenie.y = Napravlenie.y - 1; }
-            if (Input.GetKeyUp(KeyCode.S)) { Napravlenie.y = Napravlenie.y + 1; }
+            if (Input.GetKeyDown(InputController.getInput("down"))) { Napravlenie.y = Napravlenie.y - 1; }
+            if (Input.GetKeyUp(InputController.getInput("down"))) { Napravlenie.y = Napravlenie.y + 1; }
 
-            if (Input.GetKeyDown(KeyCode.D)) { Napravlenie.x = Napravlenie.x + 1; sprite.flipX = true; }
-            if (Input.GetKeyUp(KeyCode.D)) { Napravlenie.x = Napravlenie.x - 1; }
+            if (Input.GetKeyDown(InputController.getInput("right"))) { Napravlenie.x = Napravlenie.x + 1; sprite.flipX = true; }
+            if (Input.GetKeyUp(InputController.getInput("right"))) { Napravlenie.x = Napravlenie.x - 1; }
 
-            if ((Input.GetKey(KeyCode.W) ^ Input.GetKey(KeyCode.S)) || 
-                (Input.GetKey(KeyCode.A) ^ Input.GetKey(KeyCode.D)))
+            if ((Input.GetKey(InputController.getInput("up")) ^ Input.GetKey(InputController.getInput("down"))) || 
+                (Input.GetKey(InputController.getInput("left")) ^ Input.GetKey(InputController.getInput("right"))))
             { 
                 animator.Play("Utka_go"); 
             } 
