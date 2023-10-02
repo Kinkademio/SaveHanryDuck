@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4514516270986536424}
   - component: {fileID: 7935710027656253653}
   m_Layer: 0
-  m_Name: TriggerStar
+  m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

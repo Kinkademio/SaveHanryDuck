@@ -36,12 +36,12 @@ public class Drone : MonoBehaviour
         if (90 < Mathf.Abs(realAngle))
         {
             sprite.flipX = true;
-            animationAngle = realAngle + 180;
+            animationAngle = realAngle;
         }
         else
         {
             sprite.flipX = false;
-            animationAngle = realAngle;
+            animationAngle = realAngle + 180;
         }
 
         Quaternion quaternion = Quaternion.identity * Quaternion.Euler(this.GetComponent<Transform>().rotation.x, this.GetComponent<Transform>().rotation.y, animationAngle);
