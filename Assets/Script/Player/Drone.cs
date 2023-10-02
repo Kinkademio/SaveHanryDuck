@@ -58,6 +58,11 @@ public class Drone : MonoBehaviour
 
             for (int i = 0; i < hit.Length; i++)
             {
+                if ((hit[i].point.x == this.GetComponent<Transform>().position.x) && (hit[i].point.y == this.GetComponent<Transform>().position.y))
+                {
+                    continue;
+                }
+
                 if ((hit[i].transform.gameObject.GetComponent<Health>() != null) && (!hit[i].collider.isTrigger))
                 {
                     TrailRenderer tracer = Instantiate(tracerEffect, this.GetComponent<Transform>().position, Quaternion.identity);
