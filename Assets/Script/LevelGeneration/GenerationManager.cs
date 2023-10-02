@@ -285,6 +285,13 @@ public class GenerationManager : MonoBehaviour
     {
         for (int i = 0; i < interactiveObjects.Count; i++)
         {
+            if (interactiveObjects[i] == null)
+            {
+                interactiveObjects.Remove(interactiveObjects[i]);
+                i--;
+                continue;
+            }
+
             if ((rooms[index].First[0, 0].transform.position.x < interactiveObjects[i].transform.position.x) &&
                 (rooms[index].First[0, 0].transform.position.y > interactiveObjects[i].transform.position.y) &&
                 (rooms[index].First[rooms[index].First.GetLength(0) - 1, rooms[index].First.GetLength(1) - 1].transform.position.x > interactiveObjects[i].transform.position.x) &&
@@ -325,6 +332,13 @@ public class GenerationManager : MonoBehaviour
 
         for (int i = 0; i < interactiveObjects.Count; i++)
         {
+            if (interactiveObjects[i] == null)
+            {
+                interactiveObjects.Remove(interactiveObjects[i]);
+                i--;
+                continue;
+            }
+
             if ((room.First[0, 0].transform.position.x < interactiveObjects[i].transform.position.x) &&
                 (room.First[0, 0].transform.position.y > interactiveObjects[i].transform.position.y) &&
                 (room.First[room.First.GetLength(0) - 1, room.First.GetLength(1) - 1].transform.position.x > interactiveObjects[i].transform.position.x) &&
@@ -351,6 +365,14 @@ public class GenerationManager : MonoBehaviour
 
         for (int i = 0; i < interactiveObjects.Count; i++)
         {
+            if (interactiveObjects[i] == null)
+            {
+                interactiveObjects.Remove(interactiveObjects[i]);
+                i--;
+                continue;
+            }
+
+
             if ((room.First[0, 0].transform.position.x < interactiveObjects[i].transform.position.x) &&
                 (room.First[0, 0].transform.position.y > interactiveObjects[i].transform.position.y) &&
                 (room.First[room.First.GetLength(0) - 1, room.First.GetLength(1) - 1].transform.position.x > interactiveObjects[i].transform.position.x) &&

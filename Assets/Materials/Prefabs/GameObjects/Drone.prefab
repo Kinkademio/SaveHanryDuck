@@ -101,6 +101,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   MainCamera: {fileID: 0}
   sprite: {fileID: 0}
+  tracerEffect: {fileID: 6541464574493361791, guid: 9d7caf437d8dfbb4f82372e33b4ef28c, type: 3}
   angle: 0
 --- !u!95 &8661278134066610710
 Animator:

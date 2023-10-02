@@ -1,7 +1,9 @@
 using RoomInteriorGeneratorTag;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
+using static UnityEngine.UI.CanvasScaler;
 
 public class Drone : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class Drone : MonoBehaviour
     public GameObject Player;
     public Camera MainCamera;
     public SpriteRenderer sprite;
+    public TrailRenderer tracerEffect;
 
     public float angle;
 
@@ -46,6 +49,29 @@ public class Drone : MonoBehaviour
 
         Quaternion quaternion = Quaternion.identity * Quaternion.Euler(this.GetComponent<Transform>().rotation.x, this.GetComponent<Transform>().rotation.y, animationAngle);
         this.GetComponent<Transform>().rotation = quaternion;
+
+
+        if (Input.GetKeyDown(InputController.getInput("shooting"))) 
+        {
+            RaycastHit2D[] hit = Physics2D.RaycastAll(this.GetComponent<Transform>().position, lookDirection, 25f);
+            Debug.DrawRay(this.GetComponent<Transform>().position, lookDirection, Color.red, 1.0f);
+
+            for (int i = 0; i < hit.Length; i++)
+            {
+                if ((hit[i].transform.gameObject.GetComponent<Health>() != null) && (!hit[i].collider.isTrigger))
+                {
+                    TrailRenderer tracer = Instantiate(tracerEffect, this.GetComponent<Transform>().position, Quaternion.identity);
+                    tracer.AddPosition(this.GetComponent<Transform>().position);
+
+                    tracer.transform.position = hit[i].point;
+
+                    hit[i].transform.gameObject.GetComponent<Health>().TakeDamage(1);
+                    break;
+                }
+            }
+        }
+
+
 
         //+= transform.forward* Time.deltaTime * mw * wheel_speed;
     }
