@@ -224,6 +224,7 @@ public class GameManagerScript : MonoBehaviour
     //Изменеие громкости звука
     public void changeGameVolume(float volume)
     {
+        Debug.Log(volume);
         AudioListener.volume = volume;
         PlayerPrefs.SetFloat("volume", AudioListener.volume);
     }
