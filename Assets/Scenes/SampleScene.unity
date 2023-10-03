@@ -2471,6 +2471,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
+      propertyPath: Damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
+      propertyPath: Spread
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
+      propertyPath: ReloadTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
+      propertyPath: MagazineSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
+      propertyPath: MaxAmmoCount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
+      propertyPath: StartAmmoCount
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
+      propertyPath: TimeBetweenShots
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
+      propertyPath: BulletInShootCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 635076044700586843, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
       propertyPath: m_Name
       value: Drone
