@@ -1,18 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class SavedScores : MonoBehaviour
+[System.Serializable]
+public class SavedScore
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string saveDate = DateTime.Now.ToString();
+    public Score[] savedScore;
 }
