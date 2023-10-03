@@ -28,6 +28,7 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
         {
             PointNumber = 0;
             Point = 0;
+            ElectricityCounter.text = "Колличество ударов:" + Point;
             Completer();
         }
     }

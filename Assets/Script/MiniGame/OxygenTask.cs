@@ -25,7 +25,9 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
         if (holdTime >= minHoldTime && holdTime <= maxHoldTime)
         {
             minHoldTime = 0;
-            holdTime = 0;  
+            holdTime = 0;
+            OxygenCounter.text = "";
+            OxygenTimer.text = "Сила удара:" + holdTime;
             Completer();
         }
         else if (holdTime < minHoldTime) { OxygenCounter.text = "Слишком слабо"; }
