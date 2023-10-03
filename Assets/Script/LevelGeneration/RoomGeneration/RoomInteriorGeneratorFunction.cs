@@ -273,13 +273,18 @@ namespace RoomInteriorGeneratorTag
                     }
                     if (roomObjects[x, y] == Surface.StorageObject)
                     {
+                        double temp = random.NextDouble();
                         if (NeighborCount(x, y, Surface.Floor) == 0) 
                         {
                             roomObjects[x, y] = Surface.StaticObject;
                         } 
-                        else if (random.NextDouble() > 0.75)
+                        else if (temp > 0.75)
                         {
                             interactiveObjects[x, y] = Interactive.PickUp;
+                        }
+                        else if (temp > 0.60)
+                        {
+                            interactiveObjects[x, y] = Interactive.StaticObject;
                         }
                     }
                     if (roomObjects[x, y] == Surface.StaticObject)
@@ -293,7 +298,7 @@ namespace RoomInteriorGeneratorTag
             }
         }
 
-        private int NeighborCount(int x, int y, Surface neighbor)
+        public int NeighborCount(int x, int y, Surface neighbor)
         {
             int count = 0;
             for (int i = x - 1; i <= x + 1; i++)

@@ -21,7 +21,10 @@ public class GenerationManager : MonoBehaviour
     public GameObject storageObject;
 
     public GameObject interactiveStaticObject;
+    public Sprite alter1InteractiveStaticObject;
     public GameObject nonStaticObject;
+    public Sprite alter1NonStaticObject;
+
     public GameObject pickUp;
 
     public GameObject passiveEnemy;
@@ -146,10 +149,18 @@ public class GenerationManager : MonoBehaviour
                 if (room.interactiveObjects[x, y] == Interactive.StaticObject)
                 {
                     interactiveObjects.Add(Instantiate(interactiveStaticObject, new Vector3(xStart + x, yStart - y, z - 1), Quaternion.identity));
+                    if (room.roomObjects[x, y] == Surface.StorageObject)
+                    {
+                        interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = alter1InteractiveStaticObject;
+                    }
                 }
                 if (room.interactiveObjects[x, y] == Interactive.NonStaticObject)
                 {
                     interactiveObjects.Add(Instantiate(nonStaticObject, new Vector3(xStart + x, yStart - y, z - 1), Quaternion.identity));
+                    if (room.NeighborCount(x, y, Surface.StaticObject) > 0)
+                    {
+                        interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = alter1NonStaticObject;
+                    }
                 }
                 if (room.interactiveObjects[x, y] == Interactive.PickUp)
                 {

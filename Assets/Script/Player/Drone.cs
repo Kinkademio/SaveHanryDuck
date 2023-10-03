@@ -11,11 +11,11 @@ public class Drone : MonoBehaviour
     public GameObject Player;
     public Camera MainCamera;
     public SpriteRenderer sprite;
-    public TrailRenderer tracerEffect;
 
     public float angle;
 
     Vector2 MousePosition;
+    Vector2 lookDirection;
 
     void Start()
     {
@@ -31,8 +31,9 @@ public class Drone : MonoBehaviour
         this.transform.position = Vector3.Lerp(this.transform.position, target, dumping * Time.deltaTime);
 
         MousePosition = MainCamera.ScreenToWorldPoint(Input.mousePosition);
+        lookDirection = new Vector2 (MousePosition.x - this.GetComponent<Transform>().position.x, MousePosition.y - this.GetComponent<Transform>().position.y);
 
-        Vector2 lookDirection = new Vector2 (MousePosition.x - this.GetComponent<Transform>().position.x, MousePosition.y - this.GetComponent<Transform>().position.y);
+
         float realAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
         float animationAngle;
 
@@ -49,34 +50,6 @@ public class Drone : MonoBehaviour
 
         Quaternion quaternion = Quaternion.identity * Quaternion.Euler(this.GetComponent<Transform>().rotation.x, this.GetComponent<Transform>().rotation.y, animationAngle);
         this.GetComponent<Transform>().rotation = quaternion;
-
-
-        if (Input.GetKeyDown(InputController.getInput("shooting"))) 
-        {
-            RaycastHit2D[] hit = Physics2D.RaycastAll(this.GetComponent<Transform>().position, lookDirection, 25f);
-            Debug.DrawRay(this.GetComponent<Transform>().position, lookDirection, Color.red, 1.0f);
-
-            for (int i = 0; i < hit.Length; i++)
-            {
-                if ((hit[i].point.x == this.GetComponent<Transform>().position.x) && (hit[i].point.y == this.GetComponent<Transform>().position.y))
-                {
-                    continue;
-                }
-
-                if ((hit[i].transform.gameObject.GetComponent<Health>() != null) && (!hit[i].collider.isTrigger))
-                {
-                    TrailRenderer tracer = Instantiate(tracerEffect, this.GetComponent<Transform>().position, Quaternion.identity);
-                    tracer.AddPosition(this.GetComponent<Transform>().position);
-
-                    tracer.transform.position = hit[i].point;
-
-                    hit[i].transform.gameObject.GetComponent<Health>().TakeDamage(1);
-                    break;
-                }
-            }
-        }
-
-
 
         //+= transform.forward* Time.deltaTime * mw * wheel_speed;
     }
