@@ -139,3 +139,11 @@ MonoBehaviour:
   Player: 1
   target: {fileID: 0}
   tracerEffect: {fileID: 6541464574493361791, guid: 9d7caf437d8dfbb4f82372e33b4ef28c, type: 3}
+  TimeBetweenShots: 0
+  ReloadTime: 0
+  MagazineSize: 0
+  MaxAmmoCount: 0
+  StartAmmoCount: 0
+  Damage: 0
+  BulletInShootCount: 0
+  Spread: 0

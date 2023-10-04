@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Weapon : MonoBehaviour
     GameObject target;
     [SerializeField]
     TrailRenderer tracerEffect;
+    [SerializeField] 
+    Text ammoField;
 
     Vector2 targetPosition;
     Vector2 lookDirection;
@@ -33,11 +36,11 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     float Spread;
 
-    public float betweenShots;
-    public float reload;
-    public int magazine;
-    public int ammoCount;
-    public bool shooting;
+    float betweenShots;
+    float reload;
+    int magazine;
+    int ammoCount;
+    bool shooting;
 
 
     void Start()
@@ -106,6 +109,11 @@ public class Weapon : MonoBehaviour
                 betweenShots = TimeBetweenShots;
             }
             magazine--;
+        }
+
+        if (Player)
+        {
+            ammoField.text = (ammoCount + magazine).ToString();
         }
     }
 
