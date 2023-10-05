@@ -17,13 +17,24 @@ public class GenerationManager : MonoBehaviour
     public GameObject wall;
     public GameObject door;
     public GameObject staticObject;
+    public Sprite wardrobeStaticObject;
+
     public GameObject triggerObject;
     public GameObject storageObject;
 
     public GameObject interactiveStaticObject;
-    public Sprite alter1InteractiveStaticObject;
+    public Sprite boxNonStaticObject;
+    public Sprite provisionNonStaticObject;
+    public Sprite bloknoteInteractiveStaticObject;
+    public Sprite laptopInteractiveStaticObject;
+    public Sprite laptopBrokeInteractiveStaticObject;
+    public Sprite pizzaInteractiveStaticObject;
+    public Sprite glassInteractiveStaticObject;
+    public Sprite liafietInteractiveStaticObject;
+    public Sprite radioInteractiveStaticObject;
+
     public GameObject nonStaticObject;
-    public Sprite alter1NonStaticObject;
+    public Sprite chairNonStaticObject;
 
     public GameObject pickUp;
 
@@ -95,8 +106,8 @@ public class GenerationManager : MonoBehaviour
     public int SpawnRoom(PointDouble startDoor, Direction direction, int z)
     {
 
-        int SizeX = UnityEngine.Random.Range(8, 15), SizeY = UnityEngine.Random.Range(8, 15);
-        Room room = new Room(RoomShape.Rectangle, SizeX, SizeY, 5, 2, 2, 2, 2, direction);
+        int SizeX = UnityEngine.Random.Range(11, 18), SizeY = UnityEngine.Random.Range(11, 18);
+        Room room = new Room(RoomShape.Rectangle, SizeX, SizeY, 4, 3, 2, 2, 2, direction);
 
         float xStart = 0;
         float yStart = 0;
@@ -140,31 +151,101 @@ public class GenerationManager : MonoBehaviour
                 if (room.roomObjects[x, y] == Surface.StaticObject)
                 {
                     rooms[rooms.Count - 1].First[x, y] = Instantiate(staticObject, new Vector3(xStart + x, yStart - y, z), Quaternion.identity);
+                    if ((room.NeighborCount(x, y, Surface.StorageObject) == 0) && (room.NeighborCount(x, y, Surface.StaticObject) == 1))
+                    {
+                        rooms[rooms.Count - 1].First[x, y].GetComponent<SpriteRenderer>().sprite = wardrobeStaticObject;
+                        Quaternion quaternion = Quaternion.identity * Quaternion.Euler(0, 0, UnityEngine.Random.Range(0, 4) * 90);
+                        rooms[rooms.Count - 1].First[x, y].GetComponent<Transform>().rotation = quaternion;
+                    }
                 }
                 if (room.roomObjects[x, y] == Surface.StorageObject)
                 {
                     rooms[rooms.Count - 1].First[x, y] = Instantiate(storageObject, new Vector3(xStart + x, yStart - y, z), Quaternion.identity);
                 }
-
                 if (room.interactiveObjects[x, y] == Interactive.StaticObject)
                 {
-                    interactiveObjects.Add(Instantiate(interactiveStaticObject, new Vector3(xStart + x, yStart - y, z - 1), Quaternion.identity));
-                    if (room.roomObjects[x, y] == Surface.StorageObject)
+                    Quaternion quaternion = Quaternion.identity * Quaternion.Euler(0, 0, UnityEngine.Random.Range(0, 360));
+                    interactiveObjects.Add(Instantiate(interactiveStaticObject, new Vector3(xStart + x, yStart - y, z - 1), quaternion));
+                    System.Random random = new System.Random();
+
+                    if ((room.roomObjects[x, y] == Surface.StaticObject) && (room.NeighborCount(x, y, Surface.StorageObject) == 0) && (room.NeighborCount(x, y, Surface.StaticObject) == 1))
                     {
-                        interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = alter1InteractiveStaticObject;
+                        interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = radioInteractiveStaticObject;
                     }
+                    else if (room.roomObjects[x, y] == Surface.StaticObject)
+                    {
+                        double temp = random.NextDouble();
+                        if (temp > 0.75)
+                        {
+                            interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = boxNonStaticObject;
+                        }
+                        else if (temp > 0.5)
+                        {
+                            interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = provisionNonStaticObject;
+                        }
+                        else if (temp > 0.25)
+                        {
+                            interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = liafietInteractiveStaticObject;
+                        }
+                        else
+                        {
+                            interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = radioInteractiveStaticObject;
+                        }
+                    }
+                    else if (room.roomObjects[x, y] == Surface.StorageObject)
+                    {
+                        double temp = random.NextDouble();
+
+                        if (temp > 0.8)
+                        {
+                            interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = bloknoteInteractiveStaticObject;
+                        }
+                        else if (temp > 0.6)
+                        {
+                            interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = laptopInteractiveStaticObject;
+                        }
+                        else if (temp > 0.4)
+                        {
+                            interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = pizzaInteractiveStaticObject;
+                        }
+                        else if (temp > 0.2)
+                        {
+                            interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = liafietInteractiveStaticObject;
+                        }
+                    }
+                    else if(room.roomObjects[x, y] == Surface.Floor)
+                    {
+                        double temp = random.NextDouble();
+
+                        if (temp > 0.90)
+                        {
+                            interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = laptopBrokeInteractiveStaticObject;
+                        }
+                        else if (temp > 0.80)
+                        {
+                            interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = glassInteractiveStaticObject;
+                        }
+                        else if (temp > 0.50)
+                        {
+                            interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = liafietInteractiveStaticObject;
+                        }
+                    }
+
                 }
                 if (room.interactiveObjects[x, y] == Interactive.NonStaticObject)
                 {
                     interactiveObjects.Add(Instantiate(nonStaticObject, new Vector3(xStart + x, yStart - y, z - 1), Quaternion.identity));
-                    if (room.NeighborCount(x, y, Surface.StaticObject) > 0)
+                    if (room.NeighborCount(x, y, Surface.StorageObject) > 0)
                     {
-                        interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = alter1NonStaticObject;
+                        interactiveObjects[interactiveObjects.Count - 1].GetComponent<SpriteRenderer>().sprite = chairNonStaticObject;
+                        Quaternion quaternion = Quaternion.identity * Quaternion.Euler(0, 0, UnityEngine.Random.Range(0, 360));
+                        interactiveObjects[interactiveObjects.Count - 1].GetComponent<Transform>().rotation = quaternion;
                     }
                 }
                 if (room.interactiveObjects[x, y] == Interactive.PickUp)
                 {
-                    interactiveObjects.Add(Instantiate(pickUp, new Vector3(xStart + x, yStart - y, z - 1), Quaternion.identity));
+                    Quaternion quaternion = Quaternion.identity * Quaternion.Euler(0, 0, UnityEngine.Random.Range(0, 360));
+                    interactiveObjects.Add(Instantiate(pickUp, new Vector3(xStart + x, yStart - y, z - 1), quaternion));
                 }
             }
         }

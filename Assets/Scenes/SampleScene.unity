@@ -5818,12 +5818,15 @@ MonoBehaviour:
   wall: {fileID: 5671181273997162582, guid: c5acac7161af54949b3fe1d83ab77918, type: 3}
   door: {fileID: 7021791561797846376, guid: bc475b3d68d117a4f878c974818a7252, type: 3}
   staticObject: {fileID: 1219570744896556970, guid: 5bc80dd1c3df761489701a455673e0b2, type: 3}
+  wardrobeStaticObject: {fileID: 21300000, guid: a5f35e4d2efed054c82f900d92b540b5, type: 3}
   triggerObject: {fileID: 8127564784227865935, guid: fbff8184de4e5bc40beabc26128a6c5d, type: 3}
   storageObject: {fileID: 7059833071517361038, guid: 3ea3b7f5d50f73b4493c47f2e2677527, type: 3}
   interactiveStaticObject: {fileID: 3158036531233345565, guid: ea161f366d834c54ea1b11123f13ab06, type: 3}
+  boxNonStaticObject: {fileID: 21300000, guid: fc814af801ba492428d54c4301380eb3, type: 3}
+  provisionNonStaticObject: {fileID: 21300000, guid: 9f65f6c9b36773347bc6352ac9aaf04f, type: 3}
   alter1InteractiveStaticObject: {fileID: 21300000, guid: ebc001224dba1c94e91159ca60dc51d9, type: 3}
   nonStaticObject: {fileID: 5541989677162106676, guid: a75adca1fec239d4f97fd842d70d2614, type: 3}
-  alter1NonStaticObject: {fileID: 21300000, guid: 9f65f6c9b36773347bc6352ac9aaf04f, type: 3}
+  chairNonStaticObject: {fileID: 21300000, guid: 9b2badacd63a7ae4881e0e3c4906ac89, type: 3}
   pickUp: {fileID: 1260299116749833802, guid: b59a7ba391825c744b72ab6ebcb5794a, type: 3}
   passiveEnemy: {fileID: 8127564784227865935, guid: fbff8184de4e5bc40beabc26128a6c5d, type: 3}
   activeEnemy: {fileID: 8127564784227865935, guid: fbff8184de4e5bc40beabc26128a6c5d, type: 3}

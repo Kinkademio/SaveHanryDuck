@@ -97,7 +97,7 @@ namespace RoomInteriorGeneratorTag
             Random random = new Random();
 
             x += 1; y += 1;
-            width -= 1; height -= 1;
+            width -= 2; height -= 2;
 
             // этот лист готов к созданию комнаты
             //Point roomSize;

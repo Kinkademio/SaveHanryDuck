@@ -116,7 +116,7 @@ namespace RoomInteriorGeneratorTag
         {
             Random random = new Random();
 
-            objectSites.Add(new ObjectSite(1, 1, roomObjects.GetLength(0) - 3, roomObjects.GetLength(1) - 3));
+            objectSites.Add(new ObjectSite(1, 1, roomObjects.GetLength(0) - 2, roomObjects.GetLength(1) - 2));
 
             int Index = 0;
             while (Index < objectSites.Count)
@@ -249,19 +249,19 @@ namespace RoomInteriorGeneratorTag
                         double temp = random.NextDouble();
                         if (NeighborCount(x, y, Surface.Door) == 0)
                         {
-                            if (temp > 0.85)
+                            if (temp > 0.95)
                             {
                                 interactiveObjects[x, y] = Interactive.NonStaticObject;
                             }
-                            else if (temp > 0.75)
+                            else if (temp > 0.90)
                             {
                                 interactiveObjects[x, y] = Interactive.StaticObject;
                             }
-                            else if (temp > 0.65)
+                            else if (temp > 0.80)
                             {
                                 interactiveObjects[x, y] = Interactive.PassiveEnemy;
                             }
-                            else if (temp > 0.50)
+                            else if (temp > 0.75)
                             {
                                 interactiveObjects[x, y] = Interactive.ActiveEnemy;
                             }
