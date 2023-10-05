@@ -1976,8 +1976,8 @@ MonoBehaviour:
   nonStaticObject: {fileID: 5541989677162106676, guid: a75adca1fec239d4f97fd842d70d2614, type: 3}
   chairNonStaticObject: {fileID: 21300000, guid: 9b2badacd63a7ae4881e0e3c4906ac89, type: 3}
   pickUp: {fileID: 1260299116749833802, guid: b59a7ba391825c744b72ab6ebcb5794a, type: 3}
-  passiveEnemy: {fileID: 8127564784227865935, guid: fbff8184de4e5bc40beabc26128a6c5d, type: 3}
-  activeEnemy: {fileID: 8127564784227865935, guid: fbff8184de4e5bc40beabc26128a6c5d, type: 3}
+  passiveEnemy: {fileID: 3988402919551587311, guid: 93cb59be3973dd942b7bb3e782f2e296, type: 3}
+  activeEnemy: {fileID: 4120038135749098124, guid: e03be498135013b449211b57f5b3df94, type: 3}
 --- !u!1 &424435677
 GameObject:
   m_ObjectHideFlags: 0
@@ -4058,7 +4058,7 @@ PrefabInstance:
       objectReference: {fileID: 792398794}
     - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
       propertyPath: ReloadTime
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
       propertyPath: MagazineSize
@@ -4070,7 +4070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
       propertyPath: StartAmmoCount
-      value: 25
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
       propertyPath: TimeBetweenShots
@@ -4078,7 +4078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
       propertyPath: BulletInShootCount
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 635076044700586843, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
       propertyPath: m_Name

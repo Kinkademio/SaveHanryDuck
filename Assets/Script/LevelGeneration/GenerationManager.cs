@@ -247,6 +247,14 @@ public class GenerationManager : MonoBehaviour
                     Quaternion quaternion = Quaternion.identity * Quaternion.Euler(0, 0, UnityEngine.Random.Range(0, 360));
                     interactiveObjects.Add(Instantiate(pickUp, new Vector3(xStart + x, yStart - y, z - 1), quaternion));
                 }
+                if (room.interactiveObjects[x, y] == Interactive.PassiveEnemy)
+                {
+                    interactiveObjects.Add(Instantiate(passiveEnemy, new Vector3(xStart + x, yStart - y, z - 1), Quaternion.identity));
+                }
+                if (room.interactiveObjects[x, y] == Interactive.ActiveEnemy)
+                {
+                    interactiveObjects.Add(Instantiate(activeEnemy, new Vector3(xStart + x, yStart - y, z - 1), Quaternion.identity));
+                }
             }
         }
 

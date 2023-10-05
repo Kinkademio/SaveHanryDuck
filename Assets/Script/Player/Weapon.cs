@@ -9,8 +9,8 @@ public class Weapon : MonoBehaviour
 
     Camera MainCamera;
 
-    [SerializeField]
-    GameObject target;
+    //[SerializeField]
+    public GameObject target;
     [SerializeField]
     TrailRenderer tracerEffect;
     [SerializeField] 
@@ -36,7 +36,10 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     float Spread;
     [SerializeField]
+    float RepulsiveForce;
+    [SerializeField]
     bool UsingAmmo;
+
 
     float betweenShots;
     float reload;
@@ -81,7 +84,7 @@ public class Weapon : MonoBehaviour
         {
             shooting = true;
         }
-        else if (false)
+        else if (!Player)
         {
             // TODO: bot logic
         }
@@ -148,6 +151,10 @@ public class Weapon : MonoBehaviour
                 tracer.transform.position = hit[i].point;
 
                 hit[i].transform.gameObject.GetComponent<Health>().TakeDamage(Damage);
+                if (hit[i].transform.gameObject.GetComponent<Rigidbody2D>())
+                {
+                    hit[i].transform.gameObject.GetComponent<Rigidbody2D>().AddForce(-hit[i].normal.normalized * RepulsiveForce);
+                }
                 break;
             }
         }
@@ -178,6 +185,11 @@ public class Weapon : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void SetShoot(bool shoot)
+    {
+        shooting = shoot;
     }
 
     public void AddAmmo(int countAddAmmo)
