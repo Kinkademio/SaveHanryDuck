@@ -125,8 +125,11 @@ public class GameManagerScript : MonoBehaviour
         Text buttonText = playButton.GetComponentInChildren<Text>();
         if (gameState == GameState.GameProcess)
         {
-            buttonText.text = "Продолжить";
             pauseGame();
+        }
+        if (gameState == GameState.onPause)
+        {
+            buttonText.text = "Продолжить";
         }
         else
         {
@@ -179,6 +182,7 @@ public class GameManagerScript : MonoBehaviour
             deactivateGame();
             this.swapVisibleUi(currentActiveUI, LoseUI);
             changeGameState(GameState.onMenu);
+            
         }
         else
         {
