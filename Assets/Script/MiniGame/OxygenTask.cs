@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
 {
     public Text OxygenCounter, OxygenTimer;
+    public GameObject TaskComleted;
 
     private int holdTime = 0, minHoldTime = 0;
     private readonly int maxHoldTime = 10;
 
-    System.Random rnd = new();
+    readonly System.Random rnd = new();
 
     bool corutineWork = false;
 
@@ -24,20 +25,27 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
         corutineWork = false;
         if (holdTime >= minHoldTime && holdTime <= maxHoldTime)
         {
-            minHoldTime = 0;
-            holdTime = 0;
-            OxygenCounter.text = "";
-            OxygenTimer.text = "Сила удара:" + holdTime;
-            Completer();
+            TaskComleted.SetActive(true);
+            Invoke("WaitScript", 0.5f);
         }
         else if (holdTime < minHoldTime) { OxygenCounter.text = "Слишком слабо"; }
         else { OxygenCounter.text = "По аккуратнее!!!"; }
 
     }
 
+    void WaitScript() 
+    {
+        minHoldTime = 0;
+        holdTime = 0;
+        OxygenCounter.text = "";
+        OxygenTimer.text = "Сила удара:" + holdTime;
+        Completer();
+    }
+
     public void StartTask()
     {
-        if (minHoldTime == 0) { minHoldTimetRND(); }
+        TaskComleted.SetActive(false);
+        if (minHoldTime == 0) { MinHoldTimetRND(); }
         Debug.Log( "Мин:" + minHoldTime);
         holdTime = 0;
         if (!corutineWork)
@@ -48,7 +56,7 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
         }
 
     }
-    private void minHoldTimetRND() { minHoldTime = rnd.Next(1, 6); }
+    private void MinHoldTimetRND() { minHoldTime = rnd.Next(1, 6); }
 
     IEnumerator TestCoroutine()
     {
