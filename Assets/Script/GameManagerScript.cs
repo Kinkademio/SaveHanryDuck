@@ -140,7 +140,7 @@ public class GameManagerScript : MonoBehaviour
     {
         if(gameState == GameState.onMenu) {
             //“ут нужно эту структуру проинициализировать и выполнить действи€ дл€ загрузки юзера на уровень
-            Player.transform.position = new Vector3(0, 0, -1);
+            Player.transform.position = new Vector3(0, 0, Player.transform.position.z);
             Player.SetActive(true);
             PlayerDrone.transform.position = new Vector3(0, 0, -3);
             PlayerDrone.SetActive(true);
