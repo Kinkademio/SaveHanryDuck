@@ -35,6 +35,8 @@ public class Weapon : MonoBehaviour
     int BulletInShootCount;
     [SerializeField]
     float Spread;
+    [SerializeField]
+    bool UsingAmmo;
 
     float betweenShots;
     float reload;
@@ -108,7 +110,11 @@ public class Weapon : MonoBehaviour
                 Shooting();
                 betweenShots = TimeBetweenShots;
             }
-            magazine--;
+
+            if (UsingAmmo)
+            {
+                magazine--;
+            }
         }
 
         if (Player)
