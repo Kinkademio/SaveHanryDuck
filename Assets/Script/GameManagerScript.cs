@@ -11,6 +11,7 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] GameObject HelpUI;
     [SerializeField] GameObject WinUI;
     [SerializeField] GameObject LoseUI;
+    [SerializeField] GameObject ScoreUI;
 
     [SerializeField] AudioSource menuSoundPlayer;
     [SerializeField] AudioSource gameSoundPlayer;
@@ -65,6 +66,8 @@ public class GameManagerScript : MonoBehaviour
 
     private void Start()
     {
+        ScoreController.createNewScores();
+        ScoreController.saveCurrentScore();
         //Устанавливаем по умолчанию состояние игры в Меню
         changeGameState(GameState.onMenu);
 
@@ -109,13 +112,25 @@ public class GameManagerScript : MonoBehaviour
         this.swapVisibleUi(currentActiveUI, SettingsUI);
         GameObject.FindGameObjectWithTag("SoundSettingsSlider").GetComponent<Slider>().value = PlayerPrefs.GetFloat("volume");
     }
+    
+    public void openScores()
+    {
+        this.swapVisibleUi(currentActiveUI, ScoreUI);
+    }
 
     public void openMenu()
     {
         this.swapVisibleUi(currentActiveUI, MenuUI);
+        GameObject playButton = GameObject.Find("LoadGame");
+        Text buttonText = playButton.GetComponentInChildren<Text>();
         if (gameState == GameState.GameProcess)
         {
+            buttonText.text = "Продолжить";
             pauseGame();
+        }
+        else
+        {
+            buttonText.text = "Играть";
         }
     }
 
