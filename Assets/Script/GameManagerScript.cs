@@ -179,9 +179,9 @@ public class GameManagerScript : MonoBehaviour
     {
         if (Timer < 0f)
         {
-            deactivateGame();
             this.swapVisibleUi(currentActiveUI, LoseUI);
             changeGameState(GameState.onMenu);
+            deactivateGame();
             
         }
         else
@@ -193,9 +193,9 @@ public class GameManagerScript : MonoBehaviour
 
     public void winGame()
     {
-        deactivateGame();
         this.swapVisibleUi(currentActiveUI, WinUI);
         changeGameState(GameState.onMenu);
+        deactivateGame();
     }
 
     public void deactivateGame()

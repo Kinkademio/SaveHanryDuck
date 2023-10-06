@@ -62,38 +62,41 @@ public class GenerationManager : MonoBehaviour
             }
         }
 
-        float Dx = rooms[0].First[0, 0].transform.position.x;
-        float Dy = rooms[0].First[0, 0].transform.position.y;
-
-        for (int i = 0; i < rooms[0].First.GetLength(0); i++)
+        if (rooms.Count != 0)
         {
-            for (int j = 0; j < rooms[0].First.GetLength(1); j++)
+            float Dx = rooms[0].First[0, 0].transform.position.x;
+            float Dy = rooms[0].First[0, 0].transform.position.y;
+
+            for (int i = 0; i < rooms[0].First.GetLength(0); i++)
             {
-                if (rooms[0].First[i, j] != null)
+                for (int j = 0; j < rooms[0].First.GetLength(1); j++)
                 {
-                    rooms[0].First[i, j].transform.position = new Vector3
-                        (rooms[0].First[i, j].transform.position.x - Dx,
-                         rooms[0].First[i, j].transform.position.y - Dy,
-                         rooms[0].First[i, j].transform.position.z + 1);
+                    if (rooms[0].First[i, j] != null)
+                    {
+                        rooms[0].First[i, j].transform.position = new Vector3
+                            (rooms[0].First[i, j].transform.position.x - Dx,
+                             rooms[0].First[i, j].transform.position.y - Dy,
+                             rooms[0].First[i, j].transform.position.z + 1);
+                    }
                 }
             }
+
+            for (int i = 0; i < interactiveObjects.Count; i++)
+            {
+                interactiveObjects[i].transform.position = new Vector3
+                    (interactiveObjects[i].transform.position.x - Dx,
+                     interactiveObjects[i].transform.position.y - Dy,
+                     interactiveObjects[i].transform.position.z + 1);
+            }
+
+            Player.transform.position = new Vector3(Player.transform.position.x - Dx, Player.transform.position.y - Dy, -2);
+            PlayerDrone.transform.position = new Vector3(PlayerDrone.transform.position.x - Dx, PlayerDrone.transform.position.y - Dy, -3);
+
+            MainCamera.transform.position = new Vector3
+                (MainCamera.transform.position.x - Dx,
+                 MainCamera.transform.position.y - Dy,
+                 MainCamera.transform.position.z);
         }
-
-        for (int i = 0; i < interactiveObjects.Count; i++)
-        {
-            interactiveObjects[i].transform.position = new Vector3 
-                (interactiveObjects[i].transform.position.x - Dx,
-                 interactiveObjects[i].transform.position.y - Dy,
-                 interactiveObjects[i].transform.position.z + 1);
-        }
-
-        Player.transform.position = new Vector3(Player.transform.position.x - Dx, Player.transform.position.y - Dy, -2);
-        PlayerDrone.transform.position = new Vector3(PlayerDrone.transform.position.x - Dx, PlayerDrone.transform.position.y - Dy, -3);
-
-        MainCamera.transform.position = new Vector3
-            (MainCamera.transform.position.x - Dx,
-             MainCamera.transform.position.y - Dy,
-             MainCamera.transform.position.z);
     }
     public void DestroyAllWithout()
     {
@@ -102,6 +105,7 @@ public class GenerationManager : MonoBehaviour
             DestroyRoom(i);
         }
     }
+
 
     public int SpawnRoom(PointDouble startDoor, Direction direction, int z)
     {

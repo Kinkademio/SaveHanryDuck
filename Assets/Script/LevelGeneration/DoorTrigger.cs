@@ -4,6 +4,7 @@ using UnityEngine;
 public class DoorTrigger : MonoBehaviour
 {
     public GenerationManager generationManager;
+    public GameManagerScript gameManagerScript;
     public Direction direction;
     public bool firstDoor = false;
     int RoomNumInMemory = -1;
@@ -16,10 +17,10 @@ public class DoorTrigger : MonoBehaviour
     //public bool bleft = false;
     //public bool bdown = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         generationManager = GameObject.Find("Main Camera").GetComponent<GenerationManager>();
+        gameManagerScript = GameObject.Find("Manager").GetComponent<GameManagerScript>();
         animator = this.GetComponent<Animator>();
 
         if (firstDoor)
@@ -42,7 +43,7 @@ public class DoorTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Duck")
+        if (collision.gameObject.name == "Duck" && gameManagerScript.getCurretGameState() == GameManagerScript.GameState.GameProcess)
         {
             if (!firstDoor)
             {
@@ -73,7 +74,7 @@ public class DoorTrigger : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Duck")
+        if (collision.gameObject.name == "Duck" && gameManagerScript.getCurretGameState() == GameManagerScript.GameState.GameProcess)
         {
             if (!firstDoor)
             {
