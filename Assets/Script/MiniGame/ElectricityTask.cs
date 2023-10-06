@@ -26,17 +26,15 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
         Debug.Log(PointNumber);
         if (Point == PointNumber) Stop();
     }
-    void WaitScript()
+    public void WaitScript()
     {
         PointNumber = 0;
         Point = 0;
         ElectricityCounter.text = "Колличество ударов:" + Point;
         TaskComleted.SetActive(false);
         Spark.SetActive(false);
-        
         Completer();
     }
-
 
     public void Stop()
     {

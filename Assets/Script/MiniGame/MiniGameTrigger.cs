@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MiniGameTrigger : MonoBehaviour
@@ -14,20 +12,6 @@ public class MiniGameTrigger : MonoBehaviour
             GameObject.Find("Manager").GetComponent<TaskChecker>().activeTask();
             //GameObject.Find("UI MiniGame").GetComponent<Task>().TaskOption();
             Working = false;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "Duck")
-        {
-            if (false)
-            {
-                Working = true;
-
-
-            }
-            //GameObject.Find("UI MiniGame").GetComponent<Task>().TaskOption();
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -24,7 +25,7 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
         Invoke("WaitScript", 0.5f);
     }
 
-    void WaitScript() 
+    public void WaitScript()
     {
         TakedStar = 0;
         Star1.SetActive(true);

@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class Task : MonoBehaviour
 {
-    public GameObject parent;
+    public GameObject Parent;
 
-    public bool SpaceShipTaskCheck = false, OxygenTaskCheck = false, ElectricityTaskCheck = false;
-
-    public bool SpaceShipTaskStatus = false, OxygenTaskStatus = false, ElectricityTaskStatus = false;
+    public bool OxygenTaskStatus = false, SpaceShipTaskStatus = false, ElectricityTaskStatus = false;
+    public bool OxygenTaskCheck = false, SpaceShipTaskCheck = false, ElectricityTaskCheck = false;
 
     public void Completer()
     {
@@ -14,6 +13,9 @@ public class Task : MonoBehaviour
         closeTask();
     }
 
-    public void closeTask() { parent.SetActive(false); }
+    public void closeTask()
+    {
+        Parent.SetActive(false);
+    }
 
 }

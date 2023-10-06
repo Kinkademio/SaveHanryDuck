@@ -35,14 +35,13 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
 
     }
 
-    void WaitScript() 
+    public void WaitScript()
     {
         minHoldTime = 0;
         holdTime = 0;
         OxygenCounter.text = "";
         OxygenTimer.text = "Сила удара:" + holdTime;
         TaskComleted.SetActive(false);
-
         Completer();
     }
 
