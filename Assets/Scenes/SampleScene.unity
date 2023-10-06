@@ -441,6 +441,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 110046669}
+  SpaceShipTaskCheck: 0
+  OxygenTaskCheck: 0
+  ElectricityTaskCheck: 0
+  SpaceShipTaskStatus: 0
+  OxygenTaskStatus: 0
+  ElectricityTaskStatus: 0
 --- !u!1 &120492056
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,6 +1968,7 @@ MonoBehaviour:
   staticObject: {fileID: 1219570744896556970, guid: 5bc80dd1c3df761489701a455673e0b2, type: 3}
   wardrobeStaticObject: {fileID: 21300000, guid: a5f35e4d2efed054c82f900d92b540b5, type: 3}
   triggerObject: {fileID: 8127564784227865935, guid: fbff8184de4e5bc40beabc26128a6c5d, type: 3}
+  eluminatorObject: {fileID: 7729405470511661224, guid: 394d1efbf13e7f6478cdb6f7520c936a, type: 3}
   storageObject: {fileID: 7059833071517361038, guid: 3ea3b7f5d50f73b4493c47f2e2677527, type: 3}
   interactiveStaticObject: {fileID: 3158036531233345565, guid: ea161f366d834c54ea1b11123f13ab06, type: 3}
   boxNonStaticObject: {fileID: 21300000, guid: fc814af801ba492428d54c4301380eb3, type: 3}
@@ -4059,6 +4066,10 @@ PrefabInstance:
     - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
       propertyPath: ReloadTime
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
+      propertyPath: AttackRadius
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
       propertyPath: MagazineSize
@@ -6407,6 +6418,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 1155949016}
+  SpaceShipTaskCheck: 0
+  OxygenTaskCheck: 0
+  ElectricityTaskCheck: 0
+  SpaceShipTaskStatus: 0
+  OxygenTaskStatus: 0
+  ElectricityTaskStatus: 0
   OxygenCounter: {fileID: 1931285241}
   OxygenTimer: {fileID: 1192063214}
   TaskComleted: {fileID: 1327104933}
@@ -10838,6 +10855,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 1890917011}
+  SpaceShipTaskCheck: 0
+  OxygenTaskCheck: 0
+  ElectricityTaskCheck: 0
+  SpaceShipTaskStatus: 0
+  OxygenTaskStatus: 0
+  ElectricityTaskStatus: 0
   Spark: {fileID: 1488136008}
   TaskComleted: {fileID: 679677572}
   ElectricityCounter: {fileID: 1133421340}
@@ -11573,6 +11596,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 2006292023}
+  SpaceShipTaskCheck: 0
+  OxygenTaskCheck: 0
+  ElectricityTaskCheck: 0
+  SpaceShipTaskStatus: 0
+  OxygenTaskStatus: 0
+  ElectricityTaskStatus: 0
   SpaceShip: {fileID: 1055986008}
   Star1: {fileID: 102738778}
   Star2: {fileID: 640533762}

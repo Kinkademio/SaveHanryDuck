@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using TMPro;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class ActiveBot : MonoBehaviour
     //[SerializeField]
     GameObject target;
     Weapon weapon;
+    SpriteRenderer sprite;
 
     float targetDistance;
 
@@ -25,6 +27,7 @@ public class ActiveBot : MonoBehaviour
     {
         weapon = gameObject.GetComponent<Weapon>();
         target = GameObject.Find("Duck");
+        sprite = this.GetComponent<SpriteRenderer>();
 
         gameObject.GetComponent<Weapon>().target = target;
     }
@@ -46,49 +49,59 @@ public class ActiveBot : MonoBehaviour
 
         Timer(ref reactionDelay);
 
+
+        float x = target.transform.position.x - this.GetComponent<Transform>().position.x;
+        float y = target.transform.position.y - this.GetComponent<Transform>().position.y;
+
+        Vector2 lookDirection = new Vector2(x, y);
+        float localRotation = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+
+        if (90 < Mathf.Abs(localRotation))
+        {
+            sprite.flipX = false;
+        }
+        else
+        {
+            sprite.flipX = true;
+        }
+
         if (reactionDelay == 0)
         {
-            float x = target.transform.position.x - this.GetComponent<Transform>().position.x;
-            float y = target.transform.position.y - this.GetComponent<Transform>().position.y;
-
-            Vector2 lookDirection = new Vector2(x, y);
-            float localRotation = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-
 
             Napravlenie.x = RayRadius * Mathf.Cos((localRotation) * Mathf.Deg2Rad);
             Napravlenie.y = RayRadius * Mathf.Sin((localRotation) * Mathf.Deg2Rad);
             RaycastHit2D forward0 = Physics2D.Raycast(new Vector2(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y), transform.TransformDirection(Napravlenie), RayLenght);
-            Debug.DrawRay(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), Color.red);
+            Debug.DrawRay(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), UnityEngine.Color.red);
 
             Napravlenie.x = RayRadius * Mathf.Cos((localRotation - 45) * Mathf.Deg2Rad);
             Napravlenie.y = RayRadius * Mathf.Sin((localRotation - 45) * Mathf.Deg2Rad);
             RaycastHit2D right45 = Physics2D.Raycast(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), RayLenght);
-            Debug.DrawRay(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), Color.red);
+            Debug.DrawRay(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), UnityEngine.Color.red);
 
             Napravlenie.x = RayRadius * Mathf.Cos((localRotation - 90) * Mathf.Deg2Rad);
             Napravlenie.y = RayRadius * Mathf.Sin((localRotation - 90) * Mathf.Deg2Rad);
             RaycastHit2D right90 = Physics2D.Raycast(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), RayLenght);
-            Debug.DrawRay(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), Color.red);
+            Debug.DrawRay(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), UnityEngine.Color.red);
 
             Napravlenie.x = RayRadius * Mathf.Cos((localRotation - 135) * Mathf.Deg2Rad);
             Napravlenie.y = RayRadius * Mathf.Sin((localRotation - 135) * Mathf.Deg2Rad);
             RaycastHit2D right135 = Physics2D.Raycast(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), RayLenght);
-            Debug.DrawRay(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), Color.red);
+            Debug.DrawRay(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), UnityEngine.Color.red);
 
             Napravlenie.x = RayRadius * Mathf.Cos((localRotation + 45) * Mathf.Deg2Rad);
             Napravlenie.y = RayRadius * Mathf.Sin((localRotation + 45) * Mathf.Deg2Rad);
             RaycastHit2D left45 = Physics2D.Raycast(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), RayLenght);
-            Debug.DrawRay(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), Color.red);
+            Debug.DrawRay(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), UnityEngine.Color.red);
 
             Napravlenie.x = RayRadius * Mathf.Cos((localRotation + 90) * Mathf.Deg2Rad);
             Napravlenie.y = RayRadius * Mathf.Sin((localRotation + 90) * Mathf.Deg2Rad);
             RaycastHit2D left90 = Physics2D.Raycast(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), RayLenght);
-            Debug.DrawRay(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), Color.red);
+            Debug.DrawRay(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), UnityEngine.Color.red);
 
             Napravlenie.x = RayRadius * Mathf.Cos((localRotation + 135) * Mathf.Deg2Rad);
             Napravlenie.y = RayRadius * Mathf.Sin((localRotation + 135) * Mathf.Deg2Rad);
             RaycastHit2D left135 = Physics2D.Raycast(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), RayLenght);
-            Debug.DrawRay(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), Color.red);
+            Debug.DrawRay(new Vector3(transform.position.x + Napravlenie.x, transform.position.y + Napravlenie.y, transform.position.z), transform.TransformDirection(Napravlenie), UnityEngine.Color.red);
 
             if ((forward0.collider != null) && (!forward0.collider.isTrigger))
             {

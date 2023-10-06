@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using RoomInteriorGeneratorTag;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class GenerationManager : MonoBehaviour
@@ -20,6 +21,7 @@ public class GenerationManager : MonoBehaviour
     public Sprite wardrobeStaticObject;
 
     public GameObject triggerObject;
+    public GameObject eluminatorObject;
     public GameObject storageObject;
 
     public GameObject interactiveStaticObject;
@@ -249,15 +251,15 @@ public class GenerationManager : MonoBehaviour
                 if (room.interactiveObjects[x, y] == Interactive.PickUp)
                 {
                     Quaternion quaternion = Quaternion.identity * Quaternion.Euler(0, 0, UnityEngine.Random.Range(0, 360));
-                    interactiveObjects.Add(Instantiate(pickUp, new Vector3(xStart + x, yStart - y, z - 1), quaternion));
+                    interactiveObjects.Add(Instantiate(pickUp, new Vector3(xStart + x, yStart - y, z - 2), quaternion));
                 }
                 if (room.interactiveObjects[x, y] == Interactive.PassiveEnemy)
                 {
-                    interactiveObjects.Add(Instantiate(passiveEnemy, new Vector3(xStart + x, yStart - y, z - 1), Quaternion.identity));
+                    interactiveObjects.Add(Instantiate(passiveEnemy, new Vector3(xStart + x, yStart - y, z - 2), Quaternion.identity));
                 }
                 if (room.interactiveObjects[x, y] == Interactive.ActiveEnemy)
                 {
-                    interactiveObjects.Add(Instantiate(activeEnemy, new Vector3(xStart + x, yStart - y, z - 1), Quaternion.identity));
+                    interactiveObjects.Add(Instantiate(activeEnemy, new Vector3(xStart + x, yStart - y, z - 2), Quaternion.identity));
                 }
             }
         }
@@ -266,10 +268,22 @@ public class GenerationManager : MonoBehaviour
         {
             if (room.objectSites[i].typeSite == Surface.TriggerObject)
             {
+                System.Random random = new System.Random();
                 double triggerCenterX = room.objectSites[i].x + (double)(room.objectSites[i].width - 1) / 2;
                 double triggerCenterY = room.objectSites[i].y + (double)(room.objectSites[i].height - 1) / 2;
-                 rooms[rooms.Count - 1].First[room.objectSites[i].x, room.objectSites[i].y] =
-                    Instantiate(triggerObject, new Vector3(xStart + (float)triggerCenterX, yStart - (float)triggerCenterY, z), Quaternion.identity);
+
+                double temp = random.NextDouble();
+
+                if (temp > 0.75)
+                {
+                    rooms[rooms.Count - 1].First[room.objectSites[i].x, room.objectSites[i].y] =
+                        Instantiate(triggerObject, new Vector3(xStart + (float)triggerCenterX, yStart - (float)triggerCenterY, z), Quaternion.identity);
+                } 
+                else
+                {
+                    rooms[rooms.Count - 1].First[room.objectSites[i].x, room.objectSites[i].y] =
+                        Instantiate(eluminatorObject, new Vector3(xStart + (float)triggerCenterX, yStart - (float)triggerCenterY, z), Quaternion.identity);
+                }
             }
         }
 

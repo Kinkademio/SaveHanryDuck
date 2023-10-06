@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -720925696915205893}
   - component: {fileID: 4974013100971365268}
   - component: {fileID: 2342767411090982633}
+  - component: {fileID: 2311723492700007677}
   m_Layer: 0
   m_Name: ActiveBot
   m_TagString: Untagged
@@ -140,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: 0
   target: {fileID: 0}
-  tracerEffect: {fileID: 6541464574493361791, guid: 9d7caf437d8dfbb4f82372e33b4ef28c, type: 3}
+  tracerEffect: {fileID: 6541464574493361791, guid: c9990c243544c79419b1d0bfbc456020, type: 3}
   ammoField: {fileID: 0}
   TimeBetweenShots: 0.5
   ReloadTime: 0
@@ -180,3 +181,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPoint: 3
   CanTakeDamage: 1
+--- !u!95 &2311723492700007677
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4120038135749098124}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fc3b7c60b3bc31440afb2e5bb7328ee5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

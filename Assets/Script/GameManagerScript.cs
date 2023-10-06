@@ -207,6 +207,8 @@ public class GameManagerScript : MonoBehaviour
         MainCamera.GetComponent<CameraControl>().enabled = false;
         PlayerDrone.SetActive(false);
         Player.SetActive(false);
+
+
         resetTimer();
     }
 

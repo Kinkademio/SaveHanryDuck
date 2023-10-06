@@ -9,7 +9,7 @@ public class TaskChecker : MonoBehaviour
     {
         ready = new bool[tasks.Length];
 
-        for(int i=0; i<tasks.Length; i++)
+        for(int i = 0; i < tasks.Length; i++)
         {
             ready[i] = false;
         }

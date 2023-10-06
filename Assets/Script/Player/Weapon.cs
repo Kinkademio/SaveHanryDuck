@@ -36,6 +36,8 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     float Spread;
     [SerializeField]
+    float AttackRadius;
+    [SerializeField]
     float RepulsiveForce;
     [SerializeField]
     bool UsingAmmo;
@@ -128,8 +130,16 @@ public class Weapon : MonoBehaviour
 
     void Shooting()
     {
-        RaycastHit2D[] hit = Physics2D.RaycastAll(this.GetComponent<Transform>().position, lookDirection, 25f);
+        RaycastHit2D[] hit = Physics2D.RaycastAll(this.GetComponent<Transform>().position, lookDirection, AttackRadius);
         //Debug.DrawRay(this.GetComponent<Transform>().position, lookDirection, Color.red, 1.0f);
+
+        float localRotation = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        Vector2 Napravlenie;
+        Napravlenie.x = AttackRadius * Mathf.Cos((localRotation) * Mathf.Deg2Rad);
+        Napravlenie.y = AttackRadius * Mathf.Sin((localRotation) * Mathf.Deg2Rad);
+
+        Vector2 EndShoot = 
+            new Vector2(this.GetComponent<Transform>().transform.position.x + Napravlenie.x, this.GetComponent<Transform>().transform.position.y + Napravlenie.y);
 
         for (int i = 0; i < hit.Length; i++)
         {
@@ -145,10 +155,7 @@ public class Weapon : MonoBehaviour
 
             if ((hit[i].transform.gameObject.GetComponent<Health>() != null) && (!hit[i].collider.isTrigger))
             {
-                TrailRenderer tracer = Instantiate(tracerEffect, this.GetComponent<Transform>().position, Quaternion.identity);
-                tracer.AddPosition(this.GetComponent<Transform>().position);
-
-                tracer.transform.position = hit[i].point;
+                EndShoot = hit[i].point;
 
                 hit[i].transform.gameObject.GetComponent<Health>().TakeDamage(Damage);
                 if (hit[i].transform.gameObject.GetComponent<Rigidbody2D>())
@@ -158,6 +165,11 @@ public class Weapon : MonoBehaviour
                 break;
             }
         }
+
+        TrailRenderer tracer = Instantiate(tracerEffect, this.GetComponent<Transform>().position, Quaternion.identity);
+        tracer.AddPosition(this.GetComponent<Transform>().position);
+
+        tracer.transform.position = EndShoot;
     }
 
     void Reload()
@@ -200,6 +212,11 @@ public class Weapon : MonoBehaviour
         {
             ammoCount = MaxAmmoCount;
         }
+    }
+
+    public float GetTimeBetweenShots()
+    {
+        return TimeBetweenShots;
     }
 
 }

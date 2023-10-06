@@ -16,4 +16,18 @@ public class MiniGameTrigger : MonoBehaviour
             Working = false;
         }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Duck")
+        {
+            if (false)
+            {
+                Working = true;
+
+
+            }
+            //GameObject.Find("UI MiniGame").GetComponent<Task>().TaskOption();
+        }
+    }
 }
