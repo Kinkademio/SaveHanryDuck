@@ -4084,6 +4084,10 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
+      propertyPath: keyboardActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
       propertyPath: TimeBetweenShots
       value: 0
       objectReference: {fileID: 0}

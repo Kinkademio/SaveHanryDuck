@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Weapon : MonoBehaviour
 {
     public bool Player;
+    public bool keyboardActive;
 
     Camera MainCamera;
 
@@ -75,14 +76,14 @@ public class Weapon : MonoBehaviour
             reload = ReloadTime;
         }
 
-        if ((Player) && Input.GetKeyDown(InputController.getInput("reload")) && (reload == 0) && (magazine < MagazineSize) && (ammoCount > 0))
+        if ((Player) && (keyboardActive) && Input.GetKeyDown(InputController.getInput("reload")) && (reload == 0) && (magazine < MagazineSize) && (ammoCount > 0))
         {
             ammoCount += magazine;
             magazine = 0;
             reload = ReloadTime;
         }
 
-        if (Player && Input.GetKey(InputController.getInput("shooting")))
+        if (Player && (keyboardActive) && Input.GetKey(InputController.getInput("shooting")))
         {
             shooting = true;
         }

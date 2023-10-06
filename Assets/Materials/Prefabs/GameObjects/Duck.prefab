@@ -142,7 +142,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   animator: {fileID: 0}
   sprite: {fileID: 0}
-  keyboardActive: 0
+  keyboardActive: 1
 --- !u!95 &3495473565915526289
 Animator:
   serializedVersion: 5
