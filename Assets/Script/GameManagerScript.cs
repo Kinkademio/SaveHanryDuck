@@ -167,6 +167,8 @@ public class GameManagerScript : MonoBehaviour
             MainCamera.transform.position = new Vector3(0, 0, MainCamera.transform.position.z);
             MainCamera.GetComponent<CameraControl>().enabled = true;
             Player.GetComponent<PlayerControl>().SetKeyboardActive(true);
+
+            PlayerDrone.GetComponent<Weapon>().Initializate();
         }
         if (gameState == GameState.onPause)
         {
@@ -208,6 +210,7 @@ public class GameManagerScript : MonoBehaviour
         PlayerDrone.SetActive(false);
         Player.SetActive(false);
 
+        gameObject.GetComponent<TaskChecker>().ResetMiniGames();
 
         resetTimer();
     }

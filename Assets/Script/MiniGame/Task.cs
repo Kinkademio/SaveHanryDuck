@@ -4,8 +4,8 @@ public class Task : MonoBehaviour
 {
     public GameObject Parent;
 
-    public bool OxygenTaskStatus = false, SpaceShipTaskStatus = false, ElectricityTaskStatus = false;
-    public bool OxygenTaskCheck = false, SpaceShipTaskCheck = false, ElectricityTaskCheck = false;
+    public bool taskActive = false;
+    public bool taskComplete = false;
 
     public void Completer()
     {

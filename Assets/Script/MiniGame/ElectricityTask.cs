@@ -39,8 +39,8 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
     public void Stop()
     {
         TaskComleted.SetActive(true);
-        ElectricityTaskStatus = false;
-        ElectricityTaskCheck = true;
+        taskActive = false;
+        taskComplete = true;
         Invoke("WaitScript", 0.5f);
     }
 

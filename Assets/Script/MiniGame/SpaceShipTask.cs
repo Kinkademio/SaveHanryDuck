@@ -20,8 +20,8 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
     public void CheckTask(Vector2 point)
     {
         TaskComleted.SetActive(true);
-        SpaceShipTaskStatus = false;
-        SpaceShipTaskCheck = true;
+        taskActive = false;
+        taskComplete = true;
         Invoke("WaitScript", 0.5f);
     }
 
@@ -39,7 +39,7 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
 
     public void StartTask()
     {
-        SpaceShipTaskStatus = true;
+        //SpaceShipTaskStatus = true;
         switch (TakedStar)
         {
             case 0:

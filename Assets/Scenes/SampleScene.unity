@@ -402,7 +402,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 110046670}
-  - component: {fileID: 110046671}
   m_Layer: 0
   m_Name: UI MiniGame
   m_TagString: Untagged
@@ -428,25 +427,6 @@ Transform:
   m_Father: {fileID: 1285429648}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &110046671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110046669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00d2178b9808ac94d89e6a94ff877a2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 110046669}
-  SpaceShipTaskCheck: 0
-  OxygenTaskCheck: 0
-  ElectricityTaskCheck: 0
-  SpaceShipTaskStatus: 0
-  OxygenTaskStatus: 0
-  ElectricityTaskStatus: 0
 --- !u!1 &120492056
 GameObject:
   m_ObjectHideFlags: 0
@@ -2411,7 +2391,6 @@ MonoBehaviour:
   - {fileID: 1155949016}
   - {fileID: 1890917011}
   - {fileID: 2006292023}
-  ready: 
 --- !u!1 &523594319
 GameObject:
   m_ObjectHideFlags: 0
@@ -4078,6 +4057,10 @@ PrefabInstance:
     - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
       propertyPath: MaxAmmoCount
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
+      propertyPath: RepulsiveForce
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -5723794997760706460, guid: 0a654785b801a644aa725aabe4dfaa94, type: 3}
       propertyPath: StartAmmoCount
@@ -6421,13 +6404,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e422ea1fc87e8340adf9b29238cd31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 1155949016}
-  SpaceShipTaskCheck: 0
-  OxygenTaskCheck: 0
-  ElectricityTaskCheck: 0
-  SpaceShipTaskStatus: 0
-  OxygenTaskStatus: 0
-  ElectricityTaskStatus: 0
+  Parent: {fileID: 1155949016}
+  taskActive: 0
+  taskComplete: 0
   OxygenCounter: {fileID: 1931285241}
   OxygenTimer: {fileID: 1192063214}
   TaskComleted: {fileID: 1327104933}
@@ -10858,13 +10837,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796e4b602373ca648b34b681fab8e0de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 1890917011}
-  SpaceShipTaskCheck: 0
-  OxygenTaskCheck: 0
-  ElectricityTaskCheck: 0
-  SpaceShipTaskStatus: 0
-  OxygenTaskStatus: 0
-  ElectricityTaskStatus: 0
+  Parent: {fileID: 1890917011}
+  taskActive: 0
+  taskComplete: 0
   Spark: {fileID: 1488136008}
   TaskComleted: {fileID: 679677572}
   ElectricityCounter: {fileID: 1133421340}
@@ -11599,13 +11574,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eed61d89073b2994da33a34be0047e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 2006292023}
-  SpaceShipTaskCheck: 0
-  OxygenTaskCheck: 0
-  ElectricityTaskCheck: 0
-  SpaceShipTaskStatus: 0
-  OxygenTaskStatus: 0
-  ElectricityTaskStatus: 0
+  Parent: {fileID: 2006292023}
+  taskActive: 0
+  taskComplete: 0
   SpaceShip: {fileID: 1055986008}
   Star1: {fileID: 102738778}
   Star2: {fileID: 640533762}

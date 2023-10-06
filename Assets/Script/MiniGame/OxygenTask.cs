@@ -26,8 +26,8 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
         if (holdTime >= minHoldTime && holdTime <= maxHoldTime)
         {
             TaskComleted.SetActive(true);
-            OxygenTaskStatus = false;
-            OxygenTaskCheck = true;
+            taskActive = false;
+            taskComplete = true;
             Invoke("WaitScript", 0.5f);
         }
         else if (holdTime < minHoldTime) { OxygenCounter.text = "Слишком слабо"; }
@@ -47,7 +47,6 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
 
     public void StartTask()
     {
-        
         if (minHoldTime == 0) { MinHoldTimetRND(); }
         Debug.Log( "Мин:" + minHoldTime);
         holdTime = 0;

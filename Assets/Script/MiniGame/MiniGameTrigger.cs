@@ -10,6 +10,12 @@ public class MiniGameTrigger : MonoBehaviour
         if (Input.GetKey(InputController.getInput("action")) && Working)
         {
             GameObject.Find("Manager").GetComponent<TaskChecker>().activeTask();
+
+
+            collision.GetComponent<PlayerControl>().keyboardActive = false;
+            GameObject Drone = GameObject.Find("Drone");
+            Drone.GetComponent<Weapon>().keyboardActive = false;
+
             //GameObject.Find("UI MiniGame").GetComponent<Task>().TaskOption();
             Working = false;
         }

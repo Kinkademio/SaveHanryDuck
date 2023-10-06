@@ -50,8 +50,12 @@ public class Weapon : MonoBehaviour
     int ammoCount;
     bool shooting;
 
+    private void Start()
+    {
+        Initializate();
+    }
 
-    void Start()
+    public void Initializate()
     {
         MainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
 
