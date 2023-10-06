@@ -289,16 +289,25 @@ public class GenerationManager : MonoBehaviour
 
         for (int i = 0; i < room.doors.Count; i++)
         {
+            Quaternion quaternion;
             switch (room.doors[i].direction)
             {
                 case Direction.Top:
+                    quaternion = Quaternion.identity * Quaternion.Euler(0, 0, 180);
+                    rooms[rooms.Count - 1].First[room.doors[i].x, room.doors[i].y] =
+                        Instantiate(door, new Vector3(xStart + (float)room.doors[i].center.x, yStart - (float)room.doors[i].center.y, z), quaternion);
+                    break;
                 case Direction.Bottom:
                     rooms[rooms.Count - 1].First[room.doors[i].x, room.doors[i].y] =
                         Instantiate(door, new Vector3(xStart + (float)room.doors[i].center.x, yStart - (float)room.doors[i].center.y, z), Quaternion.identity);
                     break;
                 case Direction.Left:
+                    quaternion = Quaternion.identity * Quaternion.Euler(0, 0, 270);
+                    rooms[rooms.Count - 1].First[room.doors[i].x, room.doors[i].y] =
+                        Instantiate(door, new Vector3(xStart + (float)room.doors[i].center.x, yStart - (float)room.doors[i].center.y, z), quaternion);
+                    break;
                 case Direction.Right:
-                    Quaternion quaternion = Quaternion.identity * Quaternion.Euler(0, 0, 90);
+                    quaternion = Quaternion.identity * Quaternion.Euler(0, 0, 90);
                     rooms[rooms.Count - 1].First[room.doors[i].x, room.doors[i].y] =
                         Instantiate(door, new Vector3(xStart + (float)room.doors[i].center.x, yStart - (float)room.doors[i].center.y, z), quaternion);
                     break;           

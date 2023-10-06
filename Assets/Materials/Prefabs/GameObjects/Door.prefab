@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generationManager: {fileID: 0}
+  gameManagerScript: {fileID: 0}
   direction: 0
   firstDoor: 0
   animator: {fileID: 0}
