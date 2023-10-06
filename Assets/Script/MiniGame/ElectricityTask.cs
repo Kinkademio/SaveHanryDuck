@@ -22,7 +22,6 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
 
     private void StartTask()
     {
-        TaskComleted.SetActive(false);
         if (PointNumber == 0) { PointRND(); }
         Debug.Log(PointNumber);
         if (Point == PointNumber) Stop();
@@ -32,6 +31,9 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
         PointNumber = 0;
         Point = 0;
         ElectricityCounter.text = "Колличество ударов:" + Point;
+        TaskComleted.SetActive(false);
+        Spark.SetActive(false);
+        
         Completer();
     }
 
@@ -39,8 +41,10 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
     public void Stop()
     {
         TaskComleted.SetActive(true);
+        ElectricityTaskStatus = false;
+        ElectricityTaskCheck = true;
         Invoke("WaitScript", 0.5f);
     }
 
-    private void PointRND() { PointNumber = rnd.Next(10, 50);}
+    private void PointRND() { PointNumber = rnd.Next(5, 30);}
 }

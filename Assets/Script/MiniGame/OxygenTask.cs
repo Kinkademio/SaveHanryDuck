@@ -16,7 +16,7 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
     bool corutineWork = false;
 
     IEnumerator coroutine;
-    public void OnPointerDown(PointerEventData eventData) { StartTask(); }
+    public void OnPointerDown(PointerEventData eventData) {  StartTask(); }
     public void OnPointerUp(PointerEventData eventData) { Stop(); }
 
     public void Stop()
@@ -26,6 +26,8 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
         if (holdTime >= minHoldTime && holdTime <= maxHoldTime)
         {
             TaskComleted.SetActive(true);
+            OxygenTaskStatus = false;
+            OxygenTaskCheck = true;
             Invoke("WaitScript", 0.5f);
         }
         else if (holdTime < minHoldTime) { OxygenCounter.text = "Слишком слабо"; }
@@ -39,12 +41,14 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
         holdTime = 0;
         OxygenCounter.text = "";
         OxygenTimer.text = "Сила удара:" + holdTime;
+        TaskComleted.SetActive(false);
+
         Completer();
     }
 
     public void StartTask()
     {
-        TaskComleted.SetActive(false);
+        
         if (minHoldTime == 0) { MinHoldTimetRND(); }
         Debug.Log( "Мин:" + minHoldTime);
         holdTime = 0;

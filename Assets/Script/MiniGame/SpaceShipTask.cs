@@ -12,14 +12,15 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
     public int TakedStar = 0;
     public readonly int RequiredStar = 3;
 
-    public void OnPointerDown(PointerEventData eventData)
-    {  }
+    public void OnPointerDown(PointerEventData eventData) {  }
 
     public void OnPointerUp(PointerEventData eventData) {  StartTask(); }
 
     public void CheckTask(Vector2 point)
     {
         TaskComleted.SetActive(true);
+        SpaceShipTaskStatus = false;
+        SpaceShipTaskCheck = true;
         Invoke("WaitScript", 0.5f);
     }
 
@@ -31,12 +32,13 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
         Star3.SetActive(true);
         SpaceShip.transform.position = point;
         SpaceCounter.text = "Колличество звёзд:" + TakedStar;
+        TaskComleted.SetActive(false);
         Completer();
     }
 
     public void StartTask()
     {
-        TaskComleted.SetActive(false);
+        SpaceShipTaskStatus = true;
         switch (TakedStar)
         {
             case 0:
