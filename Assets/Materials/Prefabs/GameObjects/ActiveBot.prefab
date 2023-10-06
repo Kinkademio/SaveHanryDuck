@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: 0
+  keyboardActive: 0
   target: {fileID: 0}
   tracerEffect: {fileID: 6541464574493361791, guid: c9990c243544c79419b1d0bfbc456020, type: 3}
   ammoField: {fileID: 0}
@@ -151,6 +152,7 @@ MonoBehaviour:
   Damage: 0
   BulletInShootCount: 1
   Spread: 0
+  AttackRadius: 1.5
   RepulsiveForce: 500
   UsingAmmo: 0
 --- !u!114 &4974013100971365268
