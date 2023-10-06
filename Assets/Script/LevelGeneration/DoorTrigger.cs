@@ -25,7 +25,7 @@ public class DoorTrigger : MonoBehaviour
         if (firstDoor)
         {
             DoorOpenCloseLogic(GameObject.Find("Duck").GetComponent<Collider2D>());
-        }    
+        }
         //DoorOpenCloseLogic(GameObject.Find("Duck").GetComponent<Collider2D>());
 
         //RoomNumInMemory = generationManager.SpawnRoom(new Pair<int, int>(0, 5), Direction.Top, 0);
@@ -52,10 +52,17 @@ public class DoorTrigger : MonoBehaviour
                     RoomNumInMemory = generationManager.SpawnRoom(new PointDouble(x, y), direction, 1);
                     this.GetComponent<BoxCollider2D>().enabled = false;
                     //Destroy(this.gameObject.GetComponent<BoxCollider2D>());
+
+                    //
+                    this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                    animator.Play("Door_open");
                 }
                 else
                 {
                     generationManager.ActiveRoom(generationManager.rooms[RoomNumInMemory]);
+                    //
+                    this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                    animator.Play("Door_open");
                 }
             } 
             else
@@ -84,6 +91,9 @@ public class DoorTrigger : MonoBehaviour
                 {
 
                     generationManager.DisActiveRoom(generationManager.rooms[RoomNumInMemory]);
+                    //
+                    this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+                    animator.Play("Door_close");
                 }
             } 
             else
@@ -161,20 +171,34 @@ public class DoorTrigger : MonoBehaviour
                 break;
         }
 
-        if (Close != NewClose)
+        if ((NewClose == true) != Close) 
         {
-            Close = NewClose;
-            if (Close)
-            {
-                this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
-                animator.Play("Door_close");
-            }
-            else
-            {
-                this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-                animator.Play("Door_open");
-            }
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            animator.Play("Door_broken");
         }
+        if (!NewClose)
+        {
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
+            if (this.gameObject.activeSelf)
+                animator.Play("Door_open");
+        }
+        Close = NewClose;
+
+        //if (Close != NewClose)
+        //{
+        //    Close = NewClose;
+        //    if (Close)
+        //    {
+        //        this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        //        animator.Play("Door_broken");
+        //    }
+        //    else
+        //    {
+        //        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        //        animator.Play("Door_open");
+        //    }
+        //}
     }
 
     // Update is called once per frame
