@@ -6,9 +6,9 @@ public class MiniGameTrigger : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        
-        if (Input.GetKey(InputController.getInput("action")) && Working)
+        if (Input.GetKey(InputController.getInput("action")) && Working && (collision.name == "Duck"))
         {
+            Working = false;
             GameObject.Find("Manager").GetComponent<TaskChecker>().activeTask();
 
 
@@ -17,7 +17,6 @@ public class MiniGameTrigger : MonoBehaviour
             Drone.GetComponent<Weapon>().keyboardActive = false;
 
             //GameObject.Find("UI MiniGame").GetComponent<Task>().TaskOption();
-            Working = false;
         }
     }
 }

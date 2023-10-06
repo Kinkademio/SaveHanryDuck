@@ -153,7 +153,7 @@ MonoBehaviour:
   BulletInShootCount: 1
   Spread: 0
   AttackRadius: 1.5
-  RepulsiveForce: 500
+  RepulsiveForce: 1000
   UsingAmmo: 0
 --- !u!114 &7297725445276378631
 MonoBehaviour:

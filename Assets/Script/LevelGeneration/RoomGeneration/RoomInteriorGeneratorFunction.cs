@@ -257,11 +257,11 @@ namespace RoomInteriorGeneratorTag
                             {
                                 interactiveObjects[x, y] = Interactive.StaticObject;
                             }
-                            else if (temp > 0.80)
+                            else if (temp > 0.85)
                             {
                                 interactiveObjects[x, y] = Interactive.PassiveEnemy;
                             }
-                            else if (temp > 0.75)
+                            else if (temp > 0.82)
                             {
                                 interactiveObjects[x, y] = Interactive.ActiveEnemy;
                             }
