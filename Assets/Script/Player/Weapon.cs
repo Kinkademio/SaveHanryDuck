@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class Weapon : MonoBehaviour
 {
     public bool Player;
-    public bool keyboardActive;
+    [SerializeField]
+    private bool keyboardActive;
 
     Camera MainCamera;
 
@@ -222,6 +223,19 @@ public class Weapon : MonoBehaviour
     public float GetTimeBetweenShots()
     {
         return TimeBetweenShots;
+    }
+
+    public void SetkeyboardActive(bool Active)
+    {
+        if (Active)
+        {
+            keyboardActive = true;
+        }
+        else
+        {
+            keyboardActive = false;
+            shooting = false;
+        }
     }
 
 }

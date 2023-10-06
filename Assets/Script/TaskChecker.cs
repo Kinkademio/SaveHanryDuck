@@ -55,9 +55,9 @@ public class TaskChecker : MonoBehaviour
     public void KeyboardActive(bool Active)
     {
         GameObject Player = GameObject.Find("Duck");
-        Player.GetComponent<PlayerControl>().keyboardActive = Active;
+        Player.GetComponent<PlayerControl>().SetKeyboardActive(Active);
 
         GameObject Drone = GameObject.Find("Drone");
-        Drone.GetComponent<Weapon>().keyboardActive = Active;
+        Drone.GetComponent<Weapon>().SetkeyboardActive(Active);
     }
 }

@@ -9,10 +9,12 @@ public class PlayerControl : MonoBehaviour
     public Animator animator;
     public SpriteRenderer sprite;
 
-    public bool keyboardActive;
+    [SerializeField]
+    private bool keyboardActive;
     float playerSpeed;
     int HP;
 
+    bool up, down, left, right;
 
     void Start()
     {
@@ -44,17 +46,42 @@ public class PlayerControl : MonoBehaviour
 
         if (keyboardActive)
         {
-            if (Input.GetKeyDown(InputController.getInput("up"))) { Napravlenie.y = Napravlenie.y + 1; }
-            if (Input.GetKeyUp(InputController.getInput("up"))) { Napravlenie.y = Napravlenie.y - 1; }
+            if (Input.GetKeyDown(InputController.getInput("up")) && (up == false)) 
+            { 
+                Napravlenie.y = Napravlenie.y + 1; 
+                up = true; 
+            }
+            if (Input.GetKeyUp(InputController.getInput("up")) && (up == true)) 
+            { 
+                Napravlenie.y = Napravlenie.y - 1; 
+                up = false; 
+            }
 
-            if (Input.GetKeyDown(InputController.getInput("left"))) { Napravlenie.x = Napravlenie.x - 1; sprite.flipX = false; }
-            if (Input.GetKeyUp(InputController.getInput("left"))) { Napravlenie.x = Napravlenie.x + 1; }
+            if (Input.GetKeyDown(InputController.getInput("left")) && (left == false)) 
+            { 
+                Napravlenie.x = Napravlenie.x - 1; 
+                sprite.flipX = false; 
+                left = true; 
+            }
+            if (Input.GetKeyUp(InputController.getInput("left")) && (left == true)) 
+            { 
+                Napravlenie.x = Napravlenie.x + 1; 
+                left = false; 
+            }
 
-            if (Input.GetKeyDown(InputController.getInput("down"))) { Napravlenie.y = Napravlenie.y - 1; }
-            if (Input.GetKeyUp(InputController.getInput("down"))) { Napravlenie.y = Napravlenie.y + 1; }
+            if (Input.GetKeyDown(InputController.getInput("down")) && (down == false)) 
+            { 
+                Napravlenie.y = Napravlenie.y - 1; 
+                down = true; 
+            }
+            if (Input.GetKeyUp(InputController.getInput("down")) && (down == true)) 
+            { 
+                Napravlenie.y = Napravlenie.y + 1; 
+                down = false; 
+            }
 
-            if (Input.GetKeyDown(InputController.getInput("right"))) { Napravlenie.x = Napravlenie.x + 1; sprite.flipX = true; }
-            if (Input.GetKeyUp(InputController.getInput("right"))) { Napravlenie.x = Napravlenie.x - 1; }
+            if (Input.GetKeyDown(InputController.getInput("right")) && right == false) { Napravlenie.x = Napravlenie.x + 1; sprite.flipX = true; right = true; }
+            if (Input.GetKeyUp(InputController.getInput("right")) && right == true) { Napravlenie.x = Napravlenie.x - 1; right = false; }
 
             if ((Input.GetKey(InputController.getInput("up")) ^ Input.GetKey(InputController.getInput("down"))) || 
                 (Input.GetKey(InputController.getInput("left")) ^ Input.GetKey(InputController.getInput("right"))))
@@ -77,5 +104,10 @@ public class PlayerControl : MonoBehaviour
 
         Napravlenie.x = 0;
         Napravlenie.y = 0;
+        
+        up = false;
+        left = false;
+        right = false;
+        down = false;
     }
 }
