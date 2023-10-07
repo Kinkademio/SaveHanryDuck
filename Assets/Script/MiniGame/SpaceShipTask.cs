@@ -9,6 +9,8 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
 
     public readonly int RequiredStar = 3;
 
+    Vector2 point;
+
     public void Start()
     {
         point = SpaceShip.transform.position;
@@ -30,7 +32,6 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
 
     public new void closeTask() 
     {
-        base.closeTask();
         Star1.SetActive(true);
         Star2.SetActive(true);
         Star3.SetActive(true);
