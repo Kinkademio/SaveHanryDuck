@@ -9,6 +9,14 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
 
     public readonly int RequiredStar = 3;
 
+    public void Start()
+    {
+        point = SpaceShip.transform.position;
+    }
+    public void Awake()
+    {
+        SpaceShip.transform.position = point;
+    }
     public void OnPointerDown(PointerEventData eventData) {  }
 
     public void OnPointerUp(PointerEventData eventData) {  StartTask(); }
@@ -35,7 +43,6 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
         switch (Reqwest)
         {
             case 0:
-                point = SpaceShip.transform.position;
                 PickUpStar(Star1);
                 break;
             case 1:

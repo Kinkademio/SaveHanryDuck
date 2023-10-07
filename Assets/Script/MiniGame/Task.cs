@@ -7,6 +7,7 @@ public class Task : MonoBehaviour
     public GameObject Parent, TaskComleted;
     public Text TaskCounter;
 
+
     public System.Random rnd = new();
 
     public int Reqwest = 0, maxHoldTime = 10, minHoldTime = 0;

@@ -402,7 +402,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 110046670}
-  - component: {fileID: 110046671}
   m_Layer: 0
   m_Name: UI MiniGame
   m_TagString: Untagged
@@ -429,28 +428,6 @@ Transform:
   m_Father: {fileID: 1285429648}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &110046671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110046669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00d2178b9808ac94d89e6a94ff877a2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Parent: {fileID: 0}
-  TaskComleted: {fileID: 0}
-  TaskCounter: {fileID: 0}
-  Reqwest: 0
-  maxHoldTime: 10
-  minHoldTime: 0
-  taskActive: 0
-  taskComplete: 0
-  corutineWork: 0
-  point: {x: 0, y: 0}
 --- !u!1 &120492056
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,7 +711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1644698091486161717, guid: bac7961610075b14ab2d17d7cf212d3c, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1644698091486161717, guid: bac7961610075b14ab2d17d7cf212d3c, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2485,8 +2462,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tasks:
-  - {fileID: 1890917011}
   - {fileID: 1155949016}
+  - {fileID: 1890917011}
   - {fileID: 1004858902}
   - {fileID: 2006292023}
   currentactiveTask: {fileID: 0}
@@ -3337,7 +3314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 986784246418868106, guid: a2c438c98a9f8ce43a45a6ddfedfe1b5, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 986784246418868106, guid: a2c438c98a9f8ce43a45a6ddfedfe1b5, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7159,7 +7136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 677333553419397464, guid: 2b657fa729535374c965ed63fc557046, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 401.17398
+      value: 559.322
       objectReference: {fileID: 0}
     - target: {fileID: 677333553419397464, guid: 2b657fa729535374c965ed63fc557046, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7172,6 +7149,22 @@ PrefabInstance:
     - target: {fileID: 677333553419397470, guid: 2b657fa729535374c965ed63fc557046, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: openMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 677333553419397471, guid: 2b657fa729535374c965ed63fc557046, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 677333553419397471, guid: 2b657fa729535374c965ed63fc557046, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 677333553419397471, guid: 2b657fa729535374c965ed63fc557046, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 677333553419397471, guid: 2b657fa729535374c965ed63fc557046, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 677333554053918616, guid: 2b657fa729535374c965ed63fc557046, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7219,7 +7212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 677333554321304346, guid: 2b657fa729535374c965ed63fc557046, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 401.17398
+      value: 559.322
       objectReference: {fileID: 0}
     - target: {fileID: 677333554321304346, guid: 2b657fa729535374c965ed63fc557046, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7259,7 +7252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 677333554630594745, guid: 2b657fa729535374c965ed63fc557046, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 677333554630594745, guid: 2b657fa729535374c965ed63fc557046, type: 3}
       propertyPath: m_AnchorMax.x
@@ -9732,7 +9725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7938234816776921275, guid: bd594936b7dfc084481144d2fbfa57bb, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7938234816776921275, guid: bd594936b7dfc084481144d2fbfa57bb, type: 3}
       propertyPath: m_AnchorMax.x

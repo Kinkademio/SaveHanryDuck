@@ -8,7 +8,6 @@ public class CatTask : Task, IPointerDownHandler, IPointerUpHandler
     public Text TaskTimer;
     public void OnPointerDown(PointerEventData eventData) { StartTask(); }
     public void OnPointerUp(PointerEventData eventData) { Stop(); }
-
     public void Stop()
     {
         StopCoroutine();
@@ -25,9 +24,9 @@ public class CatTask : Task, IPointerDownHandler, IPointerUpHandler
 
     public new void closeTask()
     {
-        base.closeTask();
         TaskTimer.text = "" + Reqwest;
     }
+
     public void WaitScript() { Completer(); }
 
     public void StartTask()

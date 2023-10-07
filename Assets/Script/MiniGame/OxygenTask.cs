@@ -10,6 +10,11 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData) {  StartTask(); }
     public void OnPointerUp(PointerEventData eventData) { Stop(); }
 
+    public void Awake()
+    {
+        TaskTimer.text = "" + Reqwest;
+    }
+
     public void Stop()
     {
         StopCoroutine();
@@ -23,11 +28,6 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
         else if (Reqwest < minHoldTime) { TaskCounter.text = "Слишком слабо"; }
         else { TaskCounter.text = "По аккуратнее!!!"; }
 
-    }
-    public new void closeTask()
-    {
-        base.closeTask();
-        TaskTimer.text = "" + Reqwest;
     }
 
     public void WaitScript() { Completer(); }
