@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ScoresSettings
   m_EditorClassIdentifier: 
   scores:
-  - scoreNameForMenu: "\u0412\u044B \u0432\u044B\u0436\u0438\u043B\u0438:"
-    scoreName: survived
+  - scoreNameForMenu: "\u041F\u043E\u0447\u0438\u043D\u0435\u043D\u043E \u043E\u0431\u044A\u0435\u043A\u0442\u043E\u0432:"
+    scoreName: fixed_objects
     scoreValue: 0
   - scoreNameForMenu: "\u0412\u0440\u0435\u043C\u044F \u0432\u044B\u0436\u0438\u0432\u0430\u043D\u0438\u044F:"
     scoreName: survive_time
