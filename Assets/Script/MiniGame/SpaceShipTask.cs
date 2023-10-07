@@ -10,6 +10,9 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
 
     public Vector2 point;
 
+    public void Start() { point = SpaceShip.transform.position; }
+
+    //public void Awake() { SpaceShip.transform.position = point; }
     public void OnPointerDown(PointerEventData eventData) {  }
 
     public void OnPointerUp(PointerEventData eventData) {  StartTask(); }
@@ -29,9 +32,9 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
         base.closeTask();
         Star1.SetActive(true);
         Star2.SetActive(true);
-        Star3.SetActive(true);
-        SpaceShip.transform.position = point;
+        Star3.SetActive(true);SpaceShip.transform.position = point;
     }
+        
     public void WaitScript() { Completer(); }
 
     public void StartTask()
@@ -39,7 +42,7 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
         switch (Reqwest)
         {
             case 0:
-                point = SpaceShip.transform.position;
+                
                 PickUpStar(Star1);
                 break;
             case 1:
