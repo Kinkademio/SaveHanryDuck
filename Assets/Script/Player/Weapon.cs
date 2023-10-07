@@ -124,6 +124,9 @@ public class Weapon : MonoBehaviour
 
             if (UsingAmmo)
             {
+                int vasteBullets = int.Parse(ScoreController.getCurrentScoreByName("uesed_ammo").scoreValue);
+                vasteBullets++;
+                ScoreController.setCurrentScoreNewValue("uesed_ammo", vasteBullets.ToString());
                 magazine--;
             }
         }

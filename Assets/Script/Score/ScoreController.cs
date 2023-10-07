@@ -12,20 +12,9 @@ public static class ScoreController
     private static ScoresSavedSCRObj savedScores = Resources.Load<ScoresSavedSCRObj>("Score/SavedScores");
     private static Score[] currentScores = null;
 
-    public static Score[] createNewScores()
-    {
-        Score[] scoresTypesPrototype = scoresTypes.getScores();
-        Score[] scores = new Score[scoresTypesPrototype.Length];
-      
-        scoresTypesPrototype.CopyTo(scores, 0);
-       
-        if (currentScores != null)
-        {
-            saveCurrentScore(); 
-        }
-        currentScores = scores;
-
-        return scores;
+    public static void createNewScores()
+    { 
+        currentScores = scoresTypes.getScores();
     }
 
     public static SavedScore[] getAllSavedScosres()
@@ -49,7 +38,7 @@ public static class ScoreController
         return found;
     }
 
-    public static void setCurrentScoreNewValue(string name, float newCode)
+    public static void setCurrentScoreNewValue(string name, string newCode)
     {
         getCurrentScoreByName(name).scoreValue = newCode;
     }

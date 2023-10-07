@@ -15,6 +15,9 @@ public class Health : MonoBehaviour
 
             if (healthPoint <= 0)
             {
+                float destroedObjects = int.Parse(ScoreController.getCurrentScoreByName("destroy_objects").scoreValue);
+                destroedObjects++;
+                ScoreController.setCurrentScoreNewValue("destroy_objects", destroedObjects.ToString());
                 Destroy(gameObject);
             }
         }

@@ -6,22 +6,43 @@ public class TableFill : MonoBehaviour
     [SerializeField] GameObject Row;
     [SerializeField] GameObject Cell;
 
+    [SerializeField] GameObject Table;
     [SerializeField] GameObject TableBody;
     [SerializeField] GameObject TableHeaderRow;
     [SerializeField] Text RecordsName;
+     
 
-    public void Start()
+    public void clearTable()
     {
+        //Очищаем таблицу
+        destroyAllChildrenObjects(TableBody);
+        //Очищаем хедер
+        destroyAllChildrenObjects(TableHeaderRow);
+
+    }
+
+    private void destroyAllChildrenObjects(GameObject parent)
+    {
+        int childCounter = parent.transform.childCount;
+        for(int i =0; i<childCounter; i++)
+        {
+            Destroy(parent.transform.GetChild(i).gameObject);
+        }
+    }
+
+    public void fillTable()
+    {
+        clearTable();
         //Получаем список всех рекордов
         SavedScore[] scores = ScoreController.getAllSavedScosres();
-        if(scores.Length == 0)
+        if (scores.Length == 0)
         {
-            gameObject.SetActive(false);
+            Table.SetActive(false);
             RecordsName.text = "У вас пока нет рекордов";
         }
         else
         {
-            gameObject.SetActive(true);
+            Table.SetActive(true);
             RecordsName.text = "Рекорды";
         }
         bool headerCreate = false;
@@ -30,13 +51,13 @@ public class TableFill : MonoBehaviour
         createHeaderCell("Дата:");
         //Заполним таблицу Рекордов
         int rowIndex = 1;
-        foreach (SavedScore score in scores )
+        foreach (SavedScore score in scores)
         {
             GameObject currentRow = Instantiate(Row, TableBody.transform);
             //Создадим ячейку с индексом и датой в начале строки
             createBodyCell(rowIndex.ToString(), currentRow.transform);
             createBodyCell(score.saveDate, currentRow.transform);
-    
+
             foreach (Score oneScore in score.savedScore)
             {
                 //Заполним голову таблицы
@@ -45,9 +66,9 @@ public class TableFill : MonoBehaviour
                     createHeaderCell(oneScore.scoreNameForMenu);
                 }
                 //Заполним тело таблицы
-                createBodyCell(oneScore.scoreValue.ToString(), currentRow.transform);
+                createBodyCell(oneScore.scoreValue, currentRow.transform);
             }
-            if(!headerCreate) headerCreate = true;
+            if (!headerCreate) headerCreate = true;
             rowIndex++;
         }
     }

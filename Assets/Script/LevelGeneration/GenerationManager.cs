@@ -446,6 +446,7 @@ public class GenerationManager : MonoBehaviour
     }
     public void DisActiveRoom(Pair<GameObject[,], bool> room)
     {
+       
         for (int x = 0; x < room.First.GetLength(0); x++)
         {
             for (int y = 0; y < room.First.GetLength(1); y++)

@@ -82,6 +82,10 @@ public class DoorTrigger : MonoBehaviour
 
                 if (Destroy == true)
                 {
+                    int roomsPased = int.Parse(ScoreController.getCurrentScoreByName("rooms_passed").scoreValue);
+                    roomsPased++;
+                    ScoreController.setCurrentScoreNewValue("rooms_passed", roomsPased.ToString());
+
                     GameObject.Find("Manager").GetComponent<GameManagerScript>().resetTimer();
                     generationManager.DestroyAllWithout(RoomNumInMemory);
                     //this.gameObject.GetComponent<BoxCollider2D>().enabled = true;

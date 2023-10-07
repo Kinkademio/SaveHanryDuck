@@ -37,6 +37,7 @@ public class GameManagerScript : MonoBehaviour
     GameObject MainCamera;
     
     private float Timer;
+    private float allSurviveTime = 0;
 
 
     //Смена состояния игры
@@ -60,14 +61,8 @@ public class GameManagerScript : MonoBehaviour
     }
 
 
-
-
-
-
     private void Start()
     {
-        ScoreController.createNewScores();
-        ScoreController.saveCurrentScore();
         //Устанавливаем по умолчанию состояние игры в Меню
         changeGameState(GameState.onMenu);
 
@@ -116,6 +111,8 @@ public class GameManagerScript : MonoBehaviour
     public void openScores()
     {
         this.swapVisibleUi(currentActiveUI, ScoreUI);
+        TableFill tableControl =  ScoreUI.GetComponentInChildren<TableFill>();
+        tableControl.fillTable();
     }
 
     public void openMenu()
@@ -157,6 +154,8 @@ public class GameManagerScript : MonoBehaviour
     public void loadGame()
     {
         if(gameState == GameState.onMenu) {
+            allSurviveTime = 0;
+            ScoreController.createNewScores();
             //Тут нужно эту структуру проинициализировать и выполнить действия для загрузки юзера на уровень
             Player.transform.position = new Vector3(0, 0, Player.transform.position.z);
             Player.SetActive(true);
@@ -183,20 +182,27 @@ public class GameManagerScript : MonoBehaviour
         {
             this.swapVisibleUi(currentActiveUI, LoseUI);
             changeGameState(GameState.onMenu);
+            ScoreController.setCurrentScoreNewValue("survive_time", convertTimertoStringVal(allSurviveTime));
+            ScoreController.setCurrentScoreNewValue("survived", "Нет");
+            ScoreController.saveCurrentScore();
             deactivateGame();
             
         }
         else
         {
+            allSurviveTime += Time.deltaTime;
             Timer -= Time.deltaTime;
             updateTimer(Timer);
         }
     }
 
     public void winGame()
-    {
+    {   
         this.swapVisibleUi(currentActiveUI, WinUI);
         changeGameState(GameState.onMenu);
+        ScoreController.setCurrentScoreNewValue("survive_time", convertTimertoStringVal(allSurviveTime));
+        ScoreController.setCurrentScoreNewValue("survived", "Да");
+        ScoreController.saveCurrentScore();
         deactivateGame();
     }
 
@@ -253,11 +259,15 @@ public class GameManagerScript : MonoBehaviour
         PlayerPrefs.SetFloat("volume", AudioListener.volume);
     }
 
+    private string convertTimertoStringVal(float value)
+    {
+        string time = System.Convert.ToString(value);
+        string[] parts = time.Split(',');
+        return parts[0];
+    }
     private void updateTimer(float newTime)
     {
-        string time = System.Convert.ToString(newTime);
-        string[] parts = time.Split(',');
-        timerField.text = parts[0];
+        timerField.text = convertTimertoStringVal(newTime);
 
     }
 

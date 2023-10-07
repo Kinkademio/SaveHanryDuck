@@ -13,7 +13,6 @@ public class ScoresSavedSCRObj : ScriptableObject
         SavedScore newSave = new SavedScore();
         newSave.savedScore = scores;
         savedScores = savedScores.Append(newSave).ToArray();
-
     }
 
     public void clearAllSavedScores()

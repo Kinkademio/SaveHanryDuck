@@ -13,10 +13,16 @@ public class ScoreSCRObj : ScriptableObject
 
     public Score[] getScores()
     {
-        return scores;
+        Score[] scoresClone = new Score[scores.Length];
+        for(int i=0; i<scores.Length; i++)
+        {
+            scoresClone[i] = (Score)scores[i].Clone();
+        }
+
+        return scoresClone;
     }
 
-    public void setNewScoreValue(string name, float newCode)
+    public void setNewScoreValue(string name, string newCode)
     {
         getByName(name).scoreValue = newCode;
     }
