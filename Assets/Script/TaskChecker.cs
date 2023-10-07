@@ -43,6 +43,11 @@ public class TaskChecker : MonoBehaviour
         currentactiveTask = null;
         KeyboardActive(true);
 
+        if (GameObject.Find("Manager").GetComponent<GameManagerScript>().lifeTimer < 60)
+        {
+            GameObject.Find("Manager").GetComponent<GameManagerScript>().lifeTimer += 1;
+        }
+
         if (checkWin())
         {
             GameObject.Find("Manager").GetComponent<GameManagerScript>().winGame();

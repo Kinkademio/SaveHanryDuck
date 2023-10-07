@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class DoorTrigger : MonoBehaviour
 {
+    public GameObject MainCamera;
     public GenerationManager generationManager;
     public GameManagerScript gameManagerScript;
     public Direction direction;
@@ -19,7 +20,8 @@ public class DoorTrigger : MonoBehaviour
 
     void Start()
     {
-        generationManager = GameObject.Find("Main Camera").GetComponent<GenerationManager>();
+        MainCamera = GameObject.Find("Main Camera");
+        generationManager = MainCamera.GetComponent<GenerationManager>();
         gameManagerScript = GameObject.Find("Manager").GetComponent<GameManagerScript>();
         animator = this.GetComponent<Animator>();
 
@@ -86,7 +88,12 @@ public class DoorTrigger : MonoBehaviour
                     roomsPased++;
                     ScoreController.setCurrentScoreNewValue("rooms_passed", roomsPased.ToString());
 
-                    GameObject.Find("Manager").GetComponent<GameManagerScript>().resetTimer();
+                    if ((MainCamera.GetComponent<GenerationManager>().BaseRoomSize <= 30) && (roomsPased % 4 == 0))
+                    {
+                        MainCamera.GetComponent<GenerationManager>().BaseRoomSize += 1;
+                    }
+
+                    gameManagerScript.resetTimer();
                     generationManager.DestroyAllWithout(RoomNumInMemory);
                     //this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
                     //this.gameObject.AddComponent<BoxCollider2D>();

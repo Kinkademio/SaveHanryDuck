@@ -16,7 +16,7 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] AudioSource menuSoundPlayer;
     [SerializeField] AudioSource gameSoundPlayer;
     [SerializeField] Text timerField;
-    [SerializeField] float lifeTimer = 10f;
+    [SerializeField] public float lifeTimer = 10f;
     [SerializeField] float baseVolume = 0.5f;
 
     private GameObject currentActiveUI;
@@ -197,13 +197,15 @@ public class GameManagerScript : MonoBehaviour
     }
 
     public void winGame()
-    {   
-        this.swapVisibleUi(currentActiveUI, WinUI);
-        changeGameState(GameState.onMenu);
-        ScoreController.setCurrentScoreNewValue("survive_time", convertTimertoStringVal(allSurviveTime));
-        ScoreController.setCurrentScoreNewValue("survived", "Да");
-        ScoreController.saveCurrentScore();
-        deactivateGame();
+    {
+        gameObject.GetComponent<TaskChecker>().ResetMiniGames();
+
+        //this.swapVisibleUi(currentActiveUI, WinUI);
+        //changeGameState(GameState.onMenu);
+        //ScoreController.setCurrentScoreNewValue("survive_time", convertTimertoStringVal(allSurviveTime));
+        //ScoreController.setCurrentScoreNewValue("survived", "Да");
+        //ScoreController.saveCurrentScore();
+        //deactivateGame();
     }
 
     public void deactivateGame()
@@ -212,6 +214,7 @@ public class GameManagerScript : MonoBehaviour
         gameObject.GetComponent<TaskChecker>().ResetMiniGames();
         Player.GetComponent<PlayerControl>().SetKeyboardActive(false);
         MainCamera.GetComponent<GenerationManager>().DestroyAllWithout();
+        MainCamera.GetComponent<GenerationManager>().BaseRoomSize = 0;
         MainCamera.GetComponent<GenerationManager>().enabled = false;
         MainCamera.GetComponent<CameraControl>().enabled = false;
         PlayerDrone.SetActive(false);

@@ -43,9 +43,12 @@ public class GenerationManager : MonoBehaviour
     public GameObject passiveEnemy;
     public GameObject activeEnemy;
 
+    public int BaseRoomSize;
+
     public void Start()
     {
         MainCamera = GameObject.Find("Main Camera");
+        BaseRoomSize = 0;
     }
 
     public void GenerationManagerFirstRoom()
@@ -112,7 +115,7 @@ public class GenerationManager : MonoBehaviour
     public int SpawnRoom(PointDouble startDoor, Direction direction, int z)
     {
 
-        int SizeX = UnityEngine.Random.Range(11, 18), SizeY = UnityEngine.Random.Range(11, 18);
+        int SizeX = UnityEngine.Random.Range(BaseRoomSize + 11, BaseRoomSize + 18), SizeY = UnityEngine.Random.Range(BaseRoomSize + 11, BaseRoomSize + 18);
         Room room = new Room(RoomShape.Rectangle, SizeX, SizeY, 4, 3, 2, 2, 2, direction);
 
         float xStart = 0;
