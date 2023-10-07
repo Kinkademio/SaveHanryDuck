@@ -5,6 +5,8 @@ using UnityEngine;
 public class TaskChecker : MonoBehaviour
 {
     public GameObject[] tasks;
+    public Task currentactiveTask;
+
 
     public void activeTask()
     {
@@ -17,7 +19,9 @@ public class TaskChecker : MonoBehaviour
             }
         }
         tasks[notDoJob].SetActive(true);
-        tasks[notDoJob].GetComponent<Task>().taskActive = true;
+
+        currentactiveTask = tasks[notDoJob].GetComponent<Task>();
+        currentactiveTask.taskActive = true;
 
     }
 
@@ -48,13 +52,17 @@ public class TaskChecker : MonoBehaviour
 
     public void ResetMiniGames()
     {
-        for (int i = 0; i < tasks.Length; i++)
+        GameObject parent = GameObject.Find("UI MiniGame");
+        int countOfChildren = parent.transform.childCount;
+        for (int i = 0; i < countOfChildren; i++)
         {
-            tasks[i].GetComponent<Task>().taskComplete = false;
-            GameObject.Find("UI MiniGame").GetComponent<Task>().closeTask();
-        }
+            GameObject miniGame = parent.transform.GetChild(i).gameObject;
+            miniGame.GetComponent<Task>().closeTask();
+            miniGame.SetActive(false);
 
+        }
     }
+
 
     public void KeyboardActive(bool Active)
     {
