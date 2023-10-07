@@ -21,7 +21,9 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
         if (Reqwest >= minHoldTime && Reqwest <= maxHoldTime)
         {
             TaskComleted.SetActive(true);
-            
+            int fixedObjects = int.Parse(ScoreController.getCurrentScoreByName("fixed_objects").scoreValue);
+            fixedObjects++;
+            ScoreController.setCurrentScoreNewValue("fixed_objects", fixedObjects.ToString());
             taskComplete = true;
             Invoke("WaitScript", 0.5f);
         }

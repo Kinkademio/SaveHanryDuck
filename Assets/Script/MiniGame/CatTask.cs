@@ -15,6 +15,11 @@ public class CatTask : Task, IPointerDownHandler, IPointerUpHandler
         {
             TaskComleted.SetActive(true);
             taskComplete = true;
+
+            int fixedObjects = int.Parse(ScoreController.getCurrentScoreByName("fixed_objects").scoreValue);
+            fixedObjects++;
+            ScoreController.setCurrentScoreNewValue("fixed_objects", fixedObjects.ToString());
+
             Invoke("WaitScript", 0.5f);
         }
         else if (Reqwest < minHoldTime) { TaskCounter.text = "Мало :<"; }

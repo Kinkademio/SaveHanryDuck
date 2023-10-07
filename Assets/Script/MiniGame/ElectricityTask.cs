@@ -32,7 +32,9 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
     public void Stop()
     {
         TaskComleted.SetActive(true);
-        
+        int fixedObjects = int.Parse(ScoreController.getCurrentScoreByName("fixed_objects").scoreValue);
+        fixedObjects++;
+        ScoreController.setCurrentScoreNewValue("fixed_objects", fixedObjects.ToString());
         taskComplete = true;
         Invoke("WaitScript", 0.5f);
     }

@@ -183,7 +183,6 @@ public class GameManagerScript : MonoBehaviour
             this.swapVisibleUi(currentActiveUI, LoseUI);
             changeGameState(GameState.onMenu);
             ScoreController.setCurrentScoreNewValue("survive_time", convertTimertoStringVal(allSurviveTime));
-            ScoreController.setCurrentScoreNewValue("survived", "Нет");
             ScoreController.saveCurrentScore();
             deactivateGame();
             

@@ -40,6 +40,7 @@ public class TaskChecker : MonoBehaviour
 
     public void iamDONE(GameObject game)
     {
+       
         currentactiveTask = null;
         KeyboardActive(true);
 
