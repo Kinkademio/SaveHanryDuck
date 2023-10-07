@@ -52,6 +52,7 @@ public class TaskChecker : MonoBehaviour
 
     public void ResetMiniGames()
     {
+        KeyboardActive(true);
         GameObject parent = GameObject.Find("UI MiniGame");
         int countOfChildren = parent.transform.childCount;
         for (int i = 0; i < countOfChildren; i++)

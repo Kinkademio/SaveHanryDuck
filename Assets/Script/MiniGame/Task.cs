@@ -4,12 +4,12 @@ using UnityEngine.UI;
 
 public class Task : MonoBehaviour
 {
-    public GameObject SpaceShip, Star1, Star2, Star3, Parent, Spark, TaskComleted;
-    public Text TaskCounter, TaskTimer;
+    public GameObject Parent, TaskComleted;
+    public Text TaskCounter;
 
     public System.Random rnd = new();
 
-    public int Reqwest = 0, maxHoldTime = 10, minHoldTime = 0, qwest;
+    public int Reqwest = 0, maxHoldTime = 10, minHoldTime = 0;
 
     public bool taskActive = false, taskComplete = false, corutineWork = false;
 
@@ -28,26 +28,15 @@ public class Task : MonoBehaviour
         corutineWork = false;
     }
 
-    public void OffGameObject() 
-    {
-        Star1.SetActive(true);
-        Star2.SetActive(true);
-        Star3.SetActive(true);
-        SpaceShip.transform.position = point;
-    }
-
     public void closeTask()
     {
-        Parent.SetActive(false);
-        if (Spark.activeInHierarchy) Spark.SetActive(false);
-        if (!Star1.activeInHierarchy || !Star2.activeInHierarchy || !Star3.activeInHierarchy) OffGameObject();
         if (corutineWork) StopCoroutine();
         taskActive = false;
         minHoldTime = 0;
         Reqwest = 0;
         TaskCounter.text = "";
-        TaskTimer.text = "" + Reqwest;
         TaskComleted.SetActive(false);
+        Parent.SetActive(false);
     }
 
 }

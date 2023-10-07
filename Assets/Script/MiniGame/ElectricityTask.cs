@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
 {
+    public GameObject Spark;
     private int PointNumber = 0;
 
     public void OnPointerDown(PointerEventData eventData) { Spark.SetActive(true); }
@@ -13,6 +14,11 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
         Reqwest++;
         TaskCounter.text = "Колличество ударов:" + Reqwest;
         StartTask();
+    }
+
+    public new void closeTask()
+    {
+        Spark.SetActive(false);
     }
 
     private void StartTask()

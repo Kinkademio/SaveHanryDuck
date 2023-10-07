@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
 {
+    public GameObject SpaceShip, Star1, Star2, Star3;
+
     public readonly int RequiredStar = 3;
 
     public void OnPointerDown(PointerEventData eventData) {  }
@@ -19,6 +21,13 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
         Invoke("WaitScript", 0.5f);
     }
 
+    public new void closeTask() 
+    {
+        Star1.SetActive(true);
+        Star2.SetActive(true);
+        Star3.SetActive(true);
+        SpaceShip.transform.position = point;
+    }
     public void WaitScript() { Completer(); }
 
     public void StartTask()
