@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TaskChecker : MonoBehaviour
@@ -49,7 +51,9 @@ public class TaskChecker : MonoBehaviour
         for (int i = 0; i < tasks.Length; i++)
         {
             tasks[i].GetComponent<Task>().taskComplete = false;
+            GameObject.Find("UI MiniGame").GetComponent<Task>().closeTask();
         }
+
     }
 
     public void KeyboardActive(bool Active)

@@ -4,19 +4,14 @@ using UnityEngine.UI;
 
 public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
 {
-    public GameObject Spark, TaskComleted;
-    public Text ElectricityCounter;
-
-    private int Point = 0, PointNumber = 0;
-
-    System.Random rnd = new();
+    private int PointNumber = 0;
 
     public void OnPointerDown(PointerEventData eventData) { Spark.SetActive(true); }
     public void OnPointerUp(PointerEventData eventData)
     {
         Spark.SetActive(false);
-        Point++;
-        ElectricityCounter.text = "Колличество ударов:" + Point;
+        Reqwest++;
+        TaskCounter.text = "Колличество ударов:" + Reqwest;
         StartTask();
     }
 
@@ -24,22 +19,13 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
     {
         if (PointNumber == 0) { PointRND(); }
         Debug.Log(PointNumber);
-        if (Point == PointNumber) Stop();
+        if (Reqwest == PointNumber) Stop();
     }
-    public void WaitScript()
-    {
-        PointNumber = 0;
-        Point = 0;
-        ElectricityCounter.text = "Колличество ударов:" + Point;
-        TaskComleted.SetActive(false);
-        Spark.SetActive(false);
-        Completer();
-    }
-
+    public void WaitScript() { Completer(); }
     public void Stop()
     {
         TaskComleted.SetActive(true);
-        taskActive = false;
+        
         taskComplete = true;
         Invoke("WaitScript", 0.5f);
     }

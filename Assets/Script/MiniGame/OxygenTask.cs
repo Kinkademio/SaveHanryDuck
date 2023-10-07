@@ -5,51 +5,31 @@ using UnityEngine.UI;
 
 public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
 {
-    public Text OxygenCounter, OxygenTimer;
-    public GameObject TaskComleted;
-
-    private int holdTime = 0, minHoldTime = 0;
-    private readonly int maxHoldTime = 10;
-
-    readonly System.Random rnd = new();
-
-    bool corutineWork = false;
-
-    IEnumerator coroutine;
     public void OnPointerDown(PointerEventData eventData) {  StartTask(); }
     public void OnPointerUp(PointerEventData eventData) { Stop(); }
 
     public void Stop()
     {
-        StopCoroutine(coroutine);
-        corutineWork = false;
-        if (holdTime >= minHoldTime && holdTime <= maxHoldTime)
+        StopCoroutine();
+        if (Reqwest >= minHoldTime && Reqwest <= maxHoldTime)
         {
             TaskComleted.SetActive(true);
-            taskActive = false;
+            
             taskComplete = true;
             Invoke("WaitScript", 0.5f);
         }
-        else if (holdTime < minHoldTime) { OxygenCounter.text = "Слишком слабо"; }
-        else { OxygenCounter.text = "По аккуратнее!!!"; }
+        else if (Reqwest < minHoldTime) { TaskCounter.text = "Слишком слабо"; }
+        else { TaskCounter.text = "По аккуратнее!!!"; }
 
     }
 
-    public void WaitScript()
-    {
-        minHoldTime = 0;
-        holdTime = 0;
-        OxygenCounter.text = "";
-        OxygenTimer.text = "Сила удара:" + holdTime;
-        TaskComleted.SetActive(false);
-        Completer();
-    }
+    public void WaitScript() { Completer(); }
 
     public void StartTask()
     {
         if (minHoldTime == 0) { MinHoldTimetRND(); }
         Debug.Log( "Мин:" + minHoldTime);
-        holdTime = 0;
+        Reqwest = 0;
         if (!corutineWork)
         {
             coroutine = TestCoroutine();
@@ -64,8 +44,8 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
     {
         while (true)
         {
-            holdTime++;
-            OxygenTimer.text = "Сила удара:" + holdTime;
+            Reqwest++;
+            TaskTimer.text = "Сила удара:" + Reqwest;
             yield return new WaitForSeconds(1f);
         }
     }

@@ -5,12 +5,6 @@ using UnityEngine.UI;
 
 public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
 {
-    public GameObject SpaceShip, Star1, Star2, Star3, TaskComleted;
-    public Text SpaceCounter;
-
-    Vector2 point;
-
-    public int TakedStar = 0;
     public readonly int RequiredStar = 3;
 
     public void OnPointerDown(PointerEventData eventData) {  }
@@ -20,27 +14,16 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
     public void CheckTask(Vector2 point)
     {
         TaskComleted.SetActive(true);
-        taskActive = false;
+       
         taskComplete = true;
         Invoke("WaitScript", 0.5f);
     }
 
-    public void WaitScript()
-    {
-        TakedStar = 0;
-        Star1.SetActive(true);
-        Star2.SetActive(true);
-        Star3.SetActive(true);
-        SpaceShip.transform.position = point;
-        SpaceCounter.text = "Колличество звёзд:" + TakedStar;
-        TaskComleted.SetActive(false);
-        Completer();
-    }
+    public void WaitScript() { Completer(); }
 
     public void StartTask()
     {
-        //SpaceShipTaskStatus = true;
-        switch (TakedStar)
+        switch (Reqwest)
         {
             case 0:
                 point = SpaceShip.transform.position;
@@ -54,14 +37,14 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
                 break;
         }
 
-        if (TakedStar == RequiredStar) CheckTask(point);
+        if (Reqwest == RequiredStar) CheckTask(point);
     }
 
     public void PickUpStar(GameObject Star)
     {
         SpaceShip.transform.position = Star.transform.position;
-        TakedStar ++;
-        SpaceCounter.text = "Колличество звёзд:" + TakedStar;
+        Reqwest++;
+        TaskCounter.text = "Колличество звёзд:" + Reqwest;
         Star.SetActive(false);
     }
 

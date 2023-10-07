@@ -5,51 +5,29 @@ using UnityEngine.UI;
 
 public class CatTask : Task, IPointerDownHandler, IPointerUpHandler
 {
-    public Text CatCounter, CatTimer;
-    public GameObject TaskComleted;
-
-    private int holdTime = 0, minHoldTime = 0;
-    private readonly int maxHoldTime = 10;
-
-    readonly System.Random rnd = new();
-
-    bool corutineWork = false;
-
-    IEnumerator coroutine;
     public void OnPointerDown(PointerEventData eventData) { StartTask(); }
     public void OnPointerUp(PointerEventData eventData) { Stop(); }
 
     public void Stop()
     {
-        StopCoroutine(coroutine);
-        corutineWork = false;
-        if (holdTime >= minHoldTime && holdTime <= maxHoldTime)
+        StopCoroutine();
+        if (Reqwest >= minHoldTime && Reqwest <= maxHoldTime)
         {
             TaskComleted.SetActive(true);
-            taskActive = false;
             taskComplete = true;
             Invoke("WaitScript", 0.5f);
         }
-        else if (holdTime < minHoldTime) { CatCounter.text = "Мало :<"; }
-        else { CatCounter.text = "Долго >:0"; }
+        else if (Reqwest < minHoldTime) { TaskCounter.text = "Мало :<"; }
+        else { TaskCounter.text = "Долго >:0"; }
 
     }
-
-    public void WaitScript()
-    {
-        minHoldTime = 0;
-        holdTime = 0;
-        CatCounter.text = "";
-        CatTimer.text = "Время:" + holdTime;
-        TaskComleted.SetActive(false);
-        Completer();
-    }
+    public void WaitScript() { Completer(); }
 
     public void StartTask()
     {
         if (minHoldTime == 0) { MinHoldTimetRND(); }
         Debug.Log("Мин:" + minHoldTime);
-        holdTime = 0;
+        Reqwest = 0;
         if (!corutineWork)
         {
             coroutine = TestCoroutine();
@@ -64,8 +42,8 @@ public class CatTask : Task, IPointerDownHandler, IPointerUpHandler
     {
         while (true)
         {
-            holdTime++;
-            CatTimer.text = "Время:" + holdTime;
+            Reqwest++;
+            TaskTimer.text = "Время:" + Reqwest;
             yield return new WaitForSeconds(1f);
         }
     }
