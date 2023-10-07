@@ -441,19 +441,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d2178b9808ac94d89e6a94ff877a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpaceShip: {fileID: 1055986008}
-  Star1: {fileID: 102738778}
-  Star2: {fileID: 640533762}
-  Star3: {fileID: 523594319}
   Parent: {fileID: 0}
-  Spark: {fileID: 1488136008}
   TaskComleted: {fileID: 0}
   TaskCounter: {fileID: 0}
-  TaskTimer: {fileID: 0}
   Reqwest: 0
   maxHoldTime: 10
   minHoldTime: 0
-  qwest: 0
   taskActive: 0
   taskComplete: 0
   corutineWork: 0
@@ -2496,6 +2489,7 @@ MonoBehaviour:
   - {fileID: 1155949016}
   - {fileID: 1004858902}
   - {fileID: 2006292023}
+  currentactiveTask: {fileID: 0}
 --- !u!1 &523594319
 GameObject:
   m_ObjectHideFlags: 0
@@ -5832,23 +5826,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b152bae0a136f424db496e109b2b2bb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpaceShip: {fileID: 1055986008}
-  Star1: {fileID: 102738778}
-  Star2: {fileID: 640533762}
-  Star3: {fileID: 523594319}
   Parent: {fileID: 1004858902}
-  Spark: {fileID: 1488136008}
   TaskComleted: {fileID: 972656008}
   TaskCounter: {fileID: 856867320}
-  TaskTimer: {fileID: 1761777713}
   Reqwest: 0
   maxHoldTime: 10
   minHoldTime: 0
-  qwest: 0
   taskActive: 0
   taskComplete: 0
   corutineWork: 0
   point: {x: 0, y: 0}
+  TaskTimer: {fileID: 1761777713}
 --- !u!1 &1014882652
 GameObject:
   m_ObjectHideFlags: 0
@@ -6980,23 +6968,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e422ea1fc87e8340adf9b29238cd31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpaceShip: {fileID: 1055986008}
-  Star1: {fileID: 102738778}
-  Star2: {fileID: 640533762}
-  Star3: {fileID: 523594319}
   Parent: {fileID: 1155949016}
-  Spark: {fileID: 1488136008}
   TaskComleted: {fileID: 1327104933}
   TaskCounter: {fileID: 1931285241}
-  TaskTimer: {fileID: 1192063214}
   Reqwest: 0
   maxHoldTime: 10
   minHoldTime: 0
-  qwest: 0
   taskActive: 0
   taskComplete: 0
   corutineWork: 0
   point: {x: 0, y: 0}
+  TaskTimer: {fileID: 1192063214}
 --- !u!1 &1176168106 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1644698091486161673, guid: bac7961610075b14ab2d17d7cf212d3c, type: 3}
@@ -11726,23 +11708,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796e4b602373ca648b34b681fab8e0de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpaceShip: {fileID: 1055986008}
-  Star1: {fileID: 102738778}
-  Star2: {fileID: 640533762}
-  Star3: {fileID: 523594319}
   Parent: {fileID: 1890917011}
-  Spark: {fileID: 1488136008}
   TaskComleted: {fileID: 679677572}
   TaskCounter: {fileID: 1133421340}
-  TaskTimer: {fileID: 0}
   Reqwest: 0
   maxHoldTime: 10
   minHoldTime: 0
-  qwest: 0
   taskActive: 0
   taskComplete: 0
   corutineWork: 0
   point: {x: 0, y: 0}
+  Spark: {fileID: 1488136008}
 --- !u!1 &1904518303
 GameObject:
   m_ObjectHideFlags: 0
@@ -12474,23 +12450,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eed61d89073b2994da33a34be0047e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpaceShip: {fileID: 1055986008}
-  Star1: {fileID: 102738778}
-  Star2: {fileID: 640533762}
-  Star3: {fileID: 523594319}
   Parent: {fileID: 2006292023}
-  Spark: {fileID: 1488136008}
   TaskComleted: {fileID: 633669734}
   TaskCounter: {fileID: 1063248985}
-  TaskTimer: {fileID: 0}
   Reqwest: 0
   maxHoldTime: 10
   minHoldTime: 0
-  qwest: 0
   taskActive: 0
   taskComplete: 0
   corutineWork: 0
   point: {x: 0, y: 0}
+  SpaceShip: {fileID: 1055986008}
+  Star1: {fileID: 102738778}
+  Star2: {fileID: 640533762}
+  Star3: {fileID: 523594319}
 --- !u!1 &2009125047
 GameObject:
   m_ObjectHideFlags: 0

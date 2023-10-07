@@ -295,21 +295,21 @@ public class GenerationManager : MonoBehaviour
                 case Direction.Top:
                     quaternion = Quaternion.identity * Quaternion.Euler(0, 0, 180);
                     rooms[rooms.Count - 1].First[room.doors[i].x, room.doors[i].y] =
-                        Instantiate(door, new Vector3(xStart + (float)room.doors[i].center.x, yStart - (float)room.doors[i].center.y, z), quaternion);
+                        Instantiate(door, new Vector3(xStart + (float)room.doors[i].center.x, yStart - (float)room.doors[i].center.y, z - 1), quaternion);
                     break;
                 case Direction.Bottom:
                     rooms[rooms.Count - 1].First[room.doors[i].x, room.doors[i].y] =
-                        Instantiate(door, new Vector3(xStart + (float)room.doors[i].center.x, yStart - (float)room.doors[i].center.y, z), Quaternion.identity);
+                        Instantiate(door, new Vector3(xStart + (float)room.doors[i].center.x, yStart - (float)room.doors[i].center.y, z - 1), Quaternion.identity);
                     break;
                 case Direction.Left:
                     quaternion = Quaternion.identity * Quaternion.Euler(0, 0, 270);
                     rooms[rooms.Count - 1].First[room.doors[i].x, room.doors[i].y] =
-                        Instantiate(door, new Vector3(xStart + (float)room.doors[i].center.x, yStart - (float)room.doors[i].center.y, z), quaternion);
+                        Instantiate(door, new Vector3(xStart + (float)room.doors[i].center.x, yStart - (float)room.doors[i].center.y, z - 1), quaternion);
                     break;
                 case Direction.Right:
                     quaternion = Quaternion.identity * Quaternion.Euler(0, 0, 90);
                     rooms[rooms.Count - 1].First[room.doors[i].x, room.doors[i].y] =
-                        Instantiate(door, new Vector3(xStart + (float)room.doors[i].center.x, yStart - (float)room.doors[i].center.y, z), quaternion);
+                        Instantiate(door, new Vector3(xStart + (float)room.doors[i].center.x, yStart - (float)room.doors[i].center.y, z - 1), quaternion);
                     break;           
                 default:
                     break;
