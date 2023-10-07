@@ -26,6 +26,7 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
     }
     public new void closeTask()
     {
+        base.closeTask();
         TaskTimer.text = "" + Reqwest;
     }
 

@@ -30,7 +30,7 @@ public class Task : MonoBehaviour
 
     public void closeTask()
     {
-        if (corutineWork) StopCoroutine();
+        if(corutineWork) StopCoroutine();
         taskActive = false;
         minHoldTime = 0;
         Reqwest = 0;

@@ -208,15 +208,16 @@ public class GameManagerScript : MonoBehaviour
 
     public void deactivateGame()
     {
-        Player.GetComponent<PlayerControl>().SetKeyboardActive(false);
 
+        gameObject.GetComponent<TaskChecker>().ResetMiniGames();
+        Player.GetComponent<PlayerControl>().SetKeyboardActive(false);
         MainCamera.GetComponent<GenerationManager>().DestroyAllWithout();
         MainCamera.GetComponent<GenerationManager>().enabled = false;
         MainCamera.GetComponent<CameraControl>().enabled = false;
         PlayerDrone.SetActive(false);
         Player.SetActive(false);
 
-        gameObject.GetComponent<TaskChecker>().ResetMiniGames();
+        
 
         resetTimer();
     }

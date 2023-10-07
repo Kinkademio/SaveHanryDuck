@@ -42,6 +42,7 @@ public class TaskChecker : MonoBehaviour
 
     public void iamDONE(GameObject game)
     {
+        currentactiveTask = null;
         KeyboardActive(true);
 
         if (checkWin())
@@ -53,14 +54,11 @@ public class TaskChecker : MonoBehaviour
     public void ResetMiniGames()
     {
         KeyboardActive(true);
-        GameObject parent = GameObject.Find("UI MiniGame");
-        int countOfChildren = parent.transform.childCount;
-        for (int i = 0; i < countOfChildren; i++)
-        {
-            GameObject miniGame = parent.transform.GetChild(i).gameObject;
-            miniGame.GetComponent<Task>().closeTask();
-            miniGame.SetActive(false);
 
+        for (int i = 0; i < tasks.Length; i++)
+        {
+            tasks[i].GetComponent<Task>().taskComplete = false;
+            tasks[i].GetComponent<Task>().closeTask();
         }
     }
 

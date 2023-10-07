@@ -15,14 +15,14 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
 
     public void CheckTask(Vector2 point)
     {
-        TaskComleted.SetActive(true);
-       
+        TaskComleted.SetActive(true);  
         taskComplete = true;
         Invoke("WaitScript", 0.5f);
     }
 
     public new void closeTask() 
     {
+        base.closeTask();
         Star1.SetActive(true);
         Star2.SetActive(true);
         Star3.SetActive(true);
