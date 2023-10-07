@@ -16,6 +16,7 @@ public class Task : MonoBehaviour
 
     public IEnumerator coroutine;
 
+    public Vector2 point;
 
     public void Completer()
     {

@@ -18,6 +18,7 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
 
     public new void closeTask()
     {
+        base.closeTask();
         Spark.SetActive(false);
     }
 
