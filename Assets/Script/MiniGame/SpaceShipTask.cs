@@ -10,14 +10,6 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
 
     public Vector2 point;
 
-    public void Start()
-    {
-       // point = SpaceShip.transform.position;
-    }
-    public void Awake()
-    {
-        //SpaceShip.transform.position = point;
-    }
     public void OnPointerDown(PointerEventData eventData) {  }
 
     public void OnPointerUp(PointerEventData eventData) {  StartTask(); }
@@ -65,6 +57,4 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
         TaskCounter.text = "Колличество звёзд:" + Reqwest;
         Star.SetActive(false);
     }
-
-    
 }
