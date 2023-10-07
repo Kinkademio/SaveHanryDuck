@@ -7,16 +7,14 @@ public class Task : MonoBehaviour
     public GameObject Parent, TaskComleted;
     public Text TaskCounter;
 
-
     public System.Random rnd = new();
 
-    public int Reqwest = 0, maxHoldTime = 10, minHoldTime = 0;
+    public int maxHoldTime = 10, minHoldTime = 0;
+    public int Reqwest = 0;
 
     public bool taskActive = false, taskComplete = false, corutineWork = false;
 
     public IEnumerator coroutine;
-
-    public Vector2 point;
 
     public void Completer()
     {
@@ -29,7 +27,7 @@ public class Task : MonoBehaviour
         corutineWork = false;
     }
 
-    public void closeTask()
+    public virtual void closeTask()
     {
         if(corutineWork) StopCoroutine();
         taskActive = false;

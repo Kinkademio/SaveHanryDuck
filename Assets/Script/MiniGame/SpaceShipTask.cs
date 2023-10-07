@@ -6,16 +6,17 @@ using UnityEngine.UI;
 public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
 {
     public GameObject SpaceShip, Star1, Star2, Star3;
-
     public readonly int RequiredStar = 3;
+
+    public Vector2 point;
 
     public void Start()
     {
-        point = SpaceShip.transform.position;
+       // point = SpaceShip.transform.position;
     }
     public void Awake()
     {
-        SpaceShip.transform.position = point;
+        //SpaceShip.transform.position = point;
     }
     public void OnPointerDown(PointerEventData eventData) {  }
 
@@ -28,7 +29,7 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
         Invoke("WaitScript", 0.5f);
     }
 
-    public new void closeTask() 
+    public override void closeTask() 
     {
         base.closeTask();
         Star1.SetActive(true);
@@ -43,6 +44,7 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
         switch (Reqwest)
         {
             case 0:
+                point = SpaceShip.transform.position;
                 PickUpStar(Star1);
                 break;
             case 1:
@@ -64,4 +66,5 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
         Star.SetActive(false);
     }
 
+    
 }
