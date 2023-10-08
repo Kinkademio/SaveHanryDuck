@@ -27,9 +27,10 @@ public class CatTask : Task, IPointerDownHandler, IPointerUpHandler
 
     }
 
-    public new void closeTask()
+    public override void closeTask()
     {
         TaskTimer.text = "" + Reqwest;
+        base.closeTask();
     }
 
     public void WaitScript() { Completer(); }

@@ -29,10 +29,10 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
 
     public override void closeTask() 
     {
-        base.closeTask();
         Star1.SetActive(true);
         Star2.SetActive(true);
         Star3.SetActive(true);SpaceShip.transform.position = point;
+        base.closeTask();
     }
         
     public void WaitScript() { Completer(); }

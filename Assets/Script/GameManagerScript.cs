@@ -84,7 +84,7 @@ public class GameManagerScript : MonoBehaviour
         {
             endGame();
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
                 this.openMenu();
                 gameSoundPlayer.Pause();
