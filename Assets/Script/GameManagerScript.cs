@@ -1,10 +1,39 @@
+using System;
+using System.Collections;
+using System.Xml.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
+
+//СТРУКТУРА JSON 
+[Serializable]
+public class Test
+{
+    public string _id;
+    public string taskName;
+    public Tasks[] tasks;
+}
+
+[Serializable]
+public class Tasks
+{
+    public string text;
+    public Ansver[] ansvers;
+}
+
+[Serializable]
+public class Ansver
+{
+    public string text;
+    public bool right;
+}
+
 
 public class GameManagerScript : MonoBehaviour
 {
     //Костыльно так нельзя нужен scrObj
+    [SerializeField] GameObject TestUI;
     [SerializeField] GameObject MenuUI;
     [SerializeField] GameObject GameUI;
     [SerializeField] GameObject SettingsUI;
@@ -20,9 +49,12 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] float baseVolume = 0.5f;
 
     private GameObject currentActiveUI;
+    public string testHash;
+    public Test test;
 
     public enum GameState
-    {
+    {   
+        onTestUI,
         onMenu, 
         onPause,
         GameProcess,
@@ -64,7 +96,7 @@ public class GameManagerScript : MonoBehaviour
     private void Start()
     {
         //Устанавливаем по умолчанию состояние игры в Меню
-        changeGameState(GameState.onMenu);
+        changeGameState(GameState.onTestUI);
 
         Timer = lifeTimer;
         if (!PlayerPrefs.HasKey("volume"))
@@ -72,7 +104,7 @@ public class GameManagerScript : MonoBehaviour
             PlayerPrefs.SetFloat("volume", baseVolume);                                                                                                                 
         }
         AudioListener.volume = PlayerPrefs.GetFloat("volume");
-        this.currentActiveUI = MenuUI;
+        this.currentActiveUI = TestUI;
         menuSoundPlayer.Play();
 
         MainCamera = GameObject.Find("Main Camera");
@@ -132,6 +164,33 @@ public class GameManagerScript : MonoBehaviour
         {
             buttonText.text = "Играть";
         }
+    }
+    
+    IEnumerator getTestData()
+    {
+        string url = "https://graduate-map.ru/api/test/" + this.testHash;
+        using (UnityWebRequest www = UnityWebRequest.Get(url))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                if (www.downloadHandler.text != "")
+                {
+                    test = JsonUtility.FromJson<Test>(www.downloadHandler.text);
+                    this.openMenu();
+                }
+            }
+        }
+    }
+   public void openMenuFromTestUI(string str)
+    {
+        this.testHash = str;
+        StartCoroutine(getTestData());
     }
 
     //Переход к игре
