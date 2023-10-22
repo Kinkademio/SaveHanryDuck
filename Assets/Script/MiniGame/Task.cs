@@ -33,8 +33,8 @@ public class Task : MonoBehaviour
         taskActive = false;
         minHoldTime = 0;
         Reqwest = 0;
-        TaskCounter.text = "";
-        TaskComleted.SetActive(false);
+        if(TaskCounter) TaskCounter.text = "";
+        if (TaskComleted) TaskComleted.SetActive(false);
         Parent.SetActive(false);
     }
 

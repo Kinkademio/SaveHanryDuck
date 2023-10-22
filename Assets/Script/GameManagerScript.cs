@@ -61,7 +61,7 @@ public class GameManagerScript : MonoBehaviour
     }
 
     //Текущее состояние игры
-    private GameState gameState;
+    public GameState gameState;
 
 
     public GameObject Player;
@@ -189,6 +189,7 @@ public class GameManagerScript : MonoBehaviour
     }
    public void openMenuFromTestUI(string str)
     {
+        changeGameState(GameState.onMenu);
         this.testHash = str;
         StartCoroutine(getTestData());
     }
@@ -332,6 +333,7 @@ public class GameManagerScript : MonoBehaviour
         timerField.text = convertTimertoStringVal(newTime);
 
     }
+
 
     public void resetTimer()
     {
