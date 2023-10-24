@@ -9,33 +9,27 @@ public class Task : MonoBehaviour
 
     public System.Random rnd = new();
 
-    public int maxHoldTime = 10, minHoldTime = 0;
-    public int Reqwest = 0;
+    public bool taskActive = false, taskComplete = false;
 
-    public bool taskActive = false, taskComplete = false, corutineWork = false;
-
-    public IEnumerator coroutine;
-
-    public void Completer()
+    public virtual void Completer()
     {
+        TaskComleted.SetActive(true);
+        taskComplete = true;
         GameObject.Find("Manager").GetComponent<TaskChecker>().iamDONE(gameObject);
-        closeTask();
-    }
-    public void StopCoroutine()
-    {
-        StopCoroutine(coroutine);
-        corutineWork = false;
+        Invoke("closeTask", 0.5f);
     }
 
     public virtual void closeTask()
     {
-        if(corutineWork) StopCoroutine();
         taskActive = false;
-        minHoldTime = 0;
-        Reqwest = 0;
         if(TaskCounter) TaskCounter.text = "";
         if (TaskComleted) TaskComleted.SetActive(false);
         Parent.SetActive(false);
+    }
+
+    public virtual void restartTask()
+    {
+        taskComplete = false;
     }
 
 }

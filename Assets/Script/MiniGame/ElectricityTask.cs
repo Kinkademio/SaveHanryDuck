@@ -6,6 +6,7 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
 {
     public GameObject Spark;
     private int PointNumber = 0;
+    public int Reqwest = 0;
 
     public void OnPointerDown(PointerEventData eventData) { Spark.SetActive(true); }
     public void OnPointerUp(PointerEventData eventData)
@@ -19,6 +20,7 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
     public override void closeTask()
     {
         Spark.SetActive(false);
+        Reqwest = 0;
         base.closeTask();
     }
 
@@ -28,15 +30,14 @@ public class ElectricityTask : Task, IPointerDownHandler, IPointerUpHandler
         Debug.Log(PointNumber);
         if (Reqwest == PointNumber) Stop();
     }
-    public void WaitScript() { Completer(); }
+
     public void Stop()
     {
-        TaskComleted.SetActive(true);
         int fixedObjects = int.Parse(ScoreController.getCurrentScoreByName("fixed_objects").scoreValue);
         fixedObjects++;
         ScoreController.setCurrentScoreNewValue("fixed_objects", fixedObjects.ToString());
-        taskComplete = true;
-        Invoke("WaitScript", 0.5f);
+
+        Completer();
     }
 
     private void PointRND() { PointNumber = rnd.Next(5, 30);}

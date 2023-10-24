@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
 {
-    
     public Text TaskTimer;
+    public int maxHoldTime = 10, minHoldTime = 0;
+    public int Reqwest = 0;
+    bool corutineWork = false;
+    public IEnumerator coroutine;
     public void OnPointerDown(PointerEventData eventData) {  StartTask(); }
     public void OnPointerUp(PointerEventData eventData) { Stop(); }
 
@@ -20,19 +23,16 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
         StopCoroutine();
         if (Reqwest >= minHoldTime && Reqwest <= maxHoldTime)
         {
-            TaskComleted.SetActive(true);
             int fixedObjects = int.Parse(ScoreController.getCurrentScoreByName("fixed_objects").scoreValue);
             fixedObjects++;
             ScoreController.setCurrentScoreNewValue("fixed_objects", fixedObjects.ToString());
-            taskComplete = true;
-            Invoke("WaitScript", 0.5f);
+
+            Completer();
         }
         else if (Reqwest < minHoldTime) { TaskCounter.text = "Слишком слабо"; }
         else { TaskCounter.text = "По аккуратнее!!!"; }
 
     }
-
-    public void WaitScript() { Completer(); }
 
     public void StartTask()
     {
@@ -57,5 +57,19 @@ public class OxygenTask : Task, IPointerDownHandler, IPointerUpHandler
             TaskTimer.text = "Сила удара:" + Reqwest;
             yield return new WaitForSeconds(1f);
         }
+    }
+
+    public void StopCoroutine()
+    {
+        StopCoroutine(coroutine);
+        corutineWork = false;
+    }
+
+    public override void closeTask()
+    {
+        if (corutineWork) StopCoroutine();
+        minHoldTime = 0;
+        Reqwest = 0;
+        base.closeTask();
     }
 }

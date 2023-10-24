@@ -88,10 +88,11 @@ public class DoorTrigger : MonoBehaviour
                     roomsPased++;
                     ScoreController.setCurrentScoreNewValue("rooms_passed", roomsPased.ToString());
 
-                    if ((MainCamera.GetComponent<GenerationManager>().BaseRoomSize <= 30) && (roomsPased % 4 == 0))
-                    {
-                        MainCamera.GetComponent<GenerationManager>().BaseRoomSize += 1;
-                    }
+                    // Код от бесконечного режима
+                    //if ((MainCamera.GetComponent<GenerationManager>().BaseRoomSize <= 30) && (roomsPased % 4 == 0))
+                    //{
+                    //    MainCamera.GetComponent<GenerationManager>().BaseRoomSize += 1;
+                    //}
 
                     gameManagerScript.resetTimer();
                     generationManager.DestroyAllWithout(RoomNumInMemory);

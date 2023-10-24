@@ -44,10 +44,11 @@ public class TaskChecker : MonoBehaviour
         currentactiveTask = null;
         KeyboardActive(true);
 
-        if (GameObject.Find("Manager").GetComponent<GameManagerScript>().lifeTimer < 60)
-        {
-            GameObject.Find("Manager").GetComponent<GameManagerScript>().lifeTimer += 1;
-        }
+        // Код от бесконечного режима
+        //if (GameObject.Find("Manager").GetComponent<GameManagerScript>().lifeTimer < 60)
+        //{
+        //    GameObject.Find("Manager").GetComponent<GameManagerScript>().lifeTimer += 1;
+        //}
 
         if (checkWin())
         {
@@ -61,7 +62,7 @@ public class TaskChecker : MonoBehaviour
 
         for (int i = 0; i < tasks.Length; i++)
         {
-            tasks[i].GetComponent<Task>().taskComplete = false;
+            tasks[i].GetComponent<Task>().restartTask();
             tasks[i].GetComponent<Task>().closeTask();
         }
     }

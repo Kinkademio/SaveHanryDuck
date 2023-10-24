@@ -259,12 +259,12 @@ public class GameManagerScript : MonoBehaviour
     {
         gameObject.GetComponent<TaskChecker>().ResetMiniGames();
 
-        //this.swapVisibleUi(currentActiveUI, WinUI);
-        //changeGameState(GameState.onMenu);
-        //ScoreController.setCurrentScoreNewValue("survive_time", convertTimertoStringVal(allSurviveTime));
+        this.swapVisibleUi(currentActiveUI, WinUI);
+        changeGameState(GameState.onMenu);
+        ScoreController.setCurrentScoreNewValue("survive_time", convertTimertoStringVal(allSurviveTime));
         //ScoreController.setCurrentScoreNewValue("survived", "Да");
-        //ScoreController.saveCurrentScore();
-        //deactivateGame();
+        ScoreController.saveCurrentScore();
+        deactivateGame();
     }
 
     public void deactivateGame()

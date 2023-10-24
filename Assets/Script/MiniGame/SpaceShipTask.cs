@@ -7,6 +7,7 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
 {
     public GameObject SpaceShip, Star1, Star2, Star3;
     public readonly int RequiredStar = 3;
+    public int Reqwest = 0;
 
     public Vector2 point;
 
@@ -19,24 +20,23 @@ public class SpaceShipTask : Task, IPointerDownHandler, IPointerUpHandler
 
     public void CheckTask(Vector2 point)
     {
-        TaskComleted.SetActive(true);  
-        taskComplete = true;
         int fixedObjects = int.Parse(ScoreController.getCurrentScoreByName("fixed_objects").scoreValue);
         fixedObjects++;
         ScoreController.setCurrentScoreNewValue("fixed_objects", fixedObjects.ToString());
-        Invoke("WaitScript", 0.5f);
+
+        Completer();
     }
 
     public override void closeTask() 
     {
         Star1.SetActive(true);
         Star2.SetActive(true);
-        Star3.SetActive(true);SpaceShip.transform.position = point;
+        Star3.SetActive(true);
+        SpaceShip.transform.position = point;
+        Reqwest = 0;
         base.closeTask();
     }
         
-    public void WaitScript() { Completer(); }
-
     public void StartTask()
     {
         switch (Reqwest)
